@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --color-base: 210 40% 98%;
+  --color-surface: 210 40% 96%;
+  --color-text: 222 47% 11%;
+  --color-accent: 188 86% 53%;
+  --color-muted: 214 32% 92%;
+  --color-muted-foreground: 222 16% 40%;
+  --color-border: 214 32% 86%;
+  --color-ring: 188 86% 53%;
+
+  --background: var(--color-base);
+  --foreground: var(--color-text);
+  --surface: var(--color-surface);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --primary: var(--color-accent);
+  --primary-foreground: 222 47% 11%;
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-text);
+  --accent: var(--color-accent);
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: var(--color-ring);
+
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 32, 0.08);
+  --shadow-md: 0 8px 20px rgba(15, 23, 32, 0.18);
+  --shadow-lg: 0 18px 48px rgba(11, 15, 20, 0.35);
+
+  --transition-fast: 120ms ease;
+  --transition-base: 160ms ease;
+  --transition-slow: 260ms ease;
+}
+
+.dark {
+  color-scheme: dark;
+  --color-base: 213 29% 6%;
+  --color-surface: 212 36% 9%;
+  --color-text: 216 12% 91%;
+  --color-accent: 188 86% 53%;
+  --color-muted: 215 28% 17%;
+  --color-muted-foreground: 217 15% 65%;
+  --color-border: 217 23% 20%;
+  --color-ring: 188 86% 53%;
+
+  --background: var(--color-base);
+  --foreground: var(--color-text);
+  --surface: var(--color-surface);
+  --card: var(--color-surface);
+  --card-foreground: var(--color-text);
+  --popover: var(--color-surface);
+  --popover-foreground: var(--color-text);
+  --muted: var(--color-muted);
+  --muted-foreground: var(--color-muted-foreground);
+  --border: var(--color-border);
+  --input: var(--color-border);
+  --primary: var(--color-accent);
+  --primary-foreground: 213 29% 6%;
+  --secondary: var(--color-surface);
+  --secondary-foreground: var(--color-text);
+  --accent: var(--color-accent);
+  --accent-foreground: 213 29% 6%;
+  --destructive: 0 62% 50%;
+  --destructive-foreground: 210 40% 96%;
+  --ring: var(--color-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+    margin: 0;
+    font-family: 'Inter', system-ui, sans-serif;
+    transition:
+      background-color var(--transition-slow),
+      color var(--transition-fast);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  a {
+    @apply text-accent transition-colors hover:text-accent/80;
+  }
+}
