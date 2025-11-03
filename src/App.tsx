@@ -163,7 +163,9 @@ const HomePage = () => {
         className="flex flex-col gap-10"
       >
         <Hero />
-        <TrustedBy />
+        <div className="-mt-6">
+          <TrustedBy />
+        </div>
         <Projects />
         <Experience />
         <Skills />
