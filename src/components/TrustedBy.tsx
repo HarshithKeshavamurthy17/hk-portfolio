@@ -20,14 +20,12 @@ export default function TrustedBy() {
           <Marquee gradient={false} speed={30} pauseOnHover>
             <div className="flex items-center gap-12 px-6">
               {LOGOS.map((logo) => (
-                <img
+                <div
                   key={logo.name}
-                  src={`/logos/${logo.name}`}
-                  alt={`${logo.alt} logo`}
-                  className="h-12 w-auto opacity-60 grayscale transition duration-300 ease-out hover:opacity-100 hover:grayscale-0"
-                  loading="lazy"
-                  decoding="async"
-                />
+                  className="flex h-12 items-center justify-center px-4 text-lg font-bold uppercase tracking-wider text-white/60 transition duration-300 ease-out hover:text-white/100"
+                >
+                  {logo.alt}
+                </div>
               ))}
             </div>
           </Marquee>
