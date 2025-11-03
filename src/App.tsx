@@ -163,7 +163,7 @@ const HomePage = () => {
         className="flex flex-col gap-10"
       >
         <Hero />
-        <div className="-mt-6">
+        <div className="-mt-16">
           <TrustedBy />
         </div>
         <Projects />
