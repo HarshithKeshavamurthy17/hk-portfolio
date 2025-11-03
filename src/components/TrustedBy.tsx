@@ -1,12 +1,12 @@
 import Marquee from 'react-fast-marquee';
 
 const LOGOS = [
-  { name: 'tietoevry_logo', alt: 'Tietoevry' },
-  { name: 'uber', alt: 'Uber' },
-  { name: 'nineleaps', alt: 'Nineleaps' },
-  { name: 'nastech', alt: 'NASTECH' },
-  { name: 'build_fellowship', alt: 'Build Fellowship' },
-  { name: 'bu', alt: 'Boston University' },
+  { name: 'tietoevry_logo.png', alt: 'Tietoevry' },
+  { name: 'uber.png', alt: 'Uber' },
+  { name: 'nineleaps.png', alt: 'Nineleaps' },
+  { name: 'nastech.png', alt: 'NASTECH' },
+  { name: 'build_fellowship.png', alt: 'Build Fellowship' },
+  { name: 'bu.png', alt: 'Boston University' },
 ] as const;
 
 export default function TrustedBy() {
@@ -22,7 +22,7 @@ export default function TrustedBy() {
               {LOGOS.map((logo) => (
                 <img
                   key={logo.name}
-                  src={`/logos/${logo.name}.png`}
+                  src={`/logos/${logo.name}`}
                   alt={`${logo.alt} logo`}
                   className="h-12 w-auto opacity-60 grayscale transition duration-300 ease-out hover:opacity-100 hover:grayscale-0"
                   loading="lazy"
