@@ -14,6 +14,30 @@ const ThemeContext = React.createContext<ThemeContextValue | undefined>(undefine
 
 const STORAGE_KEY = 'hk-theme';
 
+function triggerSparkles() {
+  if (typeof document === 'undefined') {
+    return;
+  }
+
+  const container = document.createElement('div');
+  container.className = 'theme-sparkles';
+
+  for (let i = 0; i < 24; i += 1) {
+    const particle = document.createElement('span');
+    particle.className = 'theme-sparkles__particle';
+    particle.style.setProperty('--spark-x', `${Math.random() * 200 - 100}px`);
+    particle.style.setProperty('--spark-y', `${Math.random() * 140 - 70}px`);
+    particle.style.setProperty('--spark-rot', `${Math.random() * 360}deg`);
+    container.appendChild(particle);
+  }
+
+  document.body.appendChild(container);
+
+  window.setTimeout(() => {
+    container.remove();
+  }, 300);
+}
+
 function getInitialTheme(defaultTheme: ThemeName, storageKey: string): ThemeName {
   if (typeof window === 'undefined') {
     return defaultTheme;
@@ -130,7 +154,11 @@ export function ThemeProvider({
   }, []);
 
   const toggleTheme = React.useCallback(() => {
-    setThemeState((current) => (current === 'dark' ? 'light' : 'dark'));
+    setThemeState((current) => {
+      const next = current === 'dark' ? 'light' : 'dark';
+      triggerSparkles();
+      return next;
+    });
   }, []);
 
   const value = React.useMemo<ThemeContextValue>(

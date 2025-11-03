@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <rect width="160" height="160" rx="24" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.3)" stroke-width="2" />
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.85)" font-family="'Space Grotesk', sans-serif" font-size="22" letter-spacing="6">
+    QUANTUM
+  </text>
+  <text x="50%" y="68%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="'Space Grotesk', sans-serif" font-size="18" letter-spacing="5">
+    VENTURA
+  </text>
+</svg>
+

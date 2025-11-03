@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160">
+  <rect width="160" height="160" rx="24" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.35)" stroke-width="2" />
+  <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="'Space Grotesk', sans-serif" font-size="48" letter-spacing="8">
+    BU
+  </text>
+  <text x="50%" y="72%" dominant-baseline="middle" text-anchor="middle" fill="rgba(255,255,255,0.45)" font-family="'Space Grotesk', sans-serif" font-size="16" letter-spacing="6">
+    RESEARCH
+  </text>
+</svg>
+

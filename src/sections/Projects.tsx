@@ -1,220 +1,167 @@
-import * as React from 'react';
-import { AnimatePresence, LayoutGroup, motion, useReducedMotion } from 'framer-motion';
-import { Section } from '../components/layout/Section';
-import { fadeIn } from '../components/layout/Motion';
-import { Project, ProjectCard } from '../components/project/ProjectCard';
-import { cn } from '../lib/cn';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { Sparkles } from 'lucide-react';
+import projectsData from '../data/projects';
+import type { Project } from '../data/projects';
+import ProjectCard from '../components/ProjectCard';
+import CaseModal from '../components/CaseModal';
 
-type Category = 'All' | 'AI/ML' | 'Data Eng' | 'Analytics';
+const FILTERS = ['All', 'AI/ML', 'Data Eng', 'Analytics'] as const;
+type Filter = (typeof FILTERS)[number];
 
-const FILTERS: Category[] = ['All', 'AI/ML', 'Data Eng', 'Analytics'];
-
-const CASE_PREFETCHERS: Record<string, () => Promise<unknown>> = {
-  '/case/vi-graph-rag': () => import('../routes/case/VIGraphRAG'),
-  '/case/uber-etl': () => import('../routes/case/UberETL'),
-  '/case/f1-prediction': () => import('../routes/case/F1Prediction'),
-  '/case/breast-cancer-ml': () => import('../routes/case/BreastCancerML'),
-  '/case/cs699-ensemble': () => import('../routes/case/CS699Ensemble'),
+const CATEGORY_MAP: Record<string, Filter> = {
+  'vi-graph-rag': 'AI/ML',
+  'uber-etl': 'Data Eng',
+  'f1-prediction': 'AI/ML',
+  'breast-cancer-ml': 'AI/ML',
+  'cs699-ensemble': 'Analytics',
 };
 
-const PROJECTS: Array<Project & { categories: Category[] }> = [
-  {
-    title: 'VI-Graph-RAG',
-    summary:
-      'Graph-aware retrieval augmented generation for vulnerability intelligence triage across multi-vendor advisories.',
-    tech: ['Python', 'Neo4j', 'LangChain', 'GraphRAG'],
-    metric: {
-      label: 'Triage time reduced',
-      value: '-42% MTTR',
+const containerVariants = {
+  initial: { opacity: 0, y: 16 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.4,
+      ease: 'easeOut' as const,
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
-    links: {
-      code: 'https://github.com/harinik/vi-graph-rag',
-      demo: 'https://harinik.dev/demos/vi-graph-rag',
-      pdf: '/pdfs/vi-graph-rag.pdf',
-      caseStudy: '/case/vi-graph-rag',
-    },
-    categories: ['AI/ML', 'Analytics'],
   },
-  {
-    title: 'Uber ETL',
-    summary:
-      'Streaming ingestion and anomaly detection for multi-region rider datasets with declarative data contracts.',
-    tech: ['Scala', 'Kafka', 'dbt', 'Snowflake'],
-    metric: {
-      label: 'Preprocess throughput',
-      value: '3,747 rows/sec',
-    },
-    links: {
-      code: 'https://github.com/harinik/uber-etl-pipeline',
-      demo: 'https://harinik.dev/demos/uber-etl',
-      pdf: '/pdfs/uber-etl.pdf',
-      caseStudy: '/case/uber-etl',
-    },
-    categories: ['Data Eng', 'Analytics'],
-  },
-  {
-    title: 'F1 Prediction',
-    summary:
-      'Real-time race outcome prediction engine combining telemetry, weather, and pit strategy simulations.',
-    tech: ['TypeScript', 'TensorFlow', 'SSE', 'Redis'],
-    metric: {
-      label: 'Predictive MAE',
-      value: '0.12 laps',
-    },
-    links: {
-      code: 'https://github.com/harinik/f1-prediction-platform',
-      demo: 'https://harinik.dev/demos/f1-live',
-      pdf: '/pdfs/f1-prediction.pdf',
-      caseStudy: '/case/f1-prediction',
-    },
-    categories: ['AI/ML', 'Analytics'],
-  },
-  {
-    title: 'Breast Cancer ML',
-    summary:
-      'Explainable diagnostic workflow highlighting cellular features with SHAP-backed interpretability dashboards.',
-    tech: ['PyTorch', 'FastAPI', 'SHAP', 'React'],
-    metric: {
-      label: 'Balanced accuracy',
-      value: '83.19%',
-    },
-    links: {
-      code: 'https://github.com/harinik/breast-cancer-ml',
-      demo: 'https://harinik.dev/demos/breast-cancer-ml',
-      pdf: '/pdfs/breast-cancer-ml.pdf',
-      caseStudy: '/case/breast-cancer-ml',
-    },
-    categories: ['AI/ML'],
-  },
-  {
-    title: 'CS699 Ensemble',
-    summary:
-      'Stacked ensemble models with automated feature stores and governance for graduate-level risk modeling.',
-    tech: ['Python', 'XGBoost', 'MLflow', 'Great Expectations'],
-    metric: {
-      label: 'Lift vs baseline',
-      value: '+18.6% lift',
-    },
-    links: {
-      code: 'https://github.com/harinik/cs699-ensemble',
-      demo: 'https://harinik.dev/demos/cs699-ensemble',
-      pdf: '/pdfs/cs699-ensemble.pdf',
-      caseStudy: '/case/cs699-ensemble',
-    },
-    categories: ['AI/ML', 'Analytics'],
-  },
-];
+};
 
-export function Projects() {
-  const [activeCategory, setActiveCategory] = React.useState<Category>('All');
-  const prefetchCaseStudy = useCasePrefetcher();
-  const shouldReduceMotion = useReducedMotion();
-  const containerVariants = shouldReduceMotion ? undefined : fadeIn();
-  const containerProps = shouldReduceMotion
-    ? {}
-    : {
-        variants: containerVariants,
-        initial: 'hidden',
-        whileInView: 'show',
-        viewport: { once: true, amount: 0.2 },
-      };
+export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState<Filter>('All');
+  const [quickView, setQuickView] = useState<{
+    project: Project;
+  } | null>(null);
+  const lastTriggerRef = useRef<HTMLButtonElement | null>(null);
 
-  const filteredProjects = React.useMemo(() => {
-    if (activeCategory === 'All') {
-      return PROJECTS;
+  const filtered: Project[] = useMemo(() => {
+    if (activeFilter === 'All') {
+      return projectsData;
     }
+    return projectsData.filter((project) => CATEGORY_MAP[project.id] === activeFilter);
+  }, [activeFilter]);
 
-    return PROJECTS.filter((project) => project.categories.includes(activeCategory));
-  }, [activeCategory]);
+  const handleCloseModal = useCallback(() => {
+    setQuickView(null);
+  }, []);
+
+  useEffect(() => {
+    if (!quickView && lastTriggerRef.current) {
+      lastTriggerRef.current.focus();
+      lastTriggerRef.current = null;
+    }
+  }, [quickView]);
 
   return (
-    <Section id="projects" className="pt-0">
-      <motion.div {...containerProps} className="flex flex-col gap-6">
-        <div className="flex flex-col gap-2">
-          <h2 className="font-heading text-3xl font-semibold text-foreground">
-            Highlighted Projects
-          </h2>
-          <p className="text-muted-foreground">
-            Explorations across AI/ML, streaming data engineering, and analytics systems with
-            production-ready deliverables.
-          </p>
-        </div>
-        <LayoutGroup id="projects-filters">
-          <div className="flex flex-wrap gap-3">
-            {FILTERS.map((filter) => {
-              const isActive = activeCategory === filter;
+    <section id="projects" className="relative pt-0">
+      {/* Background decoration */}
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-purple-500/5 blur-3xl" aria-hidden="true" />
+      
+      <div className="mx-auto max-w-5xl px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+        >
+          <div className="relative">
+            <motion.div
+              className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              style={{ transformOrigin: "top" }}
+              aria-hidden="true"
+            />
+            <div className="flex items-center gap-3">
+              <h2 className="text-3xl font-bold text-white">
+                Highlighted Projects
+              </h2>
+              <motion.div
+                animate={{ rotate: [0, 10, -10, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Sparkles className="size-6 text-cyan-400" aria-hidden="true" />
+              </motion.div>
+            </div>
+            <p className="mt-1 text-sm text-neutral-400">
+              Hands-on systems I&apos;ve shipped and studied · Click to explore
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {FILTERS.map((filter, index) => {
+              const isActive = activeFilter === filter;
               return (
-                <button
+                <motion.button
                   key={filter}
                   type="button"
-                  onClick={() => setActiveCategory(filter)}
-                  className={cn(
-                    'relative overflow-hidden rounded-full border border-border/50 px-4 py-2 text-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+                  aria-pressed={isActive}
+                  onClick={() => setActiveFilter(filter)}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`relative overflow-hidden rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] ${
                     isActive
-                      ? 'text-accent-foreground'
-                      : 'text-muted-foreground hover:text-foreground',
-                  )}
+                      ? 'border-cyan-400 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-200 shadow-[0_0_20px_rgba(34,211,238,0.3)]'
+                      : 'border-white/10 bg-white/5 text-neutral-300 hover:border-cyan-400/60 hover:bg-white/10 hover:text-cyan-200'
+                  }`}
                 >
+                  <span className="relative z-10">{filter}</span>
                   {isActive && (
                     <motion.span
-                      layoutId="projects-filter-active"
-                      className="absolute inset-0 -z-10 rounded-full bg-accent/90"
-                      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      layoutId="activeFilter"
+                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      aria-hidden="true"
                     />
                   )}
-                  <span className="relative z-10">{filter}</span>
-                </button>
+                </motion.button>
               );
             })}
           </div>
-        </LayoutGroup>
+        </motion.div>
 
-        <LayoutGroup id="projects-cards">
-          <motion.div layout className="grid gap-6 md:grid-cols-2">
-            <AnimatePresence mode="popLayout" initial={shouldReduceMotion ? false : undefined}>
-              {filteredProjects.map((project) => (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                  onCaseStudyHover={prefetchCaseStudy}
-                />
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </LayoutGroup>
-      </motion.div>
-    </Section>
+        <motion.div
+          variants={containerVariants}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, amount: 0.2 }}
+          className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+        >
+          <AnimatePresence mode="sync">
+            {filtered.map((project) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                onQuickView={(selectedProject, trigger) => {
+                  lastTriggerRef.current = trigger;
+                  setQuickView({ project: selectedProject });
+                }}
+              />
+            ))}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+      <CaseModal
+        open={Boolean(quickView)}
+        onClose={handleCloseModal}
+        title={quickView?.project.title ?? ''}
+        problem={quickView?.project.summary ?? ''}
+        approach={quickView?.project.subtitle ?? ''}
+        impact={quickView?.project.impact ?? []}
+        stack={quickView?.project.tech ?? []}
+        links={(quickView?.project.links ?? []).map((link) => ({ label: link.label, href: link.href }))}
+      />
+    </section>
   );
 }
 
-function useCasePrefetcher() {
-  const prefetchedRef = React.useRef<Set<string>>(new Set());
-  const cancelledRef = React.useRef(false);
-  const latestTokenRef = React.useRef(0);
-
-  React.useEffect(() => {
-    return () => {
-      cancelledRef.current = true;
-    };
-  }, []);
-
-  return React.useCallback((href: string) => {
-    const prefetch = CASE_PREFETCHERS[href];
-    if (!prefetch || prefetchedRef.current.has(href) || cancelledRef.current) {
-      return;
-    }
-
-    const currentToken = ++latestTokenRef.current;
-
-    void prefetch()
-      .then(() => {
-        if (cancelledRef.current || latestTokenRef.current !== currentToken) {
-          return;
-        }
-        prefetchedRef.current.add(href);
-      })
-      .catch(() => {
-        // Ignore prefetch failures; main navigation will still load the route.
-      });
-  }, []);
-}
