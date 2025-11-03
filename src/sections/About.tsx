@@ -6,19 +6,19 @@ const highlights = [
   {
     icon: <Briefcase className="size-5" />,
     label: 'Now',
-    content: 'Graph-RAG evals, data contracts, Azure Functions CI.',
+    content: 'Building Graph-RAG pipelines on Neo4j + LangChain and deploying on Azure Functions with automated retrieval evaluation.',
     gradient: 'from-cyan-500/20 to-blue-500/10',
   },
   {
     icon: <Rocket className="size-5" />,
     label: 'Strengths',
-    items: ['Streaming ETL (Kafka → dbt → Snowflake)', 'Interpretable ML (SHAP, model cards)', 'Graph retrieval (Neo4j, LangChain)'],
+    items: ['Hybrid RAG retrieval (BM25 + FAISS + Cross-Encoder)', 'Streaming ETL & data quality automation (Kafka, dbt, Spark)', 'Cloud-native deployment (Azure Functions, Docker, FastAPI)'],
     gradient: 'from-emerald-500/20 to-green-500/10',
   },
   {
     icon: <Heart className="size-5" />,
     label: 'Outside work',
-    content: 'F1 nerd—turning race telemetry into predictive dashboards.',
+    content: 'Sports geek and Formula 1 fan — I love finding patterns in performance data and turning real-world stats into stories.',
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
 ];
@@ -52,8 +52,10 @@ export function About() {
             <User className="size-6 text-violet-400" aria-hidden="true" />
           </div>
           <p className="max-w-3xl text-balance text-lg leading-relaxed text-neutral-300">
-            I&apos;m an applied data scientist building end-to-end intelligence systems that bridge messy, real-world streams with precise decision loops. 
-            I&apos;m currently at <span className="font-semibold text-white">Boston University (Applied Data Analytics)</span> while freelancing on high-impact AI deployments.
+            I&apos;m a data scientist and engineer passionate about building interpretable AI systems and scalable data platforms. My work spans Graph-RAG systems (Tietoevry), streaming analytics (Uber via Nineleaps), and growth strategy modeling (Build Fellowship).
+          </p>
+          <p className="max-w-3xl text-balance leading-relaxed text-neutral-400">
+            Currently pursuing my MS in Applied Data Analytics at Boston University, I focus on bridging real-world data streams with intelligent, explainable AI pipelines.
           </p>
         </motion.div>
 
@@ -94,9 +96,9 @@ export function About() {
             aria-hidden="true"
           />
           <div className="relative z-10">
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-cyan-400">Now open to</p>
+            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-cyan-400">✅ Now open to</p>
             <div className="flex flex-wrap gap-2">
-              {["Data/AI roles", "ML Platform", "RAG/Graph-RAG", "Streaming ETL"].map((role, index) => (
+              {["Data Scientist (Production AI & Analytics)", "AI Engineer / LLM Applications", "Decision Intelligence / Data Strategy", "ML Governance & Evaluation Pipelines"].map((role, index) => (
                 <motion.span
                   key={role}
                   initial={{ opacity: 0, scale: 0.8 }}
