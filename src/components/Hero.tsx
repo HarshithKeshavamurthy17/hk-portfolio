@@ -113,7 +113,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="mt-6 text-xl font-medium tracking-wide text-cyan-300/90 md:text-2xl"
         >
-          Applied AI • Data Platforms • Graph-RAG
+          Applied AI • Data Engineering • Intelligent Data Platforms
         </motion.p>
         
         <motion.p
@@ -122,7 +122,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-neutral-200/80 md:text-xl"
         >
-          I build interpretable AI systems and data platforms—Graph-RAG, streaming ETL, and ML governance.
+          I build data-driven AI systems and platforms—combining retrieval-augmented generation (RAG), streaming data pipelines, and analytics for decision intelligence.
         </motion.p>
 
         <motion.div
@@ -179,10 +179,10 @@ export default function Hero() {
         >
           <span className="font-semibold text-cyan-300">Now open to:</span>{' '}
           <span className="inline-flex flex-wrap items-center justify-center gap-2">
-            <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200">Data/AI</span>
-            <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">ML Platform</span>
-            <span className="rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">Graph-RAG</span>
-            <span className="rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-200">Streaming ETL</span>
+            <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200">AI/ML Engineer</span>
+            <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">Data Scientist</span>
+            <span className="rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">Data Engineer</span>
+            <span className="rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-200">ML Platform Roles</span>
           </span>
         </motion.p>
 
