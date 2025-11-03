@@ -257,31 +257,6 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Logo marquee */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="mt-20 overflow-hidden"
-        >
-          <p className="mb-6 text-xs uppercase tracking-[0.3em] text-neutral-500">Trusted by</p>
-          <motion.div
-            className="flex gap-12"
-            animate={{ x: ['0%', '-50%'] }}
-            transition={{ repeat: Infinity, duration: 20, ease: 'linear' }}
-          >
-            {['tietoevry.svg', 'bu.svg', 'nineleaps.svg', 'nastech.svg', 'quantumventura.svg', 'tietoevry.svg', 'bu.svg', 'nineleaps.svg', 'nastech.svg', 'quantumventura.svg'].map((logo, i) => (
-              <img
-                key={`${logo}-${i}`}
-                src={`/logos/${logo}`}
-                alt={logo.replace('.svg', '')}
-                className="h-8 opacity-40 grayscale transition-all duration-300 hover:opacity-70 hover:grayscale-0"
-                loading="lazy"
-                decoding="async"
-              />
-            ))}
-          </motion.div>
-        </motion.div>
       </div>
     </section>
   );

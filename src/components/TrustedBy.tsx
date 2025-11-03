@@ -22,7 +22,7 @@ export default function TrustedBy() {
               {LOGOS.map((logo) => (
                 <img
                   key={logo.name}
-                  src={`/logos/${logo.name}.sng`}
+                  src={`/logos/${logo.name}.png`}
                   alt={`${logo.alt} logo`}
                   className="h-12 w-auto opacity-60 grayscale transition duration-300 ease-out hover:opacity-100 hover:grayscale-0"
                   loading="lazy"

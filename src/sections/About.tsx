@@ -161,35 +161,6 @@ export function About() {
           ))}
         </div>
 
-        {/* Trusted by section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex flex-col gap-4"
-        >
-          <span className="text-xs font-semibold uppercase tracking-[0.3em] text-neutral-500">Trusted by</span>
-          <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-r from-white/5 to-white/0 px-8 py-6 backdrop-blur-xl">
-            <div className="flex flex-wrap items-center justify-center gap-8 md:justify-start">
-              {["tietoevry", "nineleaps", "nastech", "quantumventura", "bu"].map((logo, index) => (
-                <motion.img
-                  key={logo}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.1, opacity: 1 }}
-                  src={`/logos/${logo}.svg`}
-                  alt={`${logo} logo`}
-                  className="h-8 w-auto opacity-60 grayscale transition-all duration-300 hover:grayscale-0"
-                  loading="lazy"
-                  decoding="async"
-                />
-              ))}
-            </div>
-          </div>
-        </motion.div>
       </div>
     </Section>
   );
