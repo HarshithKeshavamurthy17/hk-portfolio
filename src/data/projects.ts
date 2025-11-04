@@ -60,20 +60,23 @@ export const projects: Project[] = [
   },
   {
     id: 'f1-prediction',
-    title: 'F1 Prediction',
-    subtitle: 'Race outcome engine',
-    summary:
-      'Combines telemetry, weather, and pits to forecast delta vs leader; SHAP for strategy explainability.',
-    impact: ['MAE: 0.12 laps on holdout', 'Live strategy what-ifs', 'Fast sim UI'],
-    tech: ['TypeScript', 'TensorFlow', 'Redis', 'SSE', 'React'],
+    title: 'F1 Race Win Predictor',
+    subtitle: 'Machine learning system for Formula 1 race winner prediction',
+    summary: 'Predict F1 race winners with 95.3% accuracy using 30 years of historical data and graph-based feature engineering.',
+    impact: [
+      '95.3% prediction accuracy (530/556 races)',
+      '25 research-based features',
+      'Random Forest ensemble with 800 trees',
+    ],
+    tech: ['Python', 'Scikit-learn', 'Random Forest', 'Streamlit', 'Pandas', 'Plotly'],
     links: [
       { label: 'Code', href: 'https://github.com/harinik/f1-prediction-platform', kind: 'code' },
       { label: 'Demo', href: 'https://harinik.dev/demos/f1-live', kind: 'demo' },
-      { label: 'Case Study', href: '/case/f1-prediction', kind: 'case' },
+      { label: 'Case Study', href: '/projects/f1-prediction', kind: 'case' },
     ],
-    badges: ['0.12 Laps MAE'],
+    badges: ['CASE STUDY'],
     thumb: '/thumbs/f1.png',
-    metrics: ['0.12 laps MAE', 'SSE', 'Realtime'],
+    metrics: ['95.3% accuracy', '25 features', '30 years data'],
   },
   {
     id: 'breast-cancer-ml',
