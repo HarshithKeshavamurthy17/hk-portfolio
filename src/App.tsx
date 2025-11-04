@@ -21,6 +21,7 @@ const UberETL = lazy(() => import('./routes/case/UberETL'));
 const F1Prediction = lazy(() => import('./routes/case/F1Prediction'));
 const BreastCancerML = lazy(() => import('./routes/case/BreastCancerML'));
 const CS699Ensemble = lazy(() => import('./routes/case/CS699Ensemble'));
+const ProjectViGraphRag = lazy(() => import('./pages/ProjectViGraphRag'));
 
 const HomePage = () => {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -214,6 +215,10 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<Navigate to="/#projects" replace />} />
+          <Route
+            path="/projects/vi-graph-rag"
+            element={<CaseFallbackSuspense component={<ProjectViGraphRag />} />}
+          />
           <Route
             path="/case/vi-graph-rag"
             element={<CaseFallbackSuspense component={<VIGraphRAG />} />}

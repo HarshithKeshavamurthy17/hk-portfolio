@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react';
 import { motion, useReducedMotion, useMotionValue, useSpring } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { BookOpen, Code2, FileText, Play, TrendingUp } from 'lucide-react';
 import type { Project } from '../data/projects';
 import { cn } from '../lib/cn';
@@ -191,7 +192,16 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         <div className="flex flex-col gap-2 text-left">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+              {project.id === 'vi-graph-rag' ? (
+                <Link
+                  to="/projects/vi-graph-rag"
+                  className="text-xl font-semibold text-white transition-colors hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] rounded"
+                >
+                  {project.title}
+                </Link>
+              ) : (
+                <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+              )}
               <p className="line-clamp-2 text-sm text-neutral-300">{project.summary}</p>
             </div>
             {project.badges && project.badges.length > 0 ? (
@@ -249,13 +259,22 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         )}
 
         <div className="mt-auto flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={(event) => onQuickView?.(project, event.currentTarget)}
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
-          >
-            Quick View
-          </button>
+          {project.id === 'vi-graph-rag' ? (
+            <Link
+              to="/projects/vi-graph-rag"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
+            >
+              Quick View
+            </Link>
+          ) : (
+            <button
+              type="button"
+              onClick={(event) => onQuickView?.(project, event.currentTarget)}
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
+            >
+              Quick View
+            </button>
+          )}
           {sortedLinks.map((link) => (
             <a
               key={`${project.id}-${link.kind}-${link.href}`}
