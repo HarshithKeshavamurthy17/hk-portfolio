@@ -192,9 +192,9 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         <div className="flex flex-col gap-2 text-left">
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div className="flex-1">
-              {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' ? (
+              {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' ? (
                 <Link
-                  to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : '/projects/f1-prediction'}
+                  to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : '/projects/oncovision'}
                   className="text-xl font-semibold text-white transition-colors hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] rounded"
                 >
                   {project.title}
@@ -259,9 +259,9 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         )}
 
         <div className="mt-auto flex flex-wrap gap-2">
-          {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' ? (
+          {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' ? (
             <Link
-              to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : '/projects/f1-prediction'}
+              to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : '/projects/oncovision'}
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
             >
               Quick View

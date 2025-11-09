@@ -23,6 +23,7 @@ const BreastCancerML = lazy(() => import('./routes/case/BreastCancerML'));
 const CS699Ensemble = lazy(() => import('./routes/case/CS699Ensemble'));
 const ProjectViGraphRag = lazy(() => import('./pages/ProjectViGraphRag'));
 const ProjectF1Prediction = lazy(() => import('./pages/ProjectF1Prediction'));
+const ProjectOncoVision = lazy(() => import('./pages/ProjectOncoVision'));
 
 const HomePage = () => {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -223,6 +224,10 @@ function App() {
           <Route
             path="/projects/f1-prediction"
             element={<CaseFallbackSuspense component={<ProjectF1Prediction />} />}
+          />
+          <Route
+            path="/projects/oncovision"
+            element={<CaseFallbackSuspense component={<ProjectOncoVision />} />}
           />
           <Route
             path="/case/vi-graph-rag"

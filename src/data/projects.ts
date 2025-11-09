@@ -79,21 +79,24 @@ export const projects: Project[] = [
     metrics: ['95.3% accuracy', '25 features', '30 years data'],
   },
   {
-    id: 'breast-cancer-ml',
-    title: 'Breast Cancer ML',
-    subtitle: 'Explainable diagnostics workflow',
-    summary:
-      'FastAPI service with SHAP reports and model registry; bias checks and audit trail.',
-    impact: ['Balanced accuracy: 83.19%', 'SHAP insight packs', 'Model cards & governance'],
-    tech: ['PyTorch', 'FastAPI', 'SHAP', 'MLflow', 'React'],
-    links: [
-      { label: 'Code', href: 'https://github.com/harinik/breast-cancer-ml', kind: 'code' },
-      { label: 'One-Pager PDF', href: '/pdfs/breast-cancer-ml.pdf', kind: 'pdf' },
-      { label: 'Case Study', href: '/case/breast-cancer-ml', kind: 'case' },
+    id: 'oncovision',
+    title: 'OncoVision',
+    subtitle: 'AI-Powered Breast Ultrasound Image Segmentation',
+    summary: 'Deep learning-based medical image segmentation system that automatically identifies and classifies breast tissue types using U-Net architecture with ResNet50 encoder.',
+    impact: [
+      'Multi-class segmentation (Background, Benign, Malignant)',
+      'Transfer learning with ResNet50 encoder',
+      'Interactive web application with 156 example images',
     ],
-    badges: ['83.19% BA'],
+    tech: ['PyTorch', 'U-Net', 'ResNet50', 'Streamlit', 'OpenCV', 'Albumentations'],
+    links: [
+      { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/oncovision', kind: 'code' },
+      { label: 'Demo', href: 'https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app', kind: 'demo' },
+      { label: 'Case Study', href: '/projects/oncovision', kind: 'case' },
+    ],
+    badges: ['CASE STUDY'],
     thumb: '/thumbs/breast-ml.png',
-    metrics: ['83.19% BA', 'SHAP packs', 'Audit trail'],
+    metrics: ['Multi-class segmentation', '156 examples', 'Medical AI'],
   },
   {
     id: 'cs699-ensemble',
