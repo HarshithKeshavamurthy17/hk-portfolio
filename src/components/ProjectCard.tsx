@@ -40,11 +40,13 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
   
   const showThumb = Boolean(project.thumb && !thumbError);
   const sortedLinks = useMemo(() => {
-    const order = { code: 0, case: 1, pdf: 2, demo: 3 } as const;
-    return [...project.links].sort((a, b) => (order[a.kind] ?? 99) - (order[b.kind] ?? 99));
+    const order = { code: 0, demo: 1 } as const;
+    return [...project.links]
+      .filter((link) => link.kind !== 'case' && link.kind !== 'pdf' && link.href !== '')
+      .sort((a, b) => (order[a.kind] ?? 99) - (order[b.kind] ?? 99));
   }, [project.links]);
-  const hasLive = project.links.some((link) => link.kind === 'demo');
-  const hasCase = project.links.some((link) => link.kind === 'case');
+  const hasLive = project.links.some((link) => link.kind === 'demo' && link.href !== '');
+  const hasCase = project.badges?.includes('CASE STUDY');
   const statusBadge = hasLive ? 'LIVE' : hasCase ? 'CASE STUDY' : undefined;
 
   const handleMouseMove = useCallback(

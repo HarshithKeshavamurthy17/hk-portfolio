@@ -93,10 +93,10 @@ export default function ProjectAutoKPI() {
             },
             {
               icon: <Database className="size-5 text-blue-300" aria-hidden="true" />,
-              title: 'Codebase',
-              value: '58,000+ lines',
-              subtitle: '29 files, production-ready architecture',
-              extra: 'Modular design with comprehensive error handling.',
+              title: 'Architecture',
+              value: 'Modular Design',
+              subtitle: 'Production-ready codebase',
+              extra: 'Clean structure with comprehensive error handling and documentation.',
             },
             {
               icon: <BarChart3 className="size-5 text-pink-300" aria-hidden="true" />,
@@ -181,7 +181,7 @@ export default function ProjectAutoKPI() {
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Frontend</p>
                   <ul className="space-y-1.5">
-                    {['Streamlit', 'Custom CSS (500+ lines)', 'Altair', 'Plotly'].map((tech) => (
+                    {['Streamlit', 'Custom CSS', 'Altair', 'Plotly'].map((tech) => (
                       <li key={tech} className="flex items-start gap-2 text-sm text-neutral-200">
                         <CheckCircle2 className="size-4 text-purple-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
                         <span>{tech}</span>
@@ -564,7 +564,7 @@ export default function ProjectAutoKPI() {
             </h3>
             <div className="space-y-3 text-neutral-300 leading-relaxed">
               <p>
-                Designed a professional dark theme with 500+ lines of custom CSS, animated gradients, and modern UI elements.
+                Designed a professional dark theme with custom CSS, animated gradients, and modern UI elements.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
                 <div>
@@ -762,7 +762,7 @@ Streamlit Web Application
               <ul className="list-disc list-inside space-y-2 text-neutral-300 ml-4">
                 <li><span className="font-semibold text-white">Comprehensive KPI Generation</span>: Automatically generates 30-100+ KPIs covering all major categories</li>
                 <li><span className="font-semibold text-white">Advanced Analytics Engine</span>: Correlation analysis, trend detection, outlier detection, distribution analysis</li>
-                <li><span className="font-semibold text-white">Beautiful Dark Theme UI</span>: 500+ lines of custom CSS with animated gradients and professional design</li>
+                <li><span className="font-semibold text-white">Beautiful Dark Theme UI</span>: Custom CSS with animated gradients and professional design</li>
                 <li><span className="font-semibold text-white">Detailed Chart Explanations</span>: Comprehensive explanations for every chart with context and recommendations</li>
                 <li><span className="font-semibold text-white">Production-Ready Deployment</span>: Deployed on Streamlit Cloud with 24/7 uptime monitoring via Uptime Robot</li>
                 <li><span className="font-semibold text-white">Export Capabilities</span>: Multiple export formats (JSON, Markdown, Dashboard Spec) ready for BI tools</li>
@@ -809,13 +809,10 @@ Streamlit Web Application
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { label: 'Total Files', value: '29 files' },
-              { label: 'Lines of Code', value: '58,000+' },
               { label: 'KPI Categories', value: '12+ categories' },
               { label: 'Chart Types', value: '10+ types' },
               { label: 'Export Formats', value: '3 formats' },
               { label: 'Example Datasets', value: '3 included' },
-              { label: 'CSS Lines', value: '500+ lines' },
               { label: 'Uptime', value: '24/7 monitoring' },
             ].map((stat) => (
               <div key={stat.label} className="text-center">

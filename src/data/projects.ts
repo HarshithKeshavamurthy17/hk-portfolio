@@ -21,7 +21,7 @@ export const projects: Project[] = [
     id: 'vi-graph-rag',
     title: 'VI-Graph-RAG',
     subtitle: 'Graph-aware retrieval for vulnerability triage',
-    summary: 'Graph-aware retrieval + RAG to stitch CVEs↔CWEs↔mitigations; grounded responses with evaluation.',
+    summary: 'Graph-aware retrieval system that connects CVEs, CWEs, and mitigations using Neo4j and LangChain to provide grounded answers for security analysts.',
     impact: [
       'Graph-aware retrieval for vulnerability triage',
       'Neo4j + LangChain + Azure',
@@ -30,8 +30,6 @@ export const projects: Project[] = [
     tech: ['Python', 'Neo4j', 'LangChain', 'Azure', 'FastAPI'],
     links: [
       { label: 'Code', href: 'https://github.com/harinik/vi-graph-rag', kind: 'code' },
-      { label: 'One-Pager PDF', href: '/pdfs/vi-graph-rag.pdf', kind: 'pdf' },
-      { label: 'Case Study', href: '/projects/vi-graph-rag', kind: 'case' },
     ],
     badges: ['CASE STUDY'],
     thumb: '/thumbs/graph-rag.png',
@@ -42,7 +40,7 @@ export const projects: Project[] = [
     title: 'Uber ETL',
     subtitle: 'Streaming ingestion & anomaly gates',
     summary:
-      'Kafka→dbt→Snowflake pipeline with data contracts and drift monitors; auto backfills and SLO dashboards.',
+      'Real-time data pipeline processing 3,747 rows/sec through Kafka, dbt, and Snowflake with automated data quality checks and contract enforcement.',
     impact: [
       '3,747 rows/sec preprocess throughput',
       'Incident response time ↓ 38%',
@@ -51,7 +49,6 @@ export const projects: Project[] = [
     tech: ['Scala', 'Kafka', 'dbt', 'Snowflake', 'Great Expectations'],
     links: [
       { label: 'Code', href: 'https://github.com/harinik/uber-etl-pipeline', kind: 'code' },
-      { label: 'Case Study', href: '/case/uber-etl', kind: 'case' },
       { label: 'Demo', href: 'https://harinik.dev/demos/uber-etl', kind: 'demo' },
     ],
     badges: ['Streaming', 'Data Contracts'],
@@ -62,7 +59,7 @@ export const projects: Project[] = [
     id: 'f1-prediction',
     title: 'F1 Race Win Predictor',
     subtitle: 'Machine learning system for Formula 1 race winner prediction',
-    summary: 'Predict F1 race winners with 95.3% accuracy using 30 years of historical data and graph-based feature engineering.',
+    summary: 'ML model predicting F1 race winners with 95.3% accuracy using 30 years of historical data, 25 engineered features, and Random Forest ensemble.',
     impact: [
       '95.3% prediction accuracy (530/556 races)',
       '25 research-based features',
@@ -70,9 +67,8 @@ export const projects: Project[] = [
     ],
     tech: ['Python', 'Scikit-learn', 'Random Forest', 'Streamlit', 'Pandas', 'Plotly'],
     links: [
-      { label: 'Code', href: 'https://github.com/harinik/f1-prediction-platform', kind: 'code' },
-      { label: 'Demo', href: 'https://harinik.dev/demos/f1-live', kind: 'demo' },
-      { label: 'Case Study', href: '/projects/f1-prediction', kind: 'case' },
+      { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/f1-win-predictor', kind: 'code' },
+      { label: 'Demo', href: '', kind: 'demo' },
     ],
     badges: ['CASE STUDY'],
     thumb: '/thumbs/f1.png',
@@ -82,7 +78,7 @@ export const projects: Project[] = [
     id: 'oncovision',
     title: 'OncoVision',
     subtitle: 'AI-Powered Breast Ultrasound Image Segmentation',
-    summary: 'Deep learning-based medical image segmentation system that automatically identifies and classifies breast tissue types using U-Net architecture with ResNet50 encoder.',
+    summary: 'Deep learning system for automated breast ultrasound analysis using U-Net with ResNet50 to segment and classify tissue types (benign, malignant, background).',
     impact: [
       'Multi-class segmentation (Background, Benign, Malignant)',
       'Transfer learning with ResNet50 encoder',
@@ -92,7 +88,6 @@ export const projects: Project[] = [
     links: [
       { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/oncovision', kind: 'code' },
       { label: 'Demo', href: 'https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app', kind: 'demo' },
-      { label: 'Case Study', href: '/projects/oncovision', kind: 'case' },
     ],
     badges: ['CASE STUDY'],
     thumb: '/thumbs/breast-ml.png',
@@ -102,7 +97,7 @@ export const projects: Project[] = [
     id: 'autokpi',
     title: 'AutoKPI',
     subtitle: 'AI-Powered Analytics Toolkit',
-    summary: 'Comprehensive one-click data analytics assistant that automatically generates 100+ KPIs, SQL queries, visualizations, and dashboard exports from any dataset.',
+    summary: 'One-click analytics tool that automatically generates 100+ KPIs, SQL queries, and interactive visualizations from any dataset with detailed explanations and BI-ready exports.',
     impact: [
       '100+ KPIs generated automatically',
       'Advanced analytics with pattern detection',
@@ -112,11 +107,10 @@ export const projects: Project[] = [
     links: [
       { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/AutoKPI', kind: 'code' },
       { label: 'Demo', href: 'https://autokpi-hk-app.streamlit.app', kind: 'demo' },
-      { label: 'Case Study', href: '/projects/autokpi', kind: 'case' },
     ],
     badges: ['CASE STUDY'],
     thumb: '/thumbs/cs699.png',
-    metrics: ['100+ KPIs', '58K+ lines', 'Production'],
+    metrics: ['100+ KPIs', 'Advanced analytics', 'Production'],
   },
 ];
 
