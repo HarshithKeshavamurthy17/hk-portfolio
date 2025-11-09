@@ -46,8 +46,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
       .sort((a, b) => (order[a.kind] ?? 99) - (order[b.kind] ?? 99));
   }, [project.links]);
   const hasLive = project.links.some((link) => link.kind === 'demo' && link.href !== '');
-  const hasCase = project.badges?.includes('CASE STUDY');
-  const statusBadge = hasLive ? 'LIVE' : hasCase ? 'CASE STUDY' : undefined;
+  const statusBadge = hasLive ? 'LIVE' : undefined;
 
   const handleMouseMove = useCallback(
     (event: MouseEvent<HTMLDivElement>) => {
@@ -204,22 +203,10 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
               ) : (
                 <h3 className="text-xl font-semibold text-white">{project.title}</h3>
               )}
-              <p className="line-clamp-2 text-sm text-neutral-300">{project.summary}</p>
+              <p className="line-clamp-3 text-sm leading-relaxed text-neutral-100 mt-3 mb-1">{project.summary}</p>
             </div>
-            {project.badges && project.badges.length > 0 ? (
-              <div className="flex flex-wrap justify-end gap-2">
-                {project.badges.map((badge) => (
-                  <span
-                    key={badge}
-                    className="rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-teal-300"
-                  >
-                    {badge}
-                  </span>
-                ))}
-              </div>
-            ) : null}
           </div>
-          <span className="text-xs uppercase tracking-[0.35em] text-cyan-300/70">{project.subtitle}</span>
+          <span className="text-xs uppercase tracking-[0.35em] text-cyan-300/50">{project.subtitle}</span>
         </div>
 
         <div className="flex flex-wrap gap-2">
