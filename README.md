@@ -41,3 +41,4 @@ Vite serves the app at `http://localhost:5173` by default.
 
 > Tip: The rewrite in `vercel.json` routes all paths to `/index.html` so client-side routing works out of the box.
 
+

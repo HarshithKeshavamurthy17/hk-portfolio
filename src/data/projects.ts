@@ -99,21 +99,24 @@ export const projects: Project[] = [
     metrics: ['Multi-class segmentation', '156 examples', 'Medical AI'],
   },
   {
-    id: 'cs699-ensemble',
-    title: 'CS699 Ensemble',
-    subtitle: 'Stacked risk models w/ feature store',
-    summary:
-      'XGBoost + meta-learner; Great Expectations + MLflow tracking; automated drift alarms.',
-    impact: ['Lift +18.6% vs baseline', 'CI for data & model', 'Reproducible pipelines'],
-    tech: ['Python', 'XGBoost', 'Great Expectations', 'MLflow'],
-    links: [
-      { label: 'Code', href: 'https://github.com/harinik/cs699-ensemble', kind: 'code' },
-      { label: 'Case Study', href: '/case/cs699-ensemble', kind: 'case' },
-      { label: 'One-Pager PDF', href: '/pdfs/cs699-ensemble.pdf', kind: 'pdf' },
+    id: 'autokpi',
+    title: 'AutoKPI',
+    subtitle: 'AI-Powered Analytics Toolkit',
+    summary: 'Comprehensive one-click data analytics assistant that automatically generates 100+ KPIs, SQL queries, visualizations, and dashboard exports from any dataset.',
+    impact: [
+      '100+ KPIs generated automatically',
+      'Advanced analytics with pattern detection',
+      'Production-ready deployment with 24/7 uptime',
     ],
-    badges: ['+18.6% Lift'],
+    tech: ['Python', 'Streamlit', 'Pandas', 'NumPy', 'Altair', 'Plotly'],
+    links: [
+      { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/AutoKPI', kind: 'code' },
+      { label: 'Demo', href: 'https://autokpi-hk-app.streamlit.app', kind: 'demo' },
+      { label: 'Case Study', href: '/projects/autokpi', kind: 'case' },
+    ],
+    badges: ['CASE STUDY'],
     thumb: '/thumbs/cs699.png',
-    metrics: ['+18.6% lift', 'Feature store', 'CI guardrails'],
+    metrics: ['100+ KPIs', '58K+ lines', 'Production'],
   },
 ];
 

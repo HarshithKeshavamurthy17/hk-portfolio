@@ -24,6 +24,7 @@ const CS699Ensemble = lazy(() => import('./routes/case/CS699Ensemble'));
 const ProjectViGraphRag = lazy(() => import('./pages/ProjectViGraphRag'));
 const ProjectF1Prediction = lazy(() => import('./pages/ProjectF1Prediction'));
 const ProjectOncoVision = lazy(() => import('./pages/ProjectOncoVision'));
+const ProjectAutoKPI = lazy(() => import('./pages/ProjectAutoKPI'));
 
 const HomePage = () => {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -228,6 +229,10 @@ function App() {
           <Route
             path="/projects/oncovision"
             element={<CaseFallbackSuspense component={<ProjectOncoVision />} />}
+          />
+          <Route
+            path="/projects/autokpi"
+            element={<CaseFallbackSuspense component={<ProjectAutoKPI />} />}
           />
           <Route
             path="/case/vi-graph-rag"

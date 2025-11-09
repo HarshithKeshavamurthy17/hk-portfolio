@@ -42,3 +42,4 @@ export const transitions = {
   base: '160ms ease',
   slow: '260ms ease',
 };
+
