@@ -61,7 +61,7 @@ export default function Projects() {
       {/* Background decoration */}
       <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-purple-500/5 blur-3xl" aria-hidden="true" />
       
-      <div className="mx-auto w-full max-w-full px-8 md:px-12 lg:px-16">
+      <div className="mx-auto w-full max-w-[1400px] px-8 md:px-12 lg:px-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

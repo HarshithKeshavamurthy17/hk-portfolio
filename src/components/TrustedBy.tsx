@@ -11,7 +11,7 @@ const LOGOS = [
 
 export default function TrustedBy() {
   return (
-    <section className="mx-auto w-full max-w-full px-8 md:px-12 lg:px-16">
+    <section className="mx-auto w-full max-w-[1400px] px-8 md:px-12 lg:px-16">
       <div className="flex flex-col items-center gap-6 rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-8 backdrop-blur-xl lg:flex-row lg:gap-8">
         <span className="text-sm font-semibold uppercase tracking-[0.35em] text-neutral-400">
           Built solutions for
