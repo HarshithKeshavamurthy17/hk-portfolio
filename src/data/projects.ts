@@ -48,7 +48,7 @@ export const projects: Project[] = [
     tech: ['Python', 'Scikit-learn', 'Random Forest', 'Streamlit', 'Pandas', 'Plotly'],
     links: [
       { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/f1-win-predictor', kind: 'code' },
-      { label: 'Demo', href: '', kind: 'demo' },
+      { label: 'Demo', href: 'https://f1-win-predictor-app.streamlit.app/', kind: 'demo' },
     ],
     badges: [],
     thumb: '/thumbs/f1.png',
