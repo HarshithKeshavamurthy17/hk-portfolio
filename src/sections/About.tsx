@@ -97,7 +97,7 @@ export function About() {
           </div>
           <div className="flex items-center gap-2 rounded-full border border-emerald-400/30 bg-gradient-to-r from-emerald-500/10 to-green-500/5 px-5 py-3 backdrop-blur-sm">
             <MapPin className="size-5 text-emerald-300" aria-hidden="true" />
-            <span className="text-base md:text-lg font-medium text-emerald-200">Boston, MA · Open to Remote</span>
+            <span className="text-base md:text-lg font-medium text-emerald-200">Boston, MA</span>
           </div>
         </motion.div>
 

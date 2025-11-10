@@ -16,7 +16,7 @@ ReactDOM.createRoot(rootElement).render(
   <React.StrictMode>
     <HelmetProvider>
       <ThemeProvider>
-        <BrowserRouter>
+        <BrowserRouter basename='/hk-portfolio'>
           <App />
         </BrowserRouter>
       </ThemeProvider>
