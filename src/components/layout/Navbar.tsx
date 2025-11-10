@@ -55,7 +55,7 @@ export function Navbar() {
           href="/#hero"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.98 }}
-          className="rounded-md font-heading text-lg font-bold text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
+          className="rounded-md font-heading text-2xl font-bold text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
           aria-label="Harshith K home"
           aria-current={isActive('/#hero') ? 'page' : undefined}
         >
@@ -64,7 +64,7 @@ export function Navbar() {
           </span>
         </motion.a>
         <div className="flex flex-1 items-center justify-end gap-6">
-          <ul className="hidden items-center gap-5 text-sm font-medium text-muted-foreground md:flex">
+          <ul className="hidden items-center gap-6 text-base font-semibold text-muted-foreground md:flex">
             {navLinks.map((link, index) => (
               <motion.li
                 key={link.href}
@@ -74,7 +74,7 @@ export function Navbar() {
               >
                 <a
                   className={cn(
-                    'relative rounded-md transition-all duration-300 hover:text-[#22d3ee] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]',
+                    'relative rounded-md text-base transition-all duration-300 hover:text-[#22d3ee] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]',
                     isActive(link.href) ? 'text-[#22d3ee]' : 'text-muted-foreground',
                   )}
                   href={link.href}
@@ -100,7 +100,7 @@ export function Navbar() {
               <Button
                 asChild
                 variant="outline"
-                size="sm"
+                size="default"
                 className="inline-flex border-cyan-400/30 bg-cyan-500/10 text-cyan-200 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
               >
                 <a href="/hk-portfolio/assets/Harshith_Keshavamurthy_Resume.pdf" download>

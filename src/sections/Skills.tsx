@@ -16,113 +16,132 @@ type SkillGroup = {
 
 const GROUPS: SkillGroup[] = [
   {
-    title: 'AI/ML',
+    title: 'Generative AI & LLM',
     icon: <Sparkles className="size-5" />,
     items: [
-      { name: 'LangChain', usage: 'used in VI-Graph-RAG' },
-      { name: 'PyTorch', usage: 'used in Breast Cancer ML' },
-      { name: 'TensorFlow', usage: 'used in F1 Prediction' },
-      { name: 'XGBoost', usage: 'used in CS699 Ensemble' },
-      { name: 'SHAP', usage: 'used in Breast Cancer ML dashboards' },
+      { name: 'LangChain', usage: 'LLM orchestration for VI-Graph-RAG workflows' },
+      { name: 'Azure OpenAI', usage: 'GPT-4 deployments with responsible guardrails' },
+      { name: 'LlamaIndex', usage: 'Graph-grounded retrieval interfaces' },
+      { name: 'Pinecone', usage: 'Vector search backing hybrid retrievers' },
+      { name: 'Weaviate', usage: 'Managed semantic store powering evaluations' },
+    ],
+  },
+  {
+    title: 'ML Platforms & Ops',
+    icon: <Zap className="size-5" />,
+    items: [
+      { name: 'MLflow', usage: 'Model registry and experiment tracking' },
+      { name: 'Weights & Biases', usage: 'LLM/RAG evaluations and dashboards' },
+      { name: 'Evidently AI', usage: 'Quality monitoring and drift detection' },
+      { name: 'Great Expectations', usage: 'Data contracts and validation suites' },
+      { name: 'Prefect', usage: 'Python-native orchestration for ML jobs' },
     ],
   },
   {
     title: 'Data Engineering',
     icon: <Database className="size-5" />,
     items: [
-      { name: 'Apache Kafka', usage: 'used in Uber ETL streaming pipeline' },
-      { name: 'dbt', usage: 'used in Uber ETL modeling' },
-      { name: 'Airflow', usage: 'used for orchestration at Nineleaps' },
-      { name: 'Spark', usage: 'used for batch processing in Nineleaps' },
-      { name: 'Neo4j', usage: 'used in VI-Graph-RAG graph store' },
+      { name: 'Apache Kafka', usage: 'Streaming ingestion for telemetry pipelines' },
+      { name: 'dbt', usage: 'Modular analytics engineering with contracts' },
+      { name: 'Apache Spark', usage: 'Batch processing and feature pipelines' },
+      { name: 'Snowflake', usage: 'Cloud warehouse powering analytics products' },
+      { name: 'Databricks', usage: 'Delta Lake + ML runtime for unified workloads' },
     ],
   },
   {
     title: 'Analytics & BI',
     icon: <LineChart className="size-5" />,
     items: [
-      { name: 'Tableau', usage: 'used for exec scorecards at Nineleaps' },
-      { name: 'Power BI', usage: 'used during Quantum Ventura engagements' },
-      { name: 'Looker', usage: 'used in data product instrumentation' },
-      { name: 'Mode Analytics', usage: 'used for ad-hoc investigations' },
+      { name: 'Tableau', usage: 'Executive scorecards and self-serve insights' },
+      { name: 'Power BI', usage: 'Operational dashboards for stakeholders' },
+      { name: 'Looker', usage: 'Semantic modeling for product analytics' },
+      { name: 'Mode Analytics', usage: 'Notebook-driven ad-hoc analyses' },
+      { name: 'Sigma Computing', usage: 'Cloud BI for finance-ready reporting' },
     ],
   },
   {
     title: 'Cloud & DevOps',
     icon: <Cloud className="size-5" />,
     items: [
-      { name: 'Azure ML', usage: 'used in Tietoevry evaluation platform' },
-      { name: 'AWS', usage: 'used during Quantum Ventura analytics' },
-      { name: 'Docker', usage: 'used across ML deployment pipelines' },
-      { name: 'Terraform', usage: 'used for infra as code on data projects' },
-      { name: 'GitHub Actions', usage: 'used for CI/CD in OSS projects' },
+      { name: 'Azure', usage: 'Functions, App Service, and ML workloads' },
+      { name: 'AWS', usage: 'S3, Glue, and SageMaker integrations' },
+      { name: 'GCP', usage: 'Vertex AI experiments and BigQuery pipelines' },
+      { name: 'Docker', usage: 'Containerized services and local stacks' },
+      { name: 'Kubernetes', usage: 'Production orchestration for model services' },
     ],
   },
   {
     title: 'Languages',
     icon: <Terminal className="size-5" />,
     items: [
-      { name: 'Python', usage: 'primary language for AI/ML pipelines' },
-      { name: 'TypeScript', usage: 'used in F1 live prediction client' },
-      { name: 'Scala', usage: 'used in Uber ETL ingestion jobs' },
-      { name: 'SQL', usage: 'used across analytics deliverables' },
-      { name: 'R', usage: 'used in Boston University research' },
+      { name: 'Python', usage: 'Primary language for AI, data, and automation' },
+      { name: 'TypeScript', usage: 'Strongly-typed frontends and tooling' },
+      { name: 'SQL', usage: 'Warehouse modeling, metrics, and analysis' },
+      { name: 'Scala', usage: 'Streaming and Spark jobs at scale' },
+      { name: 'Bash', usage: 'Automation scripts and deployment tooling' },
     ],
   },
 ];
 
-const PROFICIENCY: Record<string, 'expert' | 'proficient' | 'working'> = {
-  // AI/ML
+
+const PROFICIENCY: Record<string, 'expert' | 'proficient'> = {
+  // Generative AI & LLM
   LangChain: 'expert',
-  PyTorch: 'proficient',
-  TensorFlow: 'proficient',
-  XGBoost: 'proficient',
-  SHAP: 'working',
-  
+  'Azure OpenAI': 'expert',
+  LlamaIndex: 'proficient',
+  Pinecone: 'proficient',
+  Weaviate: 'proficient',
+
+  // ML Platforms & Ops
+  MLflow: 'expert',
+  'Weights & Biases': 'expert',
+  'Evidently AI': 'proficient',
+  'Great Expectations': 'expert',
+  Prefect: 'proficient',
+
   // Data Engineering
-  'Apache Kafka': 'proficient',
-  dbt: 'proficient',
-  Airflow: 'proficient',
-  Spark: 'expert',
-  Neo4j: 'expert',
-  
+  'Apache Kafka': 'expert',
+  dbt: 'expert',
+  'Apache Spark': 'expert',
+  Snowflake: 'expert',
+  Databricks: 'proficient',
+
   // Analytics & BI
   Tableau: 'expert',
-  'Power BI': 'proficient',
-  Looker: 'working',
-  'Mode Analytics': 'working',
-  
+  'Power BI': 'expert',
+  Looker: 'proficient',
+  'Mode Analytics': 'proficient',
+  'Sigma Computing': 'proficient',
+
   // Cloud & DevOps
-  'Azure ML': 'expert',
+  Azure: 'expert',
   AWS: 'proficient',
+  GCP: 'proficient',
   Docker: 'expert',
-  Terraform: 'proficient',
-  'GitHub Actions': 'proficient',
-  
+  Kubernetes: 'proficient',
+
   // Languages
   Python: 'expert',
   TypeScript: 'proficient',
-  Scala: 'working',
   SQL: 'expert',
-  R: 'working',
+  Scala: 'proficient',
+  Bash: 'proficient',
 };
 
-const PROFICIENCY_STYLES: Record<'expert' | 'proficient' | 'working', string> = {
+
+const PROFICIENCY_STYLES: Record<'expert' | 'proficient', string> = {
   expert: 'bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.6)]',
   proficient: 'bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.5)]',
-  working: 'bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.5)]',
 };
 
-const PROFICIENCY_COLORS: Record<'expert' | 'proficient' | 'working', string> = {
+const PROFICIENCY_COLORS: Record<'expert' | 'proficient', string> = {
   expert: 'from-emerald-500/30 to-green-500/10',
   proficient: 'from-amber-500/30 to-yellow-500/10',
-  working: 'from-sky-500/30 to-blue-500/10',
 };
 
-const LEGEND: Array<{ label: string; level: 'expert' | 'proficient' | 'working' }> = [
+const LEGEND: Array<{ label: string; level: 'expert' | 'proficient' }> = [
   { label: 'Expert', level: 'expert' },
   { label: 'Proficient', level: 'proficient' },
-  { label: 'Working', level: 'working' },
 ];
 
 export function Skills() {
@@ -222,7 +241,7 @@ export function Skills() {
               {/* Skills list */}
               <ul className="relative z-10 flex flex-wrap gap-2">
                 {group.items.map((item, itemIndex) => {
-                  const proficiency = PROFICIENCY[item.name] ?? 'working';
+                  const proficiency = PROFICIENCY[item.name] ?? 'proficient';
                   return (
                     <li key={item.name}>
                       <Tooltip label={item.usage}>

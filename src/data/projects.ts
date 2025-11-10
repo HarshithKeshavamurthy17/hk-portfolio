@@ -36,26 +36,6 @@ export const projects: Project[] = [
     metrics: ['-42% MTTR', '3 data sources', 'Graph-RAG'],
   },
   {
-    id: 'uber-etl',
-    title: 'Uber ETL',
-    subtitle: 'Streaming ingestion & anomaly gates',
-    summary:
-      'Real-time data pipeline processing 3,747 rows/sec through Kafka, dbt, and Snowflake with automated data quality checks and contract enforcement.',
-    impact: [
-      '3,747 rows/sec preprocess throughput',
-      'Incident response time ↓ 38%',
-      'Contract violations auto-quarantined',
-    ],
-    tech: ['Scala', 'Kafka', 'dbt', 'Snowflake', 'Great Expectations'],
-    links: [
-      { label: 'Code', href: 'https://github.com/harinik/uber-etl-pipeline', kind: 'code' },
-      { label: 'Demo', href: 'https://harinik.dev/demos/uber-etl', kind: 'demo' },
-    ],
-    badges: ['Streaming', 'Data Contracts'],
-    thumb: '/thumbs/uber-etl.png',
-    metrics: ['3,747 rows/sec', 'Contracts', 'Drift gates'],
-  },
-  {
     id: 'f1-prediction',
     title: 'F1 Race Win Predictor',
     subtitle: 'Machine learning system for Formula 1 race winner prediction',
