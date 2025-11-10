@@ -139,7 +139,7 @@ export function Skills() {
           transition={{ duration: 0.6 }}
           className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between"
         >
-          <div className="relative flex max-w-2xl flex-col gap-2">
+          <div className="relative flex max-w-4xl flex-col gap-2">
             <motion.div
               className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-emerald-500 via-cyan-500 to-blue-500"
               initial={{ scaleY: 0 }}

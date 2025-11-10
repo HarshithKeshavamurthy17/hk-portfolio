@@ -50,7 +50,7 @@ export function Navbar() {
           : 'bg-background/75'
       )}
     >
-      <nav className="container mx-auto flex max-w-6xl items-center justify-between gap-6 px-6 py-4">
+      <nav className="container mx-auto flex w-full max-w-full items-center justify-between gap-6 px-8 md:px-12 lg:px-16 py-4">
         <motion.a
           href="/#hero"
           whileHover={{ scale: 1.05 }}

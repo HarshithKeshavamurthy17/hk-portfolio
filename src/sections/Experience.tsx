@@ -23,7 +23,7 @@ export default function Experience() {
 
   return (
     <section id="experience" className="pt-0">
-      <div className="mx-auto max-w-5xl px-6">
+      <div className="mx-auto w-full max-w-full px-8 md:px-12 lg:px-16">
         <div className="flex flex-col gap-2">
           <h2 className="text-3xl font-semibold text-white">Experience Timeline</h2>
           <p className="text-sm text-neutral-400">

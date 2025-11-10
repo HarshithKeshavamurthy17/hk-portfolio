@@ -88,7 +88,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="mx-auto max-w-[1080px] px-6 text-center">
+      <div className="mx-auto w-full max-w-full px-8 md:px-12 lg:px-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,7 +120,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-neutral-200/80 md:text-xl"
+          className="mx-auto mt-4 max-w-4xl text-xl leading-relaxed text-neutral-200/80 md:text-2xl"
         >
           I build data-driven AI systems and platforms—combining retrieval-augmented generation (RAG), streaming data pipelines, and analytics for decision intelligence.
         </motion.p>

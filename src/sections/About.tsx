@@ -70,10 +70,10 @@ export function About() {
               <h2 className="text-4xl md:text-5xl font-bold text-white">About Harshith</h2>
               <User className="size-7 md:size-8 text-violet-400" aria-hidden="true" />
             </div>
-            <p className="text-xl md:text-2xl text-balance leading-relaxed text-neutral-200">
+            <p className="text-xl md:text-2xl lg:text-3xl text-balance leading-relaxed text-neutral-200">
               I&apos;m a data scientist and engineer passionate about building interpretable AI systems and scalable data platforms. My work spans Graph-RAG systems (Tietoevry), streaming analytics (Uber via Nineleaps), and growth strategy modeling (Build Fellowship).
             </p>
-            <p className="text-lg md:text-xl text-balance leading-relaxed text-neutral-300">
+            <p className="text-lg md:text-xl lg:text-2xl text-balance leading-relaxed text-neutral-300">
               Currently pursuing my MS in Applied Data Analytics at Boston University, I focus on bridging real-world data streams with intelligent, explainable AI pipelines.
             </p>
           </div>
