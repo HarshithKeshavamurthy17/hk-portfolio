@@ -73,9 +73,19 @@ export function About() {
           </motion.div>
           {/* Text Content */}
           <div className="flex-1 space-y-4">
-            <div className="flex items-center gap-3">
-              <h2 className="text-4xl md:text-5xl font-bold text-white">About Harshith</h2>
-              <User className="size-7 md:size-8 text-violet-400" aria-hidden="true" />
+            <div className="relative flex items-center gap-4">
+              {/* Decorative background element */}
+              <div className="absolute -left-8 -top-4 -z-10 size-32 rounded-full bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-pink-500/20 blur-2xl" aria-hidden="true" />
+              <div className="relative flex items-center gap-3">
+                <h2 className="text-4xl md:text-5xl font-bold text-white">About Harshith</h2>
+                <User className="size-7 md:size-8 text-violet-400" aria-hidden="true" />
+              </div>
+              {/* Decorative pattern */}
+              <div className="hidden md:flex items-center gap-2 opacity-30">
+                <div className="size-2 rounded-full bg-violet-400" />
+                <div className="size-1.5 rounded-full bg-purple-400" />
+                <div className="size-1 rounded-full bg-pink-400" />
+              </div>
             </div>
             <p className="text-2xl md:text-3xl lg:text-4xl text-balance leading-relaxed text-neutral-200">
               I&apos;m a <strong>data practitioner</strong> passionate about building intelligent, data-driven systems that connect analytical depth with scalable engineering. My experience spans <strong>applied AI (Tietoevry)</strong>, <strong>data analytics and automation (Uber via Nineleaps)</strong>, and <strong>data engineering pipelines (Nineleaps & academic research)</strong>—enabling me to bring a holistic understanding of how data flows from raw ingestion to intelligent insight.
@@ -94,14 +104,24 @@ export function About() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex flex-wrap gap-4"
         >
-          <div className="flex items-center gap-2 rounded-full border border-violet-400/30 bg-gradient-to-r from-violet-500/10 to-purple-500/5 px-4 py-2 backdrop-blur-sm">
-            <GraduationCap className="size-4 text-violet-300" aria-hidden="true" />
-            <span className="text-lg md:text-xl font-medium text-violet-200">Boston University · MS Applied Data Analytics</span>
-          </div>
-          <div className="flex items-center gap-2 rounded-full border border-sky-400/30 bg-gradient-to-r from-sky-500/10 to-blue-500/5 px-6 py-3 backdrop-blur-sm">
-            <GraduationCap className="size-6 text-sky-300" aria-hidden="true" />
-            <span className="text-lg md:text-xl font-medium text-sky-200">RNSIT · B.E. Computer Science</span>
-          </div>
+          <a
+            href="https://www.bu.edu/met/degrees-certificates/ms-applied-data-analytics/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 rounded-full border border-violet-400/30 bg-gradient-to-r from-violet-500/10 to-purple-500/5 px-4 py-2 backdrop-blur-sm transition-all duration-300 hover:border-violet-400/50 hover:bg-gradient-to-r hover:from-violet-500/20 hover:to-purple-500/10 hover:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+          >
+            <GraduationCap className="size-4 text-violet-300 group-hover:text-violet-200 transition-colors" aria-hidden="true" />
+            <span className="text-lg md:text-xl font-medium text-violet-200 group-hover:text-violet-100 transition-colors">Boston University · MS Applied Data Analytics</span>
+          </a>
+          <a
+            href="https://www.rnsit.ac.in/cse/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group flex items-center gap-2 rounded-full border border-sky-400/30 bg-gradient-to-r from-sky-500/10 to-blue-500/5 px-6 py-3 backdrop-blur-sm transition-all duration-300 hover:border-sky-400/50 hover:bg-gradient-to-r hover:from-sky-500/20 hover:to-blue-500/10 hover:shadow-[0_0_20px_rgba(56,189,248,0.3)]"
+          >
+            <GraduationCap className="size-6 text-sky-300 group-hover:text-sky-200 transition-colors" aria-hidden="true" />
+            <span className="text-lg md:text-xl font-medium text-sky-200 group-hover:text-sky-100 transition-colors">RNSIT · B.E. Computer Science</span>
+          </a>
           <div className="flex items-center gap-2 rounded-full border border-emerald-400/30 bg-gradient-to-r from-emerald-500/10 to-green-500/5 px-6 py-3 backdrop-blur-sm">
             <MapPin className="size-6 text-emerald-300" aria-hidden="true" />
             <span className="text-lg md:text-xl font-medium text-emerald-200">Boston, MA</span>
