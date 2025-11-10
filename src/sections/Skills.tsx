@@ -41,11 +41,12 @@ const GROUPS: SkillGroup[] = [
     title: 'Data Engineering',
     icon: <Database className="size-5" />,
     items: [
+      { name: 'AWS Glue', usage: 'Serverless ETL and data catalog services' },
+      { name: 'AWS Lambda', usage: 'Event-driven data processing functions' },
+      { name: 'AWS Redshift', usage: 'Cloud data warehouse for analytics' },
       { name: 'Apache Kafka', usage: 'Streaming ingestion for telemetry pipelines' },
       { name: 'dbt', usage: 'Modular analytics engineering with contracts' },
-      { name: 'Apache Spark', usage: 'Batch processing and feature pipelines' },
       { name: 'Snowflake', usage: 'Cloud warehouse powering analytics products' },
-      { name: 'Databricks', usage: 'Delta Lake + ML runtime for unified workloads' },
     ],
   },
   {
@@ -75,8 +76,8 @@ const GROUPS: SkillGroup[] = [
     icon: <Terminal className="size-5" />,
     items: [
       { name: 'Python', usage: 'Primary language for AI, data, and automation' },
-      { name: 'TypeScript', usage: 'Strongly-typed frontends and tooling' },
       { name: 'SQL', usage: 'Warehouse modeling, metrics, and analysis' },
+      { name: 'TypeScript', usage: 'Strongly-typed frontends and tooling' },
       { name: 'Scala', usage: 'Streaming and Spark jobs at scale' },
       { name: 'Bash', usage: 'Automation scripts and deployment tooling' },
     ],
@@ -84,7 +85,7 @@ const GROUPS: SkillGroup[] = [
 ];
 
 
-const PROFICIENCY: Record<string, 'expert' | 'proficient'> = {
+const PROFICIENCY: Record<string, 'expert' | 'proficient' | 'working'> = {
   // Generative AI & LLM
   LangChain: 'expert',
   'Azure OpenAI': 'expert',
@@ -100,11 +101,12 @@ const PROFICIENCY: Record<string, 'expert' | 'proficient'> = {
   Prefect: 'proficient',
 
   // Data Engineering
-  'Apache Kafka': 'expert',
-  dbt: 'expert',
-  'Apache Spark': 'expert',
-  Snowflake: 'expert',
-  Databricks: 'proficient',
+  'AWS Glue': 'proficient',
+  'AWS Lambda': 'proficient',
+  'AWS Redshift': 'proficient',
+  'Apache Kafka': 'proficient',
+  dbt: 'proficient',
+  Snowflake: 'proficient',
 
   // Analytics & BI
   Tableau: 'expert',
@@ -122,26 +124,29 @@ const PROFICIENCY: Record<string, 'expert' | 'proficient'> = {
 
   // Languages
   Python: 'expert',
-  TypeScript: 'proficient',
   SQL: 'expert',
+  TypeScript: 'proficient',
   Scala: 'proficient',
-  Bash: 'proficient',
+  Bash: 'working',
 };
 
 
-const PROFICIENCY_STYLES: Record<'expert' | 'proficient', string> = {
+const PROFICIENCY_STYLES: Record<'expert' | 'proficient' | 'working', string> = {
   expert: 'bg-emerald-400 shadow-[0_0_12px_rgba(16,185,129,0.6)]',
   proficient: 'bg-amber-400 shadow-[0_0_12px_rgba(251,191,36,0.5)]',
+  working: 'bg-sky-400 shadow-[0_0_12px_rgba(56,189,248,0.5)]',
 };
 
-const PROFICIENCY_COLORS: Record<'expert' | 'proficient', string> = {
+const PROFICIENCY_COLORS: Record<'expert' | 'proficient' | 'working', string> = {
   expert: 'from-emerald-500/30 to-green-500/10',
   proficient: 'from-amber-500/30 to-yellow-500/10',
+  working: 'from-sky-500/30 to-blue-500/10',
 };
 
-const LEGEND: Array<{ label: string; level: 'expert' | 'proficient' }> = [
+const LEGEND: Array<{ label: string; level: 'expert' | 'proficient' | 'working' }> = [
   { label: 'Expert', level: 'expert' },
   { label: 'Proficient', level: 'proficient' },
+  { label: 'Working', level: 'working' },
 ];
 
 export function Skills() {
@@ -241,7 +246,7 @@ export function Skills() {
               {/* Skills list */}
               <ul className="relative z-10 flex flex-wrap gap-2">
                 {group.items.map((item, itemIndex) => {
-                  const proficiency = PROFICIENCY[item.name] ?? 'proficient';
+                  const proficiency = PROFICIENCY[item.name] ?? 'working';
                   return (
                     <li key={item.name}>
                       <Tooltip label={item.usage}>

@@ -5,20 +5,27 @@ import { Section } from '../components/layout/Section';
 const highlights = [
   {
     icon: <Briefcase className="size-5" />,
-    label: 'Now',
-    content: 'Building Graph-RAG pipelines on Neo4j + LangChain and deploying on Azure Functions with automated retrieval evaluation.',
+    label: 'Current Focus',
+    content: 'Exploring the intersection of AI/ML and Data Science—building frameworks that connect predictive intelligence with strong data foundations. Currently working on experimentation tracking, model evaluation automation, and retrieval-based AI systems that integrate seamlessly into modern data platforms.',
     gradient: 'from-cyan-500/20 to-blue-500/10',
   },
   {
     icon: <Rocket className="size-5" />,
     label: 'Strengths',
-    items: ['Hybrid RAG retrieval (BM25 + FAISS + Cross-Encoder)', 'Streaming ETL & data quality automation (Kafka, dbt, Spark)', 'Cloud-native deployment (Azure Functions, Docker, FastAPI)'],
+    items: [
+      'Building end-to-end intelligent data systems that integrate AI/ML models, scalable data pipelines, and explainable insights',
+      'Designing retrieval-augmented AI frameworks (RAG) combining Neo4j Knowledge Graphs, FAISS vector search, and LangChain orchestration',
+      'Developing robust data engineering workflows using AWS Glue, Lambda, dbt, and Snowflake to enable high-quality, automated data movement',
+      'Applying machine learning and statistical modeling to extract predictive insights and optimize decision pipelines',
+      'Deploying cloud-native, production-ready ML applications with FastAPI, Docker, and Azure Functions',
+      'Visualizing complex performance and model metrics through interactive dashboards in Tableau and Power BI',
+    ],
     gradient: 'from-emerald-500/20 to-green-500/10',
   },
   {
     icon: <Heart className="size-5" />,
     label: 'Outside work',
-    content: 'Sports geek and Formula 1 fan — I love finding patterns in performance data and turning real-world stats into stories.',
+    content: 'Outside of work, I&apos;m a Formula 1 enthusiast and sports data geek—I love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision. It keeps my curiosity alive and my analytical instincts sharp.',
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
 ];
@@ -71,10 +78,10 @@ export function About() {
               <User className="size-7 md:size-8 text-violet-400" aria-hidden="true" />
             </div>
             <p className="text-xl md:text-2xl lg:text-3xl text-balance leading-relaxed text-neutral-200">
-              I&apos;m a data scientist and engineer passionate about building interpretable AI systems and scalable data platforms. My work spans Graph-RAG systems (Tietoevry), streaming analytics (Uber via Nineleaps), and growth strategy modeling (Build Fellowship).
+              I&apos;m a <strong>data practitioner</strong> passionate about building intelligent, data-driven systems that connect analytical depth with scalable engineering. My experience spans <strong>applied AI (Tietoevry)</strong>, <strong>data analytics and automation (Uber via Nineleaps)</strong>, and <strong>data engineering pipelines (Nineleaps & academic research)</strong>—enabling me to bring a holistic understanding of how data flows from raw ingestion to intelligent insight.
             </p>
             <p className="text-lg md:text-xl lg:text-2xl text-balance leading-relaxed text-neutral-300">
-              Currently pursuing my MS in Applied Data Analytics at Boston University, I focus on bridging real-world data streams with intelligent, explainable AI pipelines.
+              Currently pursuing my <strong>MS in Applied Data Analytics at Boston University</strong>, I focus on bridging the gap between <strong>AI innovation and data infrastructure</strong>, designing systems that are explainable, efficient, and production-ready.
             </p>
           </div>
         </motion.div>

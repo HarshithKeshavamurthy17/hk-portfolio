@@ -122,7 +122,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           className="mx-auto mt-4 max-w-4xl text-xl leading-relaxed text-neutral-200/80 md:text-2xl"
         >
-          I build data-driven AI systems and platforms—combining retrieval-augmented generation (RAG), streaming data pipelines, and analytics for decision intelligence.
+          I build data-driven AI systems and scalable data platforms—blending machine learning, retrieval-augmented generation (RAG), and data engineering to create intelligent, interpretable solutions for decision intelligence.
         </motion.p>
 
         <motion.div
@@ -179,9 +179,9 @@ export default function Hero() {
         >
           <span className="font-semibold text-cyan-300">Now open to:</span>{' '}
           <span className="inline-flex flex-wrap items-center justify-center gap-2">
-            <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200">AI/ML Engineer</span>
-            <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">Data Scientist</span>
-            <span className="rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">Data Engineer</span>
+            <span className="rounded-full border border-cyan-400/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200">Data Engineer</span>
+            <span className="rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-xs font-medium text-sky-200">AI/ML Engineer</span>
+            <span className="rounded-full border border-blue-400/30 bg-blue-500/10 px-3 py-1 text-xs font-medium text-blue-200">Data Scientist</span>
             <span className="rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1 text-xs font-medium text-teal-200">ML Platform Roles</span>
           </span>
         </motion.p>

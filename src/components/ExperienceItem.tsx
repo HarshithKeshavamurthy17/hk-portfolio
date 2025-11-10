@@ -103,6 +103,14 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
         )}
       </div>
 
+      {/* Impact summary */}
+      {exp.impactSummary && (
+        <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/5 p-4">
+          <p className="text-sm font-semibold text-emerald-300 mb-1">Impact:</p>
+          <p className="text-sm leading-relaxed text-neutral-200">{exp.impactSummary}</p>
+        </div>
+      )}
+
       {/* Impact list */}
       <div className="relative flex-1">
         <motion.div
