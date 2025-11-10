@@ -62,23 +62,26 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
 
 
       {/* Header */}
-      <header className="flex items-start gap-4">
-        <div className="flex size-14 md:size-16 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover/exp:ring-2 group-hover/exp:ring-cyan-400/30 p-2">
-          {exp.logo && !logoError ? (
+      <header className="flex items-start gap-5">
+        {exp.logo && !logoError ? (
+          <div className="relative shrink-0">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-purple-500/20 blur-xl opacity-0 group-hover/exp:opacity-100 transition-opacity duration-300" aria-hidden="true" />
             <img
               src={exp.logo}
               alt={`${exp.company} logo`}
-              width={48}
-              height={48}
-              className="size-full object-contain"
+              width={64}
+              height={64}
+              className="relative size-16 md:size-20 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover/exp:scale-110"
               loading="lazy"
               decoding="async"
               onError={() => setLogoError(true)}
             />
-          ) : (
-            <span className="text-base font-bold text-neutral-200">{initials}</span>
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="flex size-16 md:size-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white/10 to-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover/exp:ring-2 group-hover/exp:ring-cyan-400/30">
+            <span className="text-lg md:text-xl font-bold text-neutral-200">{initials}</span>
+          </div>
+        )}
         <div className="flex flex-1 flex-col gap-2">
           <h3 className="text-xl md:text-2xl font-bold text-white">{exp.company}</h3>
           <p className="text-base md:text-lg text-neutral-400">{exp.role}</p>
