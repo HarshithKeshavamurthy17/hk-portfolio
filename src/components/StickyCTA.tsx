@@ -53,7 +53,7 @@ export default function StickyCTA() {
                 Download Resume
               </a>
               <a
-                href="mailto:harshith2001@gmail.com"
+                href="mailto:hk17@bu.edu"
                 className="rounded-full border border-white/10 px-4 py-1.5 text-white transition hover:border-cyan-300/40 hover:text-cyan-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
               >
                 Contact

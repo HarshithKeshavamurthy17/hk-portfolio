@@ -20,8 +20,8 @@ const socials = [
     color: 'from-blue-500/20 to-cyan-500/10',
   },
   {
-    ariaLabel: 'Email Harshith (harshith2001@gmail.com)',
-    href: 'mailto:harshith2001@gmail.com',
+    ariaLabel: 'Email Harshith (hk17@bu.edu)',
+    href: 'mailto:hk17@bu.edu',
     label: 'Email',
     icon: Mail,
     color: 'from-emerald-500/20 to-green-500/10',
@@ -56,10 +56,10 @@ export function Contact() {
               aria-hidden="true"
             />
             <div className="flex items-center gap-3">
-              <h2 className="text-3xl font-bold text-white">Let&apos;s build together</h2>
-              <MessageSquare className="size-6 text-cyan-400" aria-hidden="true" />
+              <h2 className="text-4xl md:text-5xl font-bold text-white">Let&apos;s build together</h2>
+              <MessageSquare className="size-7 md:size-8 text-cyan-400" aria-hidden="true" />
             </div>
-            <p className="text-sm text-neutral-400">
+            <p className="text-lg md:text-xl text-neutral-300">
               Drop a note about data platform needs, ML experimentation roadmaps, or collaboration ideas. I respond in under two business days.
             </p>
           </div>
@@ -231,10 +231,10 @@ export function Contact() {
             />
             <div className="relative z-10">
               <div className="mb-6 flex items-center gap-3">
-                <Sparkles className="size-5 text-cyan-400" aria-hidden="true" />
-                <h3 className="text-xl font-bold text-white">Direct reach</h3>
+                <Sparkles className="size-6 text-cyan-400" aria-hidden="true" />
+                <h3 className="text-2xl md:text-3xl font-bold text-white">Direct reach</h3>
               </div>
-              <p className="mb-6 text-sm leading-relaxed text-neutral-300">
+              <p className="mb-6 text-base md:text-lg leading-relaxed text-neutral-200">
                 Prefer async? Email <a
                   href="mailto:hk17@bu.edu"
                   aria-label="Email Harshith (hk17@bu.edu)"
@@ -264,7 +264,7 @@ export function Contact() {
                       <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/5 text-cyan-400 ring-1 ring-white/10 transition-colors group-hover:bg-white/10">
                         <Icon className="size-5" aria-hidden="true" />
                       </div>
-                      <span className="font-semibold text-white">{label}</span>
+                      <span className="text-base md:text-lg font-semibold text-white">{label}</span>
                       <motion.span
                         className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent opacity-0"
                         whileHover={{ opacity: 1 }}
@@ -290,8 +290,8 @@ export function Contact() {
               <Clock className="size-5 text-emerald-300" aria-hidden="true" />
             </div>
             <div className="flex-1">
-              <p className="text-sm font-semibold text-emerald-200">Quick response time</p>
-              <p className="text-xs text-emerald-300/80">Usually within 48 hours</p>
+              <p className="text-base md:text-lg font-semibold text-emerald-200">Quick response time</p>
+              <p className="text-sm md:text-base text-emerald-300/80">Usually within 48 hours</p>
             </div>
           </motion.div>
         </motion.div>

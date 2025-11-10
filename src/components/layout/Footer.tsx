@@ -15,8 +15,8 @@ const footerLinks = [
     icon: Linkedin,
   },
   {
-    ariaLabel: 'Email Harshith (harshith2001@gmail.com)',
-    href: 'mailto:harshith2001@gmail.com',
+    ariaLabel: 'Email Harshith (hk17@bu.edu)',
+    href: 'mailto:hk17@bu.edu',
     label: 'Email',
     icon: Mail,
   },
@@ -29,7 +29,7 @@ type FooterProps = {
 export function Footer({ className }: FooterProps) {
   return (
     <footer className={cn('border-t border-border/40 bg-background/80 backdrop-blur', className)}>
-      <div className="container mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 px-6 py-10 text-sm text-muted-foreground sm:flex-row">
+      <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 px-8 py-10 text-base text-muted-foreground sm:flex-row">
         <p aria-label="© 2025 Harshith K">© 2025 Harshith K. All rights reserved.</p>
         <ul className="flex items-center gap-4">
           {footerLinks.map(({ href, label, icon: Icon, ariaLabel }) => (

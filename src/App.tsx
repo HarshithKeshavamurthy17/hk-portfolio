@@ -132,10 +132,10 @@ const HomePage = () => {
       {
         id: 'email-harshith',
         title: 'Email Harshith',
-        description: 'harshith2001@gmail.com',
+        description: 'hk17@bu.edu',
         action: () => {
           if (typeof window !== 'undefined') {
-            window.location.href = 'mailto:harshith2001@gmail.com';
+            window.location.href = 'mailto:hk17@bu.edu';
           }
           handleAnnounce('Opening email client');
         },
@@ -192,11 +192,11 @@ const homeJsonLd = [
     '@type': 'Person',
     name: 'Harshith K',
     url: 'https://harinik.dev/',
-    email: 'mailto:harshith2001@gmail.com',
+    email: 'mailto:hk17@bu.edu',
     sameAs: [
       'https://github.com/HarshithKeshavamurthy17',
       'https://www.linkedin.com/in/harshith-k-bu/',
-      'mailto:harshith2001@gmail.com',
+      'mailto:hk17@bu.edu',
     ],
     jobTitle: 'Data & AI Engineer',
   },
