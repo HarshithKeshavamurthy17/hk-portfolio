@@ -43,7 +43,7 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative flex flex-col gap-6 md:flex-row md:items-start md:gap-8"
+          className="relative flex flex-col gap-8 md:flex-row md:items-center md:gap-12"
         >
           <motion.div
             className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-violet-500 via-purple-500 to-pink-500"
@@ -62,7 +62,7 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex-shrink-0"
           >
-            <div className="relative size-48 md:size-56 lg:size-64 overflow-hidden rounded-2xl border-2 border-violet-400/30 bg-gradient-to-br from-violet-500/20 to-purple-500/10 p-1 shadow-[0_8px_32px_rgba(139,92,246,0.3)]">
+            <div className="relative size-56 md:size-72 lg:size-80 overflow-hidden rounded-2xl border-2 border-violet-400/30 bg-gradient-to-br from-violet-500/20 to-purple-500/10 p-1 shadow-[0_8px_32px_rgba(139,92,246,0.3)]">
               <img
                 src="/hk-portfolio/assets/harshith-photo.jpg"
                 alt="Harshith Keshavamurthy"
@@ -77,10 +77,10 @@ export function About() {
               <h2 className="text-4xl md:text-5xl font-bold text-white">About Harshith</h2>
               <User className="size-7 md:size-8 text-violet-400" aria-hidden="true" />
             </div>
-            <p className="text-xl md:text-2xl lg:text-3xl text-balance leading-relaxed text-neutral-200">
+            <p className="text-2xl md:text-3xl lg:text-4xl text-balance leading-relaxed text-neutral-200">
               I&apos;m a <strong>data practitioner</strong> passionate about building intelligent, data-driven systems that connect analytical depth with scalable engineering. My experience spans <strong>applied AI (Tietoevry)</strong>, <strong>data analytics and automation (Uber via Nineleaps)</strong>, and <strong>data engineering pipelines (Nineleaps & academic research)</strong>—enabling me to bring a holistic understanding of how data flows from raw ingestion to intelligent insight.
             </p>
-            <p className="text-lg md:text-xl lg:text-2xl text-balance leading-relaxed text-neutral-300">
+            <p className="text-xl md:text-2xl lg:text-3xl text-balance leading-relaxed text-neutral-300">
               Currently pursuing my <strong>MS in Applied Data Analytics at Boston University</strong>, I focus on bridging the gap between <strong>AI innovation and data infrastructure</strong>, designing systems that are explainable, efficient, and production-ready.
             </p>
           </div>
@@ -96,15 +96,15 @@ export function About() {
         >
           <div className="flex items-center gap-2 rounded-full border border-violet-400/30 bg-gradient-to-r from-violet-500/10 to-purple-500/5 px-4 py-2 backdrop-blur-sm">
             <GraduationCap className="size-4 text-violet-300" aria-hidden="true" />
-            <span className="text-base md:text-lg font-medium text-violet-200">Boston University · MS Applied Data Analytics</span>
+            <span className="text-lg md:text-xl font-medium text-violet-200">Boston University · MS Applied Data Analytics</span>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-sky-400/30 bg-gradient-to-r from-sky-500/10 to-blue-500/5 px-5 py-3 backdrop-blur-sm">
-            <GraduationCap className="size-5 text-sky-300" aria-hidden="true" />
-            <span className="text-base md:text-lg font-medium text-sky-200">RNSIT · B.E. Computer Science</span>
+          <div className="flex items-center gap-2 rounded-full border border-sky-400/30 bg-gradient-to-r from-sky-500/10 to-blue-500/5 px-6 py-3 backdrop-blur-sm">
+            <GraduationCap className="size-6 text-sky-300" aria-hidden="true" />
+            <span className="text-lg md:text-xl font-medium text-sky-200">RNSIT · B.E. Computer Science</span>
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-emerald-400/30 bg-gradient-to-r from-emerald-500/10 to-green-500/5 px-5 py-3 backdrop-blur-sm">
-            <MapPin className="size-5 text-emerald-300" aria-hidden="true" />
-            <span className="text-base md:text-lg font-medium text-emerald-200">Boston, MA</span>
+          <div className="flex items-center gap-2 rounded-full border border-emerald-400/30 bg-gradient-to-r from-emerald-500/10 to-green-500/5 px-6 py-3 backdrop-blur-sm">
+            <MapPin className="size-6 text-emerald-300" aria-hidden="true" />
+            <span className="text-lg md:text-xl font-medium text-emerald-200">Boston, MA</span>
           </div>
         </motion.div>
 
@@ -129,13 +129,13 @@ export function About() {
                   <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-white/5 text-cyan-300 ring-1 ring-white/10">
                     {highlight.icon}
                   </div>
-                  <h3 className="text-base md:text-lg font-semibold uppercase tracking-wider text-neutral-300">{highlight.label}</h3>
+                  <h3 className="text-lg md:text-xl font-semibold uppercase tracking-wider text-neutral-300">{highlight.label}</h3>
                 </div>
                 {highlight.content && (
-                  <p className="text-base md:text-lg leading-relaxed text-neutral-100">{highlight.content}</p>
+                  <p className="text-lg md:text-xl leading-relaxed text-neutral-100">{highlight.content}</p>
                 )}
                 {highlight.items && (
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {highlight.items.map((item, idx) => (
                       <motion.li
                         key={item}
@@ -143,7 +143,7 @@ export function About() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.3, delay: idx * 0.1 }}
-                        className="flex items-start gap-3 text-base md:text-lg text-neutral-100"
+                        className="flex items-start gap-3 text-lg md:text-xl text-neutral-100"
                       >
                         <span className="mt-2 size-2 rounded-full bg-cyan-400" aria-hidden="true" />
                         <span>{item}</span>

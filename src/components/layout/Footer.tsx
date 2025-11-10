@@ -29,7 +29,7 @@ type FooterProps = {
 export function Footer({ className }: FooterProps) {
   return (
     <footer className={cn('border-t border-border/40 bg-background/80 backdrop-blur', className)}>
-      <div className="container mx-auto flex w-full max-w-[1400px] flex-col items-center justify-between gap-6 px-8 md:px-12 lg:px-16 py-10 text-base text-muted-foreground sm:flex-row">
+      <div className="container mx-auto flex w-full max-w-[1920px] flex-col items-center justify-between gap-6 px-6 md:px-8 lg:px-12 xl:px-16 py-10 text-lg text-muted-foreground sm:flex-row">
         <p aria-label="© 2025 Harshith K">© 2025 Harshith K. All rights reserved.</p>
         <ul className="flex items-center gap-4">
           {footerLinks.map(({ href, label, icon: Icon, ariaLabel }) => (

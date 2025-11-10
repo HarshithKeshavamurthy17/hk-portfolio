@@ -79,12 +79,12 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
             <span className="text-base font-bold text-neutral-200">{initials}</span>
           )}
         </div>
-        <div className="flex flex-1 flex-col gap-1">
-          <h3 className="text-base font-bold text-white">{exp.company}</h3>
-          <p className="text-sm text-neutral-400">{exp.role}</p>
+        <div className="flex flex-1 flex-col gap-2">
+          <h3 className="text-xl md:text-2xl font-bold text-white">{exp.company}</h3>
+          <p className="text-base md:text-lg text-neutral-400">{exp.role}</p>
         </div>
         <span
-          className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-neutral-300"
+          className="shrink-0 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-wider text-neutral-300"
           aria-label={`Tenure: ${exp.start} to ${exp.end}`}
         >
           {exp.start} — {exp.end}
@@ -95,19 +95,19 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-2">
           <div className="h-px flex-1 bg-gradient-to-r from-cyan-400/50 to-transparent" />
-          <span className="text-xs font-semibold uppercase tracking-widest text-cyan-400">{exp.summary}</span>
+          <span className="text-sm md:text-base font-semibold uppercase tracking-widest text-cyan-400">{exp.summary}</span>
           <div className="h-px flex-1 bg-gradient-to-l from-cyan-400/50 to-transparent" />
         </div>
         {exp.description && (
-          <p className="text-sm leading-relaxed text-neutral-300">{exp.description}</p>
+          <p className="text-base md:text-lg leading-relaxed text-neutral-300">{exp.description}</p>
         )}
       </div>
 
       {/* Impact summary */}
       {exp.impactSummary && (
-        <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/5 p-4">
-          <p className="text-sm font-semibold text-emerald-300 mb-1">Impact:</p>
-          <p className="text-sm leading-relaxed text-neutral-200">{exp.impactSummary}</p>
+        <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/5 p-5 md:p-6">
+          <p className="text-base md:text-lg font-semibold text-emerald-300 mb-2">Impact:</p>
+          <p className="text-base md:text-lg leading-relaxed text-neutral-200">{exp.impactSummary}</p>
         </div>
       )}
 
@@ -119,7 +119,7 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
         />
         <ul
           className={cn(
-            'relative space-y-3 text-sm text-neutral-200 transition-all duration-300',
+            'relative space-y-4 text-base md:text-lg text-neutral-200 transition-all duration-300',
           )}
         >
           {visibleImpact.map((item, index) => (

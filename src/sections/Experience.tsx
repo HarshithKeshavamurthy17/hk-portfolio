@@ -23,10 +23,10 @@ export default function Experience() {
 
   return (
     <section id="experience" className="pt-0">
-      <div className="mx-auto w-full max-w-[1400px] px-8 md:px-12 lg:px-16">
-        <div className="flex flex-col gap-2">
-          <h2 className="text-3xl font-semibold text-white">Experience Timeline</h2>
-          <p className="text-sm text-neutral-400">
+      <div className="mx-auto w-full max-w-[1920px] px-6 md:px-8 lg:px-12 xl:px-16">
+        <div className="flex flex-col gap-3">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white">Experience Timeline</h2>
+          <p className="text-lg md:text-xl text-neutral-400">
             Hands-on roles building ML platforms, streaming data systems, and interpretable ML.
           </p>
         </div>

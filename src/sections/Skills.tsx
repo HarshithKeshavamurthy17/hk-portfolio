@@ -174,10 +174,10 @@ export function Skills() {
               aria-hidden="true"
             />
             <div className="flex items-center gap-3">
-              <h2 className="text-3xl font-bold text-white">Skills Stack</h2>
-              <Code2 className="size-6 text-cyan-400" aria-hidden="true" />
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Skills Stack</h2>
+              <Code2 className="size-8 md:size-10 text-cyan-400" aria-hidden="true" />
             </div>
-            <p className="text-sm text-neutral-400">
+            <p className="text-lg md:text-xl text-neutral-400">
               Tools and languages underpinning AI/ML products, data engineering platforms, and decision intelligence workstreams.
             </p>
           </div>
@@ -197,7 +197,7 @@ export function Skills() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="flex items-center gap-2 whitespace-nowrap text-xs font-medium text-neutral-300"
+                className="flex items-center gap-2 whitespace-nowrap text-sm md:text-base font-medium text-neutral-300"
               >
                 <motion.span
                   className={cn('size-2.5 rounded-full', PROFICIENCY_STYLES[entry.level])}
@@ -240,7 +240,7 @@ export function Skills() {
                 <div className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500/20 to-blue-500/10 text-cyan-300 ring-1 ring-white/10">
                   {group.icon}
                 </div>
-                <h3 className="text-lg font-bold text-white">{group.title}</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-white">{group.title}</h3>
               </div>
 
               {/* Skills list */}
@@ -257,7 +257,7 @@ export function Skills() {
                           transition={{ duration: 0.2, delay: itemIndex * 0.05 }}
                           whileHover={{ scale: 1.08, y: -2 }}
                           className={cn(
-                            'group/skill relative inline-flex cursor-default items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-neutral-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]',
+                            'group/skill relative inline-flex cursor-default items-center gap-2 overflow-hidden rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm md:text-base font-medium text-neutral-200 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/40 hover:bg-white/10 hover:text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]',
                           )}
                         >
                           <motion.span
@@ -294,7 +294,7 @@ export function Skills() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="relative z-10 mt-4 flex items-center gap-2 text-xs text-neutral-500"
+                className="relative z-10 mt-4 flex items-center gap-2 text-sm md:text-base text-neutral-500"
               >
                 <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
                 <span>{group.items.length} tools</span>

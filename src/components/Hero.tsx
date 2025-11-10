@@ -88,7 +88,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="mx-auto w-full max-w-[1400px] px-8 md:px-12 lg:px-16 text-center">
+      <div className="mx-auto w-full max-w-[1920px] px-6 md:px-8 lg:px-12 xl:px-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
