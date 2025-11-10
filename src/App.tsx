@@ -124,7 +124,7 @@ const HomePage = () => {
         description: 'Download Harshith’s resume (PDF)',
         action: () => {
           if (typeof window !== 'undefined') {
-            window.open('/assets/Harshith_Keshavamurthy_Resume.pdf', '_blank', 'noopener');
+            window.open('/hk-portfolio/assets/Harshith_Keshavamurthy_Resume.pdf', '_blank', 'noopener');
           }
           handleAnnounce('Opened resume in new tab');
         },
@@ -170,10 +170,10 @@ const HomePage = () => {
         <div className="-mt-16">
           <TrustedBy />
         </div>
+        <About />
         <Projects />
         <Experience />
         <Skills />
-        <About />
         <Contact />
       </motion.div>
       <StickyCTA />

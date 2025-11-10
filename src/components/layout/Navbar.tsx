@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ThemeToggle } from './ThemeProvider';
 import { Button } from '../ui/button';
 import { cn } from '../../lib/cn';
 
@@ -104,12 +103,11 @@ export function Navbar() {
                 size="sm"
                 className="inline-flex border-cyan-400/30 bg-cyan-500/10 text-cyan-200 transition-all duration-300 hover:border-cyan-300 hover:bg-cyan-400/20 hover:text-white hover:shadow-[0_0_20px_rgba(34,211,238,0.3)]"
               >
-                <a href="/assets/Harshith_Keshavamurthy_Resume.pdf" download>
+                <a href="/hk-portfolio/assets/Harshith_Keshavamurthy_Resume.pdf" download>
                   Download Resume
                 </a>
               </Button>
             </motion.div>
-            <ThemeToggle />
           </div>
         </div>
       </nav>

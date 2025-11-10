@@ -30,13 +30,13 @@ export function About() {
       <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-violet-500/5 via-purple-500/5 to-pink-500/5 blur-3xl" aria-hidden="true" />
 
       <div className="flex flex-col gap-10">
-        {/* Header */}
+        {/* Header with Photo */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="relative flex flex-col gap-4"
+          className="relative flex flex-col gap-6 md:flex-row md:items-start md:gap-8"
         >
           <motion.div
             className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-violet-500 via-purple-500 to-pink-500"
@@ -47,16 +47,35 @@ export function About() {
             style={{ transformOrigin: "top" }}
             aria-hidden="true"
           />
-          <div className="flex items-center gap-3">
-            <h2 className="text-3xl font-bold text-white">About Harshith</h2>
-            <User className="size-6 text-violet-400" aria-hidden="true" />
+          {/* Photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="flex-shrink-0"
+          >
+            <div className="relative size-32 md:size-40 overflow-hidden rounded-2xl border-2 border-violet-400/30 bg-gradient-to-br from-violet-500/20 to-purple-500/10 p-1 shadow-[0_8px_32px_rgba(139,92,246,0.3)]">
+              <img
+                src="/hk-portfolio/assets/harshith-photo.jpg"
+                alt="Harshith Keshavamurthy"
+                className="size-full rounded-xl object-cover"
+              />
+            </div>
+          </motion.div>
+          {/* Text Content */}
+          <div className="flex-1 space-y-4">
+            <div className="flex items-center gap-3">
+              <h2 className="text-3xl font-bold text-white">About Harshith</h2>
+              <User className="size-6 text-violet-400" aria-hidden="true" />
+            </div>
+            <p className="max-w-3xl text-balance text-lg leading-relaxed text-neutral-300">
+              I&apos;m a data scientist and engineer passionate about building interpretable AI systems and scalable data platforms. My work spans Graph-RAG systems (Tietoevry), streaming analytics (Uber via Nineleaps), and growth strategy modeling (Build Fellowship).
+            </p>
+            <p className="max-w-3xl text-balance leading-relaxed text-neutral-400">
+              Currently pursuing my MS in Applied Data Analytics at Boston University, I focus on bridging real-world data streams with intelligent, explainable AI pipelines.
+            </p>
           </div>
-          <p className="max-w-3xl text-balance text-lg leading-relaxed text-neutral-300">
-            I&apos;m a data scientist and engineer passionate about building interpretable AI systems and scalable data platforms. My work spans Graph-RAG systems (Tietoevry), streaming analytics (Uber via Nineleaps), and growth strategy modeling (Build Fellowship).
-          </p>
-          <p className="max-w-3xl text-balance leading-relaxed text-neutral-400">
-            Currently pursuing my MS in Applied Data Analytics at Boston University, I focus on bridging real-world data streams with intelligent, explainable AI pipelines.
-          </p>
         </motion.div>
 
         {/* Education & Location */}

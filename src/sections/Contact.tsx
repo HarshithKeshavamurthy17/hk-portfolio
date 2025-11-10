@@ -70,8 +70,19 @@ export function Contact() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            action="https://formspree.io/f/your-form-id"
-            method="POST"
+            onSubmit={async (e) => {
+              e.preventDefault();
+              const form = e.currentTarget;
+              const formData = new FormData(form);
+              const name = formData.get('name') as string;
+              const email = formData.get('email') as string;
+              const message = formData.get('message') as string;
+              
+              // Create mailto link with form data
+              const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
+              const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+              window.location.href = `mailto:hk17@bu.edu?subject=${subject}&body=${body}`;
+            }}
             className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl"
           >
             {/* Animated gradient orb */}
@@ -197,7 +208,7 @@ export function Contact() {
               {/* Form note */}
               <p className="flex items-center gap-2 text-xs text-neutral-500">
                 <Clock className="size-3" aria-hidden="true" />
-                <span>Formspree placeholder active — I reply within 48 hours.</span>
+                <span>I reply within 48 hours.</span>
               </p>
             </div>
           </motion.form>
@@ -225,11 +236,11 @@ export function Contact() {
               </div>
               <p className="mb-6 text-sm leading-relaxed text-neutral-300">
                 Prefer async? Email <a
-                  href="mailto:harshith2001@gmail.com"
-                  aria-label="Email Harshith (harshith2001@gmail.com)"
+                  href="mailto:hk17@bu.edu"
+                  aria-label="Email Harshith (hk17@bu.edu)"
                   className="font-semibold text-cyan-400 transition-colors hover:text-cyan-300 hover:underline"
                 >
-                  harshith2001@gmail.com
+                  hk17@bu.edu
                 </a> or connect on any channel below.
               </p>
 
