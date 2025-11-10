@@ -25,7 +25,12 @@ const highlights = [
   {
     icon: <Heart className="size-5" />,
     label: 'Outside work',
-    content: 'Outside of work, I&apos;m a Formula 1 enthusiast and sports data geek.\n\nI love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision.\n\nIt keeps my curiosity alive and my analytical instincts sharp.',
+    content: null,
+    paragraphs: [
+      'Outside of work, I&apos;m a Formula 1 enthusiast and sports data geek.',
+      'I love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision.',
+      'It keeps my curiosity alive and my analytical instincts sharp.',
+    ],
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
 ];
@@ -153,6 +158,15 @@ export function About() {
                 </div>
                 {highlight.content && (
                   <p className="text-lg md:text-xl leading-relaxed text-neutral-100 whitespace-pre-line">{highlight.content}</p>
+                )}
+                {highlight.paragraphs && (
+                  <div className="space-y-3">
+                    {highlight.paragraphs.map((paragraph, idx) => (
+                      <p key={idx} className="text-lg md:text-xl leading-relaxed text-neutral-100">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
                 )}
                 {highlight.items && (
                   <ul className="space-y-4">
