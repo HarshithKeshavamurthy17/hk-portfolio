@@ -63,14 +63,14 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
 
       {/* Header */}
       <header className="flex items-start gap-4">
-        <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover/exp:ring-2 group-hover/exp:ring-cyan-400/30">
+        <div className="flex size-14 md:size-16 shrink-0 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover/exp:ring-2 group-hover/exp:ring-cyan-400/30 p-2">
           {exp.logo && !logoError ? (
             <img
               src={exp.logo}
               alt={`${exp.company} logo`}
-              width={40}
-              height={40}
-              className="size-9 object-contain"
+              width={48}
+              height={48}
+              className="size-full object-contain"
               loading="lazy"
               decoding="async"
               onError={() => setLogoError(true)}

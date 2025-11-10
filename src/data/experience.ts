@@ -30,7 +30,7 @@ export const experiences: Experience[] = [
     ],
     tech: ['Python', 'Neo4j', 'LangChain', 'Azure Functions', 'FAISS', 'FastAPI', 'Docker', 'Streamlit'],
     impactSummary: 'Reduced research time by 42%, transforming vulnerability analysis into a scalable, explainable workflow.',
-    logo: '/logos/tietoevry.svg',
+    logo: '/hk-portfolio/logos/tietoevry_logo.png',
     featured: true,
   },
   {
@@ -48,7 +48,7 @@ export const experiences: Experience[] = [
       'Presented the final strategy to client leadership — several key recommendations were adopted for their 2025 global launch plan',
     ],
     tech: ['Python', 'Tableau', 'Excel', 'Market Analytics', 'PESTEL Analysis'],
-    logo: '/logos/bu.svg',
+    logo: '/hk-portfolio/logos/build_fellowship.png',
   },
   {
     id: 'uber-nineleaps',
@@ -66,7 +66,7 @@ export const experiences: Experience[] = [
     ],
     tech: ['Python', 'SQL', 'Tableau', 'K-Means', 'DBSCAN', 'Google Apps Script'],
     impactSummary: 'Shortened expansion timelines and increased operational transparency through analytics.',
-    logo: '/logos/nineleaps.svg',
+    logo: '/hk-portfolio/logos/uber.png',
     featured: true,
   },
   {
@@ -83,7 +83,7 @@ export const experiences: Experience[] = [
     ],
     tech: ['Python', 'SQL', 'PySpark', 'Hive', 'Tableau', 'Excel'],
     impactSummary: 'Increased automation efficiency and improved team throughput on analytics tasks.',
-    logo: '/logos/nineleaps.svg',
+    logo: '/hk-portfolio/logos/nineleaps.png',
   },
   {
     id: 'nastech-ai-ml',
@@ -99,7 +99,7 @@ export const experiences: Experience[] = [
     ],
     tech: ['Python', 'OpenCV', 'dlib', 'TensorFlow', 'Keras', 'NumPy'],
     impactSummary: 'Created a real-time safety solution combining computer vision with applied AI.',
-    logo: '/logos/nastech.svg',
+    logo: '/hk-portfolio/logos/nastech.png',
   },
 ];
 

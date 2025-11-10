@@ -25,7 +25,7 @@ const highlights = [
   {
     icon: <Heart className="size-5" />,
     label: 'Outside work',
-    content: 'Outside of work, I&apos;m a Formula 1 enthusiast and sports data geek—I love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision. It keeps my curiosity alive and my analytical instincts sharp.',
+    content: 'Outside of work, I&apos;m a Formula 1 enthusiast and sports data geek. I love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision. It keeps my curiosity alive and my analytical instincts sharp.',
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
 ];
