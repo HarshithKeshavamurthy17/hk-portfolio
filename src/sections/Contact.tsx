@@ -230,7 +230,7 @@ export function Contact() {
               aria-hidden="true"
             />
             <div className="relative z-10">
-              <div className="mb-6 flex items-center gap-3">
+              <div className="mb-6 mt-4 flex items-center gap-3">
                 <Sparkles className="size-6 text-cyan-400" aria-hidden="true" />
                 <h3 className="text-2xl md:text-3xl font-bold text-white">Direct reach</h3>
               </div>
@@ -264,7 +264,9 @@ export function Contact() {
                       <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/5 text-cyan-400 ring-1 ring-white/10 transition-colors group-hover:bg-white/10">
                         <Icon className="size-5" aria-hidden="true" />
                       </div>
-                      <span className="text-base md:text-lg font-semibold text-white">{label}</span>
+                      <span className="text-base md:text-lg font-semibold text-white">
+                        {label === 'Email' ? `${label} (hk17@bu.edu)` : label}
+                      </span>
                       <motion.span
                         className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent opacity-0"
                         whileHover={{ opacity: 1 }}
