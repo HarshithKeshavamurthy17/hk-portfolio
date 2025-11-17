@@ -27,7 +27,7 @@ const highlights = [
     label: 'Outside work',
     content: null,
     paragraphs: [
-      'Outside of work, I&apos;m a Formula 1 enthusiast and sports data geek.',
+      "Outside of work, I'm a Formula 1 enthusiast and sports data geek.",
       'I love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision.',
       'It keeps my curiosity alive and my analytical instincts sharp.',
     ],
