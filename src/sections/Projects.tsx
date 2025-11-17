@@ -138,7 +138,7 @@ export default function Projects() {
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
-          className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+          className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
         >
           <AnimatePresence mode="sync">
             {filtered.map((project) => (

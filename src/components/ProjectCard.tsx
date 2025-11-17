@@ -127,16 +127,16 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         }} />
       </div>
       {showThumb ? (
-        <div className="relative aspect-video w-full overflow-hidden">
+        <div className="relative aspect-[16/9] w-full overflow-hidden">
           <img
             src={project.thumb}
             alt={`${project.title} thumbnail`}
             loading="lazy"
             decoding="async"
-            className="size-full object-cover transition duration-500 ease-out group-hover/project:scale-105"
+            className="size-full object-cover transition duration-500 ease-out group-hover/project:scale-110"
             onError={() => setThumbError(true)}
           />
-          <span className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-transparent" aria-hidden="true" />
+          <span className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" aria-hidden="true" />
           {project.preview?.type === 'video' ? (
             <video
               className={cn(
@@ -156,11 +156,11 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
           </span>
         </div>
       ) : (
-        <div className="relative aspect-video w-full overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#164e63] to-[#0f172a]">
+        <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#164e63] to-[#0f172a]">
           <span className="absolute inset-0 bg-black/30" aria-hidden="true" />
           <span
             aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center text-sm uppercase tracking-[0.3em] text-cyan-200/70"
+            className="absolute inset-0 flex items-center justify-center text-xs uppercase tracking-[0.3em] text-cyan-200/70"
           >
             {project.title}
           </span>
@@ -184,36 +184,36 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         </div>
       )}
       {statusBadge ? (
-        <span className="absolute right-5 top-5 inline-flex items-center rounded-full border border-cyan-300/60 bg-cyan-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-cyan-200">
+        <span className="absolute right-4 top-4 inline-flex items-center rounded-full border border-cyan-300/60 bg-cyan-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-200 shadow-[0_0_15px_rgba(34,211,238,0.4)]">
           {statusBadge}
         </span>
       ) : null}
 
-      <div className="flex flex-1 flex-col gap-6 p-6">
-        <div className="flex flex-col gap-2 text-left">
-          <div className="flex flex-wrap items-start justify-between gap-3">
+      <div className="flex flex-1 flex-col gap-4 p-5">
+        <div className="flex flex-col gap-1.5 text-left">
+          <div className="flex flex-wrap items-start justify-between gap-2">
             <div className="flex-1">
               {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' || project.id === 'autokpi' ? (
                 <Link
                   to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : project.id === 'oncovision' ? '/projects/oncovision' : '/projects/autokpi'}
-                  className="text-xl font-semibold text-white transition-colors hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] rounded"
+                  className="text-lg font-bold text-white transition-colors hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] rounded"
                 >
                   {project.title}
                 </Link>
               ) : (
-                <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                <h3 className="text-lg font-bold text-white">{project.title}</h3>
               )}
-              <p className="line-clamp-3 text-sm leading-relaxed text-neutral-100 mt-3 mb-1">{project.summary}</p>
+              <p className="line-clamp-2 text-xs leading-relaxed text-neutral-200 mt-2">{project.summary}</p>
             </div>
           </div>
-          <span className="text-xs uppercase tracking-[0.35em] text-cyan-300/50">{project.subtitle}</span>
+          <span className="text-[10px] uppercase tracking-[0.3em] text-cyan-300/60 font-semibold">{project.subtitle}</span>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-1.5">
           {project.tech.map((tech) => (
             <span
               key={tech}
-              className="rounded-full border border-white/15 bg-white/0 px-3 py-1 text-xs font-medium text-neutral-200"
+              className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-neutral-200"
             >
               {tech}
             </span>
@@ -221,7 +221,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         </div>
 
         {project.metrics && project.metrics.length > 0 && (
-          <div className="relative flex flex-wrap gap-2">
+          <div className="relative flex flex-wrap gap-1.5">
             <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-purple-500/5 opacity-0 blur-xl transition-opacity duration-500 group-hover/project:opacity-100" aria-hidden="true" />
             {project.metrics.map((metric, index) => (
               <motion.div
@@ -230,10 +230,10 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="relative flex items-center gap-2 rounded-full border border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 to-blue-500/5 px-3 py-1.5 backdrop-blur-sm"
+                className="relative flex items-center gap-1.5 rounded-full border border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 to-blue-500/5 px-2.5 py-1 backdrop-blur-sm"
               >
-                <TrendingUp className="size-3 text-cyan-400" aria-hidden="true" />
-                <span className="text-[11px] font-bold text-cyan-200">
+                <TrendingUp className="size-2.5 text-cyan-400" aria-hidden="true" />
+                <span className="text-[10px] font-bold text-cyan-200">
                   {metric}
                 </span>
                 <motion.span
@@ -247,11 +247,11 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
           </div>
         )}
 
-        <div className="mt-auto flex flex-wrap gap-2">
+        <div className="mt-auto flex flex-wrap gap-1.5">
           {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' || project.id === 'autokpi' ? (
             <Link
               to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : project.id === 'oncovision' ? '/projects/oncovision' : '/projects/autokpi'}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
             >
               Quick View
             </Link>
@@ -259,7 +259,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
             <button
               type="button"
               onClick={(event) => onQuickView?.(project, event.currentTarget)}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
             >
               Quick View
             </button>
@@ -272,7 +272,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
               rel="noopener noreferrer"
               aria-label={`Open ${link.label} for ${project.title}`}
               className={cn(
-                'inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]',
+                'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]',
                 buttonStyles[link.kind] ?? buttonStyles.demo,
               )}
             >
