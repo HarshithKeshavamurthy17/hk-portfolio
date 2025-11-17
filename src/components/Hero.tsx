@@ -79,6 +79,102 @@ export default function Hero() {
         />
       </div>
 
+      {/* Animated grid pattern */}
+      <motion.div 
+        className="pointer-events-none absolute inset-0 -z-10"
+        animate={{ 
+          backgroundPosition: ['0px 0px', '50px 50px'],
+        }}
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '50px 50px',
+        }}
+      />
+
+      {/* Floating geometric shapes */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`shape-${i}`}
+            className="absolute"
+            style={{
+              left: `${10 + i * 12}%`,
+              top: `${20 + (i % 3) * 25}%`,
+            }}
+            animate={{
+              y: [-30, 30, -30],
+              rotate: [0, 360],
+              opacity: [0.1, 0.3, 0.1],
+            }}
+            transition={{
+              duration: 15 + i * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.5,
+            }}
+          >
+            {i % 3 === 0 ? (
+              <div className="size-20 rounded-full border-2 border-cyan-400/20" />
+            ) : i % 3 === 1 ? (
+              <div className="size-16 rotate-45 border-2 border-blue-400/20" />
+            ) : (
+              <div className="size-0 border-l-[40px] border-r-[40px] border-t-[70px] border-l-transparent border-r-transparent border-t-violet-400/20" />
+            )}
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Rotating rings */}
+      <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={`ring-${i}`}
+            className="absolute rounded-full border border-cyan-400/10"
+            style={{
+              width: `${400 + i * 200}px`,
+              height: `${400 + i * 200}px`,
+            }}
+            animate={{
+              rotate: i % 2 === 0 ? [0, 360] : [360, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 30 + i * 10,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Diagonal animated lines */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        {[...Array(6)].map((_, i) => (
+          <motion.div
+            key={`line-${i}`}
+            className="absolute h-full w-px bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent"
+            style={{
+              left: `${15 + i * 15}%`,
+              transform: 'skewX(-12deg)',
+            }}
+            animate={{
+              opacity: [0, 0.5, 0],
+              scaleY: [0.5, 1, 0.5],
+            }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.7,
+            }}
+          />
+        ))}
+      </div>
+
       {/* Floating particles with enhanced glow */}
       <div className="pointer-events-none absolute inset-0 -z-10">
         {particles.map((particle) => (
@@ -99,6 +195,30 @@ export default function Hero() {
               repeat: Infinity,
               delay: particle.delay,
               ease: "easeInOut"
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Pulsing dots grid */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        {[...Array(40)].map((_, i) => (
+          <motion.div
+            key={`dot-${i}`}
+            className="absolute size-1 rounded-full bg-cyan-400/20"
+            style={{
+              left: `${(i % 8) * 12.5}%`,
+              top: `${Math.floor(i / 8) * 20}%`,
+            }}
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.2, 0.6, 0.2],
+            }}
+            transition={{
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: (i % 8) * 0.2,
             }}
           />
         ))}
