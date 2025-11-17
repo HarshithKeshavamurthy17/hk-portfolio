@@ -27,9 +27,9 @@ const highlights = [
     label: 'Outside work',
     content: null,
     paragraphs: [
-      "When I'm not wrangling data pipelines, you'll find me obsessing over F1 lap times and race strategies—because apparently, I can't escape analytics even on race weekends! 🏎️",
-      "There's something magical about watching a perfectly executed undercut or seeing how tire strategy unfolds. I turn racing stats into stories, dissecting every overtake and pit stop like it's a production incident (but way more thrilling).",
-      "It's my way of keeping the analytical fire burning—plus, it's a great excuse to wake up at ungodly hours for races in different time zones!",
+      "When I'm not neck-deep in code, I'm glued to F1 races. Yeah, I analyze lap times and strategies like they're production metrics—old habits die hard! 🏎️",
+      "There's something addictive about predicting pit stop windows or watching a well-executed undercut unfold. I geek out over the data, break down every move, and basically treat race weekends like they're debugging sessions (except way more fun).",
+      "Keeps me sharp, scratches the analytical itch, and gives me an excuse to be awake at 3 AM watching cars go zoom. Worth it.",
     ],
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
@@ -162,9 +162,9 @@ export function About() {
                   <p className="text-sm md:text-base leading-relaxed text-neutral-200 whitespace-pre-line">{highlight.content}</p>
                 )}
                 {highlight.paragraphs && (
-                  <div className="space-y-2.5">
+                  <div className="space-y-3">
                     {highlight.paragraphs.map((paragraph, idx) => (
-                      <p key={idx} className="text-sm md:text-base leading-relaxed text-neutral-200">
+                      <p key={idx} className="text-base md:text-lg leading-relaxed text-neutral-200">
                         {paragraph}
                       </p>
                     ))}
