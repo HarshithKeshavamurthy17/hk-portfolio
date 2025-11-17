@@ -127,7 +127,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
         }} />
       </div>
       {showThumb ? (
-        <div className="relative aspect-[16/9] w-full overflow-hidden">
+        <div className="relative aspect-[21/9] w-full overflow-hidden">
           <img
             src={project.thumb}
             alt={`${project.title} thumbnail`}
@@ -156,7 +156,7 @@ export default function ProjectCard({ project, onQuickView }: ProjectCardProps) 
           </span>
         </div>
       ) : (
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#164e63] to-[#0f172a]">
+        <div className="relative aspect-[21/9] w-full overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#164e63] to-[#0f172a]">
           <span className="absolute inset-0 bg-black/30" aria-hidden="true" />
           <span
             aria-hidden="true"
