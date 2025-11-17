@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Database, Brain, BarChart3, ChevronRight, Sparkles } from 'lucide-react';
 
 // Generate particles once
+// Force rebuild - updated visual effects
 const particles = [...Array(15)].map((_, i) => ({
   id: i,
   left: Math.random() * 100,
