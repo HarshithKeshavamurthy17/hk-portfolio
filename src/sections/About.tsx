@@ -27,9 +27,9 @@ const highlights = [
     label: 'Outside work',
     content: null,
     paragraphs: [
-      "Outside of work, I'm a Formula 1 enthusiast and sports data geek.",
-      'I love analyzing patterns in driver performance and transforming statistics into stories that explain strategy, teamwork, and precision.',
-      'It keeps my curiosity alive and my analytical instincts sharp.',
+      "When I'm not wrangling data pipelines, you'll find me obsessing over F1 lap times and race strategies—because apparently, I can't escape analytics even on race weekends! 🏎️",
+      'There's something magical about watching a perfectly executed undercut or seeing how tire strategy unfolds. I turn racing stats into stories, dissecting every overtake and pit stop like it's a production incident (but way more thrilling).',
+      'It's my way of keeping the analytical fire burning—plus, it's a great excuse to wake up at ungodly hours for races in different time zones!',
     ],
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
