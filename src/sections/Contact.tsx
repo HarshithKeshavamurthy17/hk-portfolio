@@ -34,7 +34,7 @@ export function Contact() {
   return (
     <Section id="contact" className="relative">
       {/* Background decoration */}
-      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-purple-500/5 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[900px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/8 via-blue-500/8 to-purple-500/8 blur-3xl" aria-hidden="true" />
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
         {/* Left column - Form */}
@@ -56,10 +56,15 @@ export function Contact() {
               aria-hidden="true"
             />
             <div className="flex items-center gap-3">
-              <h2 className="text-4xl md:text-5xl font-bold text-white">Let&apos;s build together</h2>
-              <MessageSquare className="size-7 md:size-8 text-cyan-400" aria-hidden="true" />
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">Let&apos;s build together</h2>
+              <motion.div
+                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <MessageSquare className="size-7 md:size-8 text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]" aria-hidden="true" />
+              </motion.div>
             </div>
-            <p className="text-lg md:text-xl text-neutral-300">
+            <p className="text-lg md:text-xl text-neutral-200">
               Drop a note about data platform needs, ML experimentation roadmaps, or collaboration ideas. I respond in under two business days.
             </p>
           </div>
@@ -83,13 +88,13 @@ export function Contact() {
               const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
               window.location.href = `mailto:hk17@bu.edu?subject=${subject}&body=${body}`;
             }}
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl"
+            className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-white/[0.01] p-8 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
           >
             {/* Animated gradient orb */}
             <motion.div
-              className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-gradient-to-br from-cyan-500/20 to-transparent blur-3xl"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-gradient-to-br from-cyan-500/25 to-transparent blur-3xl"
+              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               aria-hidden="true"
             />
 
@@ -190,16 +195,16 @@ export function Contact() {
               >
                 <Button
                   type="submit"
-                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 font-semibold text-black shadow-[0_0_30px_rgba(34,211,238,0.4)] transition-all duration-300 hover:shadow-[0_0_40px_rgba(34,211,238,0.6)]"
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 font-semibold text-black shadow-[0_0_35px_rgba(34,211,238,0.5)] transition-all duration-300 hover:shadow-[0_0_50px_rgba(34,211,238,0.7)] hover:scale-[1.02]"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    <Send className="size-4" aria-hidden="true" />
+                    <Send className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
                     Send message
                   </span>
                   <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-white/20 to-transparent"
-                    animate={{ x: [-200, 200] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 to-transparent"
+                    animate={{ x: [-250, 250] }}
+                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
                     aria-hidden="true"
                   />
                 </Button>
@@ -222,17 +227,22 @@ export function Contact() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="flex flex-col gap-5"
         >
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-8 backdrop-blur-xl">
+          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-white/[0.01] p-8 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
             <motion.div
-              className="pointer-events-none absolute -left-12 -top-12 size-32 rounded-full bg-gradient-to-br from-purple-500/20 to-transparent blur-2xl"
-              animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="pointer-events-none absolute -left-12 -top-12 size-40 rounded-full bg-gradient-to-br from-purple-500/25 to-transparent blur-2xl"
+              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
               aria-hidden="true"
             />
             <div className="relative z-10">
               <div className="mb-6 mt-4 flex items-center gap-3">
-                <Sparkles className="size-6 text-cyan-400" aria-hidden="true" />
-                <h3 className="text-2xl md:text-3xl font-bold text-white">Direct reach</h3>
+                <motion.div
+                  animate={{ rotate: [0, 15, -15, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                >
+                  <Sparkles className="size-6 text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]" aria-hidden="true" />
+                </motion.div>
+                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">Direct reach</h3>
               </div>
               <p className="mb-6 text-base md:text-lg leading-relaxed text-neutral-200">
                 Prefer async? Email <a
@@ -258,17 +268,21 @@ export function Contact() {
                       aria-label={ariaLabel}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ x: 4, transition: { duration: 0.2 } }}
-                      className={`group relative flex items-center gap-4 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-r ${color} p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)]`}
+                      whileHover={{ x: 6, scale: 1.02, transition: { duration: 0.2 } }}
+                      className={`group relative flex items-center gap-4 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-r ${color} p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/60 hover:shadow-[0_0_25px_rgba(34,211,238,0.3)]`}
                     >
-                      <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/5 text-cyan-400 ring-1 ring-white/10 transition-colors group-hover:bg-white/10">
+                      <motion.div 
+                        className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/5 text-cyan-400 ring-1 ring-white/10 transition-colors group-hover:bg-white/10"
+                        whileHover={{ scale: 1.1, rotate: 5 }}
+                        transition={{ duration: 0.3 }}
+                      >
                         <Icon className="size-5" aria-hidden="true" />
-                      </div>
+                      </motion.div>
                       <span className="text-base md:text-lg font-semibold text-white">
                         {label === 'Email' ? `${label} (hk17@bu.edu)` : label}
                       </span>
                       <motion.span
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-transparent opacity-0"
+                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/15 to-transparent opacity-0"
                         whileHover={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
                         aria-hidden="true"

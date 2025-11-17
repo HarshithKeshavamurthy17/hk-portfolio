@@ -24,12 +24,30 @@ export default function Experience() {
   return (
     <section id="experience" className="pt-0">
       <div className="mx-auto w-full max-w-[1920px] px-6 md:px-8 lg:px-12 xl:px-16">
-        <div className="flex flex-col gap-3">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold text-white">Experience Timeline</h2>
-          <p className="text-lg md:text-xl text-neutral-400">
+        {/* Background decoration */}
+        <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-purple-500/5 blur-3xl" aria-hidden="true" />
+        
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative flex flex-col gap-3"
+        >
+          <motion.div
+            className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500"
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            style={{ transformOrigin: "top" }}
+            aria-hidden="true"
+          />
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">Experience Timeline</h2>
+          <p className="text-lg md:text-xl text-neutral-300">
             Hands-on roles building ML platforms, streaming data systems, and interpretable ML.
           </p>
-        </div>
+        </motion.div>
 
         <div className="relative mt-10 pl-0 md:border-l md:border-white/10 md:pl-16">
           <span
@@ -60,20 +78,29 @@ export default function Experience() {
                 {/* Timeline dot */}
                 <div className="pointer-events-none absolute left-0 top-8 hidden md:flex md:translate-x-[-34px] md:flex-col md:items-center">
                   <motion.span
-                    className="block size-3.5 rounded-full border-2 border-cyan-200 bg-cyan-400"
+                    className="block size-4 rounded-full border-2 border-cyan-200 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.6)]"
                     aria-hidden="true"
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.3 }}
-                    animate={{
-                      boxShadow: [
-                        "0 0 20px rgba(94,234,212,0.55)",
-                        "0 0 40px rgba(94,234,212,0.8)",
-                        "0 0 20px rgba(94,234,212,0.55)",
-                      ],
-                    }}
-                  />
+                  >
+                    <motion.span
+                      className="absolute inset-0 rounded-full"
+                      animate={{
+                        boxShadow: [
+                          "0 0 25px rgba(34,211,238,0.6)",
+                          "0 0 45px rgba(34,211,238,0.9)",
+                          "0 0 25px rgba(34,211,238,0.6)",
+                        ],
+                      }}
+                      transition={{
+                        duration: 2.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </motion.span>
                 </div>
                 {/* Year badge on timeline */}
                 <div className="pointer-events-none absolute left-0 top-2 hidden md:block md:translate-x-[calc(-100%-24px)]">

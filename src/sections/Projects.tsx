@@ -80,17 +80,20 @@ export default function Projects() {
               aria-hidden="true"
             />
             <div className="flex items-center gap-3">
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">
                 Highlighted Projects
               </h2>
               <motion.div
-                animate={{ rotate: [0, 10, -10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                animate={{ 
+                  rotate: [0, 15, -15, 0],
+                  scale: [1, 1.1, 1.1, 1]
+                }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               >
-                <Sparkles className="size-6 text-cyan-400" aria-hidden="true" />
+                <Sparkles className="size-7 md:size-8 text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.6)]" aria-hidden="true" />
               </motion.div>
             </div>
-            <p className="mt-1 text-sm text-neutral-400">
+            <p className="mt-2 text-base md:text-lg text-neutral-300">
               Hands-on systems I&apos;ve shipped and studied · Click to explore
             </p>
           </div>
@@ -107,11 +110,11 @@ export default function Projects() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.06, y: -3 }}
+                  whileTap={{ scale: 0.94 }}
                   className={`relative overflow-hidden rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-wide transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] ${
                     isActive
-                      ? 'border-cyan-400 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-200 shadow-[0_0_20px_rgba(34,211,238,0.3)]'
+                      ? 'border-cyan-400/70 bg-gradient-to-r from-cyan-500/25 to-blue-500/25 text-cyan-100 shadow-[0_0_25px_rgba(34,211,238,0.4)]'
                       : 'border-white/10 bg-white/5 text-neutral-300 hover:border-cyan-400/60 hover:bg-white/10 hover:text-cyan-200'
                   }`}
                 >

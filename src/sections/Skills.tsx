@@ -153,7 +153,7 @@ export function Skills() {
   return (
     <Section id="skills" className="relative">
       {/* Background decoration */}
-      <div className="pointer-events-none absolute left-1/2 top-20 -z-10 size-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/5 via-cyan-500/5 to-blue-500/5 blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute left-1/2 top-20 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/8 via-cyan-500/8 to-blue-500/8 blur-3xl" aria-hidden="true" />
       
       <div className="flex flex-col gap-8">
         <motion.div
@@ -174,10 +174,15 @@ export function Skills() {
               aria-hidden="true"
             />
             <div className="flex items-center gap-3">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">Skills Stack</h2>
-              <Code2 className="size-8 md:size-10 text-cyan-400" aria-hidden="true" />
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-white via-emerald-200 to-cyan-300 bg-clip-text text-transparent">Skills Stack</h2>
+              <motion.div
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <Code2 className="size-8 md:size-10 text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]" aria-hidden="true" />
+              </motion.div>
             </div>
-            <p className="text-lg md:text-xl text-neutral-400">
+            <p className="text-lg md:text-xl text-neutral-300">
               Tools and languages underpinning AI/ML products, data engineering platforms, and decision intelligence workstreams.
             </p>
           </div>
