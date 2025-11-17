@@ -6,7 +6,15 @@ const highlights = [
   {
     icon: <Briefcase className="size-5" />,
     label: 'Current Focus',
-    content: 'Exploring the intersection of AI/ML and Data Science—building frameworks that connect predictive intelligence with strong data foundations. Currently working on experimentation tracking, model evaluation automation, and retrieval-based AI systems that integrate seamlessly into modern data platforms.',
+    content: "My current focus is on bridging the gap between data engineering and modern AI — designing systems that move data smoothly, train models reliably, and deliver insights that actually make sense in the real world. I work across the full stack of AI/ML, Data Science, and Data Engineering to build solutions that are both intelligent and production-ready.\n\nLately, I've been diving into:",
+    items: [
+      'LLM and RAG development, including retrieval pipelines, vector search, evaluation automation, and knowledge graph–augmented retrieval',
+      'Cloud-native data engineering on AWS and Azure — ETL pipelines, Glue/Lambda, dbt, Snowflake, orchestration, and automation',
+      'Experimentation and model evaluation, including tracking, benchmarking, and making ML systems observable and trustworthy',
+      'Data science workflows involving feature engineering, statistical modeling, forecasting, and applied ML for real-world decision-making',
+      'Productionizing AI/ML applications using FastAPI, Docker, CI/CD, and scalable deployment patterns',
+    ],
+    closingText: "Overall, I'm exploring how strong data foundations and modern AI can work together to build systems that are scalable, explainable, and ready for real-world use.",
     gradient: 'from-cyan-500/20 to-blue-500/10',
   },
   {
@@ -27,9 +35,8 @@ const highlights = [
     label: 'Outside work',
     content: null,
     paragraphs: [
-      "When I'm not neck-deep in code, I'm glued to F1 races. Yeah, I analyze lap times and strategies like they're production metrics—old habits die hard! 🏎️",
-      "There's something addictive about predicting pit stop windows or watching a well-executed undercut unfold. I geek out over the data, break down every move, and basically treat race weekends like they're debugging sessions (except way more fun).",
-      "Keeps me sharp, scratches the analytical itch, and gives me an excuse to be awake at 3 AM watching cars go zoom. Worth it.",
+      "In my free time, I treat my laptop like a mini R&D lab. I'm always building something—tiny RAG prototypes, quick data apps, dashboards, or small cloud automations—mostly just to see an idea come to life.",
+      "I enjoy experimenting without rules, trying things, breaking them, and figuring out why they work. Turning random ideas into working little systems is genuinely fun for me, and it keeps me creative, curious, and constantly growing as an engineer.",
     ],
     gradient: 'from-pink-500/20 to-rose-500/10',
   },
@@ -186,6 +193,9 @@ export function About() {
                       </motion.li>
                     ))}
                   </ul>
+                )}
+                {highlight.closingText && (
+                  <p className="mt-4 text-sm md:text-base leading-relaxed text-neutral-200 italic">{highlight.closingText}</p>
                 )}
               </div>
             </motion.div>
