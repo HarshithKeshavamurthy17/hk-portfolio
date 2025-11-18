@@ -224,42 +224,6 @@ export function Skills() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-20 grid gap-6 sm:grid-cols-3"
-        >
-          {[
-            { label: 'Technologies', value: skills.length, icon: '💻', gradient: 'from-violet-400 to-purple-400' },
-            { label: 'Categories', value: categories.length - 1, icon: '📚', gradient: 'from-cyan-400 to-blue-400' },
-            { label: 'Expert Level', value: skills.filter(s => s.level === 5).length, icon: '⭐', gradient: 'from-emerald-400 to-green-400' },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 * index }}
-              whileHover={{ y: -5, scale: 1.03 }}
-              className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-8 text-center backdrop-blur-sm"
-            >
-              <motion.div
-                className="mb-3 text-4xl"
-                animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                {stat.icon}
-              </motion.div>
-              <div className={`mb-2 text-5xl font-black bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
-                {stat.value}+
-              </div>
-              <div className="text-sm font-medium text-neutral-400">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
     </section>
   );

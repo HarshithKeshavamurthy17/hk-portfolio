@@ -125,7 +125,7 @@ export default function Hero() {
                 <span className="relative">
                   <span className="absolute -inset-4 animate-pulse rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
                   <span className="relative bg-gradient-to-br from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_0_60px_rgba(34,211,238,0.5)]">
-                    Harshith K
+                    Harshith Keshavamurthy
                   </span>
                 </span>
               </span>
