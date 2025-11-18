@@ -88,22 +88,22 @@ export function Skills() {
           className="mb-6 text-center"
         >
           <motion.div
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/5 px-4 py-2 backdrop-blur-sm"
+            className="mb-2 inline-flex items-center gap-1.5 rounded-full border border-violet-400/20 bg-violet-500/5 px-2.5 py-1 backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             >
-              <Code2 className="size-4 text-violet-400" />
+              <Code2 className="size-2.5 text-violet-400" />
             </motion.div>
-            <span className="text-sm font-medium text-violet-300">Technical Arsenal</span>
+            <span className="text-[10px] font-medium text-violet-300">Technical Arsenal</span>
           </motion.div>
           
-          <h2 className="mb-4 text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="mb-3 text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             Skills & Tech
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-neutral-400">
+          <p className="mx-auto max-w-2xl text-xs text-neutral-400">
             Comprehensive toolkit spanning AI/ML, data engineering, cloud, and analytics
           </p>
         </motion.div>
@@ -114,7 +114,7 @@ export function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 flex flex-wrap justify-center gap-3"
+          className="mb-8 flex flex-wrap justify-center gap-2"
         >
           {categories.map((cat, index) => {
             const isActive = activeCategory === cat.name;
@@ -128,14 +128,14 @@ export function Skills() {
                   transition={{ delay: index * 0.05 }}
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className={`relative overflow-hidden rounded-full px-6 py-3 font-semibold transition-all ${
+                  className={`relative overflow-hidden rounded-full px-3 py-1.5 text-xs font-semibold transition-all ${
                     isActive
                       ? 'text-white shadow-lg'
                       : 'border border-white/10 bg-white/5 text-neutral-400 hover:border-white/20 hover:bg-white/10'
                   }`}
                 >
-                  <div className="relative z-10 flex items-center gap-2">
-                    <cat.icon className="size-4" />
+                  <div className="relative z-10 flex items-center gap-1.5">
+                    <cat.icon className="size-3" />
                     <span>{cat.name}</span>
                   </div>
                   {isActive && (
@@ -151,77 +151,154 @@ export function Skills() {
           })}
         </motion.div>
 
-        {/* Skills Grid */}
+        {/* Organic Floating Cloud Layout */}
         <motion.div
           layout
-          className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          className="relative min-h-[400px] py-8"
         >
           <AnimatePresence mode="popLayout">
-            {filteredSkills.map((skill, index) => (
-              <MagneticButton key={skill.name} strength={0.15}>
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, scale: 0.8, rotateX: -20 }}
-                  animate={{ opacity: 1, scale: 1, rotateX: 0 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ 
-                    layout: { type: "spring", stiffness: 200, damping: 40 },
-                    delay: index * 0.02
-                  }}
-                  onMouseEnter={() => setHoveredSkill(skill.name)}
-                  onMouseLeave={() => setHoveredSkill(null)}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-6 backdrop-blur-sm"
-                  style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-                >
-                  {/* Gradient glow */}
+            {filteredSkills.map((skill, index) => {
+              // Create organic, varied sizing
+              const sizes = [
+                'text-xs px-3 py-1.5',
+                'text-xs px-4 py-2',
+                'text-sm px-4 py-2',
+                'text-sm px-5 py-2.5',
+                'text-base px-5 py-2.5',
+                'text-base px-6 py-3',
+              ];
+              const sizeClass = sizes[skill.level - 1] || sizes[3];
+              
+              // Create organic positioning offsets
+              const positions = [
+                'left-[5%] top-[10%]',
+                'left-[20%] top-[5%]',
+                'left-[40%] top-[15%]',
+                'left-[60%] top-[8%]',
+                'left-[75%] top-[12%]',
+                'left-[85%] top-[18%]',
+                'left-[10%] top-[35%]',
+                'left-[25%] top-[40%]',
+                'left-[45%] top-[38%]',
+                'left-[65%] top-[42%]',
+                'left-[80%] top-[45%]',
+                'left-[15%] top-[65%]',
+                'left-[35%] top-[70%]',
+                'left-[55%] top-[68%]',
+                'left-[75%] top-[72%]',
+                'left-[5%] top-[85%]',
+                'left-[25%] top-[90%]',
+                'left-[50%] top-[88%]',
+                'left-[70%] top-[85%]',
+              ];
+              
+              // For mobile, use simpler flex wrap layout
+              const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+              
+              return (
+                <MagneticButton key={skill.name} strength={0.15}>
                   <motion.div
-                    className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${getCategoryColor(skill.category)} opacity-0 transition-opacity`}
-                    animate={{ opacity: hoveredSkill === skill.name ? 0.15 : 0 }}
-                  />
-                  
-                  <div className="relative">
-                    <h3 className="mb-2 font-bold text-white">{skill.name}</h3>
-                    <p className="mb-3 text-xs text-neutral-500">{skill.category}</p>
+                    layout
+                    initial={{ opacity: 0, scale: 0.3, y: 20 }}
+                    animate={{ 
+                      opacity: 1, 
+                      scale: 1, 
+                      y: 0,
+                    }}
+                    exit={{ opacity: 0, scale: 0.3, y: -20 }}
+                    transition={{ 
+                      layout: { type: "spring", stiffness: 200, damping: 40 },
+                      delay: index * 0.02,
+                      duration: 0.4
+                    }}
+                    onMouseEnter={() => setHoveredSkill(skill.name)}
+                    onMouseLeave={() => setHoveredSkill(null)}
+                    whileHover={{ 
+                      y: -8, 
+                      scale: 1.15,
+                      zIndex: 50,
+                      transition: { duration: 0.2 }
+                    }}
+                    className={`group relative overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm shadow-lg hover:shadow-2xl ${sizeClass} ${
+                      isMobile ? 'inline-block' : 'absolute ' + (positions[index % positions.length] || 'left-[50%] top-[50%]')
+                    }`}
+                    style={{ 
+                      willChange: 'transform',
+                      transform: isMobile ? 'none' : 'translate(-50%, -50%)'
+                    }}
+                  >
+                    {/* Glowing border effect */}
+                    <motion.div
+                      className="pointer-events-none absolute inset-0 rounded-full"
+                      animate={{
+                        boxShadow: hoveredSkill === skill.name 
+                          ? [
+                              '0 0 20px rgba(139, 92, 246, 0.3)',
+                              '0 0 40px rgba(139, 92, 246, 0.5)',
+                              '0 0 20px rgba(139, 92, 246, 0.3)',
+                            ]
+                          : '0 0 0px rgba(139, 92, 246, 0)',
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    />
                     
-                    {/* Level indicator */}
-                    <div className="flex gap-1">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ scaleX: 0 }}
-                          whileInView={{ scaleX: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: index * 0.02 + i * 0.05 }}
-                          className={`h-1.5 flex-1 rounded-full ${
-                            i < skill.level
-                              ? `bg-gradient-to-r ${getCategoryColor(skill.category)}`
-                              : 'bg-neutral-800'
-                          }`}
-                          style={{ transformOrigin: 'left' }}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                    {/* Gradient glow background */}
+                    <motion.div
+                      className={`pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br ${getCategoryColor(skill.category)} opacity-0 transition-opacity duration-300`}
+                      animate={{ opacity: hoveredSkill === skill.name ? 0.3 : 0 }}
+                    />
+                    
+                    {/* Skill name */}
+                    <span className="relative z-10 font-semibold text-white whitespace-nowrap">
+                      {skill.name}
+                    </span>
 
-                  {/* Shimmer */}
-                  <motion.div
-                    className="pointer-events-none absolute inset-0"
-                    style={{
-                      background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
-                    }}
-                    animate={{
-                      x: hoveredSkill === skill.name ? ['-100%', '200%'] : '-100%',
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: hoveredSkill === skill.name ? Infinity : 0,
-                    }}
-                  />
-                </motion.div>
-              </MagneticButton>
-            ))}
+                    {/* Sparkle on hover */}
+                    {hoveredSkill === skill.name && (
+                      <motion.div
+                        initial={{ scale: 0, rotate: 0 }}
+                        animate={{ scale: [0, 1, 0], rotate: 180 }}
+                        transition={{ duration: 0.6 }}
+                        className="pointer-events-none absolute -right-1 -top-1"
+                      >
+                        <Sparkles className="size-3 text-yellow-300" />
+                      </motion.div>
+                    )}
+
+                    {/* Shimmer effect */}
+                    <motion.div
+                      className="pointer-events-none absolute inset-0 rounded-full"
+                      style={{
+                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+                      }}
+                      animate={{
+                        x: hoveredSkill === skill.name ? ['-100%', '200%'] : '-100%',
+                      }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: hoveredSkill === skill.name ? Infinity : 0,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  </motion.div>
+                </MagneticButton>
+              );
+            })}
           </AnimatePresence>
+          
+          {/* Mobile fallback: flex wrap layout */}
+          <style jsx>{`
+            @media (max-width: 768px) {
+              .absolute {
+                position: relative !important;
+                left: auto !important;
+                top: auto !important;
+                transform: none !important;
+                display: inline-block;
+                margin: 0.375rem;
+              }
+            }
+          `}</style>
         </motion.div>
 
       </div>
