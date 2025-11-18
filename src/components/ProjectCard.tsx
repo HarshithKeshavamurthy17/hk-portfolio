@@ -8,7 +8,8 @@ import { cn } from '../lib/cn';
 type ProjectCardProps = {
   project: Project;
   viewMode?: 'grid' | 'list';
-  onQuickView?: (project: Project, trigger: HTMLButtonElement) => void;
+  onQuickView?: (project: Project, trigger?: HTMLButtonElement) => void;
+  onClick?: () => void;
 };
 
 const cardVariants = {
@@ -23,7 +24,7 @@ const linkIcons: Record<Project['links'][number]['kind'], ReactNode> = {
   case: <BookOpen className="size-4" aria-hidden="true" />,
 };
 
-export default function ProjectCard({ project, viewMode = 'grid', onQuickView }: ProjectCardProps) {
+export default function ProjectCard({ project, viewMode = 'grid', onQuickView, onClick }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const [thumbError, setThumbError] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
@@ -43,9 +44,13 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
   const sortedLinks = useMemo(() => {
     const order = { code: 0, demo: 1 } as const;
     return [...project.links]
-      .filter((link) => link.kind !== 'case' && link.kind !== 'pdf' && link.href !== '')
+      .filter((link) => {
+        // Remove code button for vi-graph-rag
+        if (project.id === 'vi-graph-rag' && link.kind === 'code') return false;
+        return link.kind !== 'case' && link.kind !== 'pdf' && link.href !== '';
+      })
       .sort((a, b) => (order[a.kind] ?? 99) - (order[b.kind] ?? 99));
-  }, [project.links]);
+  }, [project.links, project.id]);
   const hasLive = project.links.some((link) => link.kind === 'demo' && link.href !== '');
   const statusBadge = hasLive ? 'LIVE' : undefined;
 
@@ -82,6 +87,15 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
     mouseY.set(0);
   }, [mouseX, mouseY]);
 
+  const handleCardClick = useCallback((e: MouseEvent) => {
+    // Don't trigger if clicking on buttons or links
+    const target = e.target as HTMLElement;
+    if (target.closest('button') || target.closest('a')) {
+      return;
+    }
+    onClick?.();
+  }, [onClick]);
+
   return (
     <motion.article
       variants={cardVariants}
@@ -96,6 +110,7 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
         setIsHovering(false);
         resetTilt();
       }}
+      onClick={handleCardClick}
       style={
         prefersReducedMotion
           ? undefined
@@ -105,7 +120,8 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
             }
       }
       className={cn(
-        'group/project relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] backdrop-blur-xl transition-all duration-500 ease-out hover:border-cyan-300/60 hover:shadow-[0_20px_80px_rgba(34,211,238,0.35),0_0_120px_rgba(34,211,238,0.15)_inset] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0f1720]'
+        'group/project relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] backdrop-blur-xl transition-all duration-500 ease-out hover:border-cyan-300/60 hover:shadow-[0_20px_80px_rgba(34,211,238,0.35),0_0_120px_rgba(34,211,238,0.15)_inset] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0f1720]',
+        onClick && 'cursor-pointer'
       )}
     >
       {/* Spotlight effect */}
@@ -252,6 +268,7 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
           {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' || project.id === 'autokpi' ? (
             <Link
               to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : project.id === 'oncovision' ? '/projects/oncovision' : '/projects/autokpi'}
+              onClick={(e) => e.stopPropagation()}
               className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
             >
               Quick View
@@ -259,7 +276,10 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
           ) : (
             <button
               type="button"
-              onClick={(event) => onQuickView?.(project, event.currentTarget)}
+              onClick={(event) => {
+                event.stopPropagation();
+                onQuickView?.(project, event.currentTarget);
+              }}
               className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
             >
               Quick View
@@ -272,6 +292,7 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView }:
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Open ${link.label} for ${project.title}`}
+              onClick={(e) => e.stopPropagation()}
               className={cn(
                 'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]',
                 buttonStyles[link.kind] ?? buttonStyles.demo,

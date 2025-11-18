@@ -18,7 +18,6 @@ const CATEGORY_MAP: Record<string, Filter> = {
 };
 
 export default function Projects() {
-  const [activeFilter, setActiveFilter] = useState<Filter>('All');
   const [quickView, setQuickView] = useState<{
     project: Project;
   } | null>(null);
@@ -28,9 +27,8 @@ export default function Projects() {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   const filtered: Project[] = useMemo(() => {
-    if (activeFilter === 'All') return projectsData;
-    return projectsData.filter((project) => CATEGORY_MAP[project.id] === activeFilter);
-  }, [activeFilter]);
+    return projectsData;
+  }, []);
 
   const handleCloseModal = useCallback(() => {
     setQuickView(null);
@@ -97,49 +95,13 @@ export default function Projects() {
           </motion.div>
           
           <h2 className="mb-4 text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
-            Featured Work
+            Recent Work
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-neutral-400">
             Production systems and research projects that solve real-world problems
           </p>
         </motion.div>
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 flex flex-wrap items-center justify-center gap-2"
-        >
-          {FILTERS.map((filter, index) => (
-            <motion.button
-              key={filter}
-              type="button"
-              onClick={() => setActiveFilter(filter)}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              whileHover={{ scale: 1.06, y: -3 }}
-              whileTap={{ scale: 0.94 }}
-              className={`relative overflow-hidden rounded-full border px-5 py-2.5 text-sm font-semibold transition-all duration-300 ${
-                activeFilter === filter
-                  ? 'border-cyan-400/70 bg-gradient-to-r from-cyan-500/25 to-blue-500/25 text-cyan-100 shadow-lg shadow-cyan-500/50'
-                  : 'border-white/10 bg-white/5 text-neutral-300 hover:border-cyan-400/60 hover:bg-white/10'
-              }`}
-            >
-              <span className="relative z-10">{filter}</span>
-              {activeFilter === filter && (
-                <motion.span
-                  layoutId="activeFilter"
-                  className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-            </motion.button>
-          ))}
-        </motion.div>
 
         {/* 3D Carousel Container */}
         <div className="relative">
@@ -230,9 +192,11 @@ export default function Projects() {
                     <ProjectCard
                       project={project}
                       viewMode="grid"
-                      onQuickView={(selectedProject, trigger) => {
-                        lastTriggerRef.current = trigger;
+                      onQuickView={(selectedProject) => {
                         setQuickView({ project: selectedProject });
+                      }}
+                      onClick={() => {
+                        setQuickView({ project });
                       }}
                     />
                   </motion.div>

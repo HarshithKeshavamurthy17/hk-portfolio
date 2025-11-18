@@ -28,9 +28,7 @@ export const projects: Project[] = [
       'Evaluation harness for answer grounding',
     ],
     tech: ['Python', 'Neo4j', 'LangChain', 'Azure', 'FastAPI'],
-    links: [
-      { label: 'Code', href: 'https://github.com/harinik/vi-graph-rag', kind: 'code' },
-    ],
+    links: [],
     badges: [],
     thumb: '/thumbs/graph-rag.png',
     metrics: ['-42% MTTR', '3 data sources', 'Graph-RAG'],
