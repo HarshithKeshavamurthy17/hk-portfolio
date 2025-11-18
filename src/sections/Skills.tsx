@@ -73,6 +73,23 @@ export function Skills() {
     return cat?.gradient || 'from-white to-neutral-400';
   };
 
+  const getCategoryBorderColor = (category: string) => {
+    switch (category) {
+      case 'AI & LLM':
+        return 'border-violet-400/60 hover:border-violet-400';
+      case 'ML & Data Science':
+        return 'border-cyan-400/60 hover:border-cyan-400';
+      case 'Data Engineering':
+        return 'border-emerald-400/60 hover:border-emerald-400';
+      case 'Cloud & DevOps':
+        return 'border-orange-400/60 hover:border-orange-400';
+      case 'Analytics & BI':
+        return 'border-pink-400/60 hover:border-pink-400';
+      default:
+        return 'border-white/10 hover:border-white/20';
+    }
+  };
+
   return (
     <section id="skills" className="relative py-6 md:py-8 overflow-hidden">
       {/* Background decoration */}
@@ -171,7 +188,7 @@ export function Skills() {
                   }}
                   whileHover={{ y: -4, scale: 1.02 }}
                   style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
-                  className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-4 backdrop-blur-xl transition-all duration-200 hover:border-violet-400/40 hover:shadow-lg hover:shadow-violet-500/20"
+                  className={`group relative overflow-hidden rounded-xl border-2 ${getCategoryBorderColor(skill.category)} bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-4 backdrop-blur-xl transition-all duration-200 hover:shadow-lg`}
                 >
                   {/* Gradient overlay on hover */}
                   <motion.div
@@ -179,15 +196,31 @@ export function Skills() {
                     style={{
                       background: `linear-gradient(135deg, ${
                         skill.category === 'AI & LLM'
-                          ? 'rgba(139, 92, 246, 0.1)'
+                          ? 'rgba(139, 92, 246, 0.15)'
                           : skill.category === 'ML & Data Science'
-                          ? 'rgba(34, 211, 238, 0.1)'
+                          ? 'rgba(34, 211, 238, 0.15)'
                           : skill.category === 'Data Engineering'
-                          ? 'rgba(34, 197, 94, 0.1)'
+                          ? 'rgba(34, 197, 94, 0.15)'
                           : skill.category === 'Cloud & DevOps'
-                          ? 'rgba(251, 146, 60, 0.1)'
-                          : 'rgba(236, 72, 153, 0.1)'
+                          ? 'rgba(251, 146, 60, 0.15)'
+                          : 'rgba(236, 72, 153, 0.15)'
                       }, transparent)`,
+                    }}
+                  />
+                  
+                  {/* Category-colored shadow on hover */}
+                  <motion.div
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      boxShadow: skill.category === 'AI & LLM'
+                        ? '0 0 20px rgba(139, 92, 246, 0.3)'
+                        : skill.category === 'ML & Data Science'
+                        ? '0 0 20px rgba(34, 211, 238, 0.3)'
+                        : skill.category === 'Data Engineering'
+                        ? '0 0 20px rgba(34, 197, 94, 0.3)'
+                        : skill.category === 'Cloud & DevOps'
+                        ? '0 0 20px rgba(251, 146, 60, 0.3)'
+                        : '0 0 20px rgba(236, 72, 153, 0.3)',
                     }}
                   />
 
