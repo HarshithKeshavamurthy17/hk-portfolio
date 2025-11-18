@@ -16,7 +16,8 @@ export function MagneticButton({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springConfig = { damping: 20, stiffness: 300 };
+  // More stable spring config - less aggressive
+  const springConfig = { damping: 35, stiffness: 200 };
   const springX = useSpring(x, springConfig);
   const springY = useSpring(y, springConfig);
 
@@ -26,8 +27,12 @@ export function MagneticButton({
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
-    x.set((e.clientX - centerX) * strength);
-    y.set((e.clientY - centerY) * strength);
+    // Throttle updates to reduce flickering
+    const deltaX = (e.clientX - centerX) * strength * 0.5;
+    const deltaY = (e.clientY - centerY) * strength * 0.5;
+    
+    x.set(deltaX);
+    y.set(deltaY);
   };
 
   const handleMouseLeave = () => {
@@ -40,7 +45,12 @@ export function MagneticButton({
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{ x: springX, y: springY }}
+      style={{ 
+        x: springX, 
+        y: springY,
+        willChange: 'transform',
+        transform: 'translateZ(0)',
+      }}
       className={className}
     >
       {children}

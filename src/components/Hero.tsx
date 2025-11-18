@@ -60,11 +60,11 @@ export default function Hero() {
         {/* Animated grid pattern */}
         <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
 
-        {/* Floating particles */}
-        {[...Array(30)].map((_, i) => (
+        {/* Floating particles - reduced count for stability */}
+        {[...Array(10)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute size-1 rounded-full bg-cyan-400/60"
+            className="absolute size-1 rounded-full bg-cyan-400/40"
             initial={{
               x: Math.random() * window.innerWidth,
               y: Math.random() * window.innerHeight,
@@ -72,15 +72,15 @@ export default function Hero() {
             animate={{
               y: [null, Math.random() * window.innerHeight],
               x: [null, Math.random() * window.innerWidth],
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.8, 0.3],
+              opacity: [0.2, 0.5, 0.2],
             }}
             transition={{
-              duration: Math.random() * 10 + 15,
+              duration: Math.random() * 15 + 20,
               repeat: Infinity,
               ease: "linear",
-              delay: Math.random() * 5,
+              delay: Math.random() * 3,
             }}
+            style={{ willChange: 'transform, opacity' }}
           />
         ))}
 

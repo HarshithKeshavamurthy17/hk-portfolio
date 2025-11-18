@@ -158,11 +158,11 @@ export default function Projects() {
                     }}
                     exit={{ opacity: 0, scale: 0.8, rotateY: 15 }}
                     transition={{ 
-                      layout: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.4 },
-                      scale: { duration: 0.4 },
-                      rotateY: { duration: 0.5 },
-                      delay: index * 0.08
+                      layout: { type: "spring", stiffness: 200, damping: 40 },
+                      opacity: { duration: 0.3 },
+                      scale: { duration: 0.3 },
+                      rotateY: { duration: 0.3 },
+                      delay: index * 0.05
                     }}
                     className="flex-shrink-0"
                     style={{
@@ -170,12 +170,13 @@ export default function Projects() {
                       scrollSnapAlign: 'center',
                       transformStyle: 'preserve-3d',
                       minWidth: 'min(450px, 85vw)',
+                      willChange: 'transform',
+                      transform: 'translateZ(0)',
                     }}
                     whileHover={{
-                      scale: 1.05,
+                      scale: 1.02,
                       rotateY: 0,
-                      z: 50,
-                      transition: { duration: 0.3 }
+                      transition: { duration: 0.2 }
                     }}
                   >
                     <ProjectCard

@@ -37,7 +37,7 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
       variants={itemVariants}
       initial="initial"
       whileInView="animate"
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -2 }}
       viewport={{ once: true, amount: 0.2 }}
       tabIndex={0}
       aria-expanded={isExpanded}
@@ -50,9 +50,10 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
         }
       }}
       className={cn(
-        'group/exp relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-300/50 hover:bg-gradient-to-br hover:from-white/[0.08] hover:via-white/[0.05] hover:to-white/[0.02] hover:shadow-[0_8px_30px_rgba(34,211,238,0.25)] focus-within:border-cyan-300/50 focus-within:bg-gradient-to-br focus-within:from-white/[0.08] focus-within:via-white/[0.05] focus-within:to-white/[0.02]',
+        'group/exp relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-4 backdrop-blur-sm transition-all duration-200 hover:border-cyan-300/50 hover:bg-gradient-to-br hover:from-white/[0.08] hover:via-white/[0.05] hover:to-white/[0.02] hover:shadow-[0_8px_30px_rgba(34,211,238,0.25)] focus-within:border-cyan-300/50 focus-within:bg-gradient-to-br focus-within:from-white/[0.08] focus-within:via-white/[0.05] focus-within:to-white/[0.02]',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:ring-offset-4',
       )}
+      style={{ willChange: 'transform' }}
     >
       {/* Animated background orb */}
       <motion.div

@@ -165,14 +165,14 @@ export function Skills() {
                   animate={{ opacity: 1, scale: 1, rotateX: 0 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ 
-                    layout: { type: "spring", stiffness: 300, damping: 30 },
-                    delay: index * 0.03
+                    layout: { type: "spring", stiffness: 200, damping: 40 },
+                    delay: index * 0.02
                   }}
                   onMouseEnter={() => setHoveredSkill(skill.name)}
                   onMouseLeave={() => setHoveredSkill(null)}
-                  whileHover={{ y: -8, scale: 1.03 }}
+                  whileHover={{ y: -4, scale: 1.02 }}
                   className="group relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-6 backdrop-blur-sm"
-                  style={{ transformStyle: 'preserve-3d' }}
+                  style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
                 >
                   {/* Gradient glow */}
                   <motion.div

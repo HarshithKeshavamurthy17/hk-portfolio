@@ -96,6 +96,21 @@
     @apply border-border;
   }
 
+  /* Performance optimizations to prevent flickering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* GPU acceleration for animated elements */
+  [class*="motion-"],
+  [class*="group"],
+  [class*="hover"] {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+
   body {
     @apply min-h-screen bg-background text-foreground antialiased;
     margin: 0;
@@ -103,6 +118,8 @@
     transition:
       background-color var(--transition-slow),
       color var(--transition-fast);
+    /* Prevent layout shifts */
+    overflow-x: hidden;
   }
 
   h1,

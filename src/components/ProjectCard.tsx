@@ -31,14 +31,7 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView, o
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const cardRef = useRef<HTMLDivElement | null>(null);
   
-  // Magnetic hover effect
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const smoothMouseX = useSpring(mouseX, { stiffness: 300, damping: 30 });
-  const smoothMouseY = useSpring(mouseY, { stiffness: 300, damping: 30 });
-  
-  // Spotlight effect
-  const [spotlightPosition, setSpotlightPosition] = useState({ x: 50, y: 50 });
+  // Simplified - removed magnetic and spotlight for stability
   
   const showThumb = Boolean(project.thumb && !thumbError);
   const sortedLinks = useMemo(() => {
@@ -61,31 +54,16 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView, o
       const xRatio = (event.clientX - rect.left) / rect.width - 0.5;
       const yRatio = (event.clientY - rect.top) / rect.height - 0.5;
       
-      // 3D tilt effect
-      const maxTilt = 6;
-      setTilt({ x: -(yRatio * maxTilt * 2), y: xRatio * maxTilt * 2 });
-      
-      // Spotlight effect
-      const x = ((event.clientX - rect.left) / rect.width) * 100;
-      const y = ((event.clientY - rect.top) / rect.height) * 100;
-      setSpotlightPosition({ x, y });
-      
-      // Magnetic hover effect (subtle)
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      const deltaX = event.clientX - centerX;
-      const deltaY = event.clientY - centerY;
-      mouseX.set(deltaX * 0.03);
-      mouseY.set(deltaY * 0.03);
+      // Simplified 3D tilt - less aggressive
+      const maxTilt = 3;
+      setTilt({ x: -(yRatio * maxTilt), y: xRatio * maxTilt });
     },
-    [prefersReducedMotion, mouseX, mouseY],
+    [prefersReducedMotion],
   );
 
   const resetTilt = useCallback(() => {
     setTilt({ x: 0, y: 0 });
-    mouseX.set(0);
-    mouseY.set(0);
-  }, [mouseX, mouseY]);
+  }, []);
 
   const handleCardClick = useCallback((e: MouseEvent) => {
     // Don't trigger if clicking on buttons or links
@@ -115,8 +93,9 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView, o
         prefersReducedMotion
           ? undefined
           : {
-              transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateX(${smoothMouseX.get()}px) translateY(${smoothMouseY.get()}px)`,
-              transition: 'transform 0.2s ease-out',
+              transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(0)`,
+              transition: 'transform 0.15s ease-out',
+              willChange: 'transform',
             }
       }
       className={cn(
@@ -124,11 +103,11 @@ export default function ProjectCard({ project, viewMode = 'grid', onQuickView, o
         onClick && 'cursor-pointer'
       )}
     >
-      {/* Spotlight effect */}
-      <motion.div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/project:opacity-100"
+      {/* Simplified glow - no spotlight tracking */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/project:opacity-100"
         style={{
-          background: `radial-gradient(600px circle at ${spotlightPosition.x}% ${spotlightPosition.y}%, rgba(34, 211, 238, 0.15), transparent 40%)`,
+          background: `radial-gradient(600px circle at 50% 50%, rgba(34, 211, 238, 0.1), transparent 40%)`,
         }}
         aria-hidden="true"
       />
