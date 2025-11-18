@@ -173,7 +173,7 @@ export default function Projects() {
           {/* 3D Carousel Scroll Container */}
           <div
             ref={carouselRef}
-            className="carousel-container relative overflow-x-auto overflow-y-visible py-8 px-8 md:px-16 lg:px-24"
+            className="carousel-container relative overflow-x-auto overflow-y-visible py-8"
             style={{
               scrollSnapType: 'x mandatory',
               scrollbarWidth: 'none',
@@ -189,7 +189,7 @@ export default function Projects() {
             `}</style>
             
             <motion.div
-              className="flex gap-8 pb-4"
+              className="flex gap-8 pb-4 pl-[max(2rem,calc((100vw-450px)/2))] pr-[max(2rem,calc((100vw-450px)/2))]"
               style={{
                 transformStyle: 'preserve-3d',
               }}
@@ -213,11 +213,12 @@ export default function Projects() {
                       rotateY: { duration: 0.5 },
                       delay: index * 0.08
                     }}
-                    className="flex-shrink-0 first:ml-0 last:mr-0"
+                    className="flex-shrink-0"
                     style={{
                       width: 'min(450px, 85vw)',
                       scrollSnapAlign: 'center',
                       transformStyle: 'preserve-3d',
+                      minWidth: 'min(450px, 85vw)',
                     }}
                     whileHover={{
                       scale: 1.05,
@@ -242,10 +243,10 @@ export default function Projects() {
 
           {/* Gradient fades on edges - only show when scrollable */}
           {canScrollLeft && (
-            <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[#020617] via-[#020617]/80 to-transparent z-10" />
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#020617] via-[#020617]/90 to-transparent z-10" />
           )}
           {canScrollRight && (
-            <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[#020617] via-[#020617]/80 to-transparent z-10" />
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#020617] via-[#020617]/90 to-transparent z-10" />
           )}
         </div>
 
