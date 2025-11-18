@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { Github, Linkedin, Mail, Send, Sparkles, ArrowUpRight, Clock, MapPin } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Sparkles, ArrowUpRight, Clock, MapPin, Zap } from 'lucide-react';
+import { MagneticButton } from '../components/MagneticButton';
 
 const socials = [
   {
-    ariaLabel: 'GitHub - View my code and projects',
+    ariaLabel: 'GitHub - View my code',
     href: 'https://github.com/HarshithKeshavamurthy17',
     label: 'GitHub',
     icon: Github,
@@ -12,7 +13,7 @@ const socials = [
     bg: 'from-purple-500/10 to-pink-500/5',
   },
   {
-    ariaLabel: 'LinkedIn - Connect professionally',
+    ariaLabel: 'LinkedIn - Connect',
     href: 'https://www.linkedin.com/in/harshith-k-bu/',
     label: 'LinkedIn',
     icon: Linkedin,
@@ -20,7 +21,7 @@ const socials = [
     bg: 'from-blue-500/10 to-cyan-500/5',
   },
   {
-    ariaLabel: 'Email - Send me a message',
+    ariaLabel: 'Email - Message me',
     href: 'mailto:hk17@bu.edu',
     label: 'hk17@bu.edu',
     icon: Mail,
@@ -31,8 +32,6 @@ const socials = [
 
 export function Contact() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const [hoveredSocial, setHoveredSocial] = useState<number | null>(null);
-
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -43,62 +42,48 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 md:py-32">
-      {/* Crazy animated background */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <motion.div
-          animate={{
-            backgroundPosition: ['0% 0%', '100% 100%'],
-          }}
-          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
-          className="absolute inset-0 opacity-30"
-          style={{
-            backgroundImage: `
-              radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
-              radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)
-            `,
-            backgroundSize: '100% 100%',
-          }}
-        />
-      </div>
+    <section id="contact" className="relative py-32 md:py-40 overflow-hidden">
+      {/* Background */}
+      <div className="pointer-events-none absolute right-[10%] top-[20%] size-[600px] rounded-full bg-gradient-to-br from-cyan-500/15 to-transparent blur-3xl" />
 
       <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          transition={{ duration: 0.8 }}
+          className="mb-20 text-center"
         >
           <motion.div
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/5 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-sm"
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/5 px-4 py-2 backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
           >
-            <Sparkles className="size-4" />
-            <span>Let's connect</span>
+            <Sparkles className="size-4 text-cyan-400" />
+            <span className="text-sm font-medium text-cyan-300">Let's connect</span>
           </motion.div>
-          <h2 className="mb-4 text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+          
+          <h2 className="mb-4 text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
             Get In Touch
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-neutral-400">
-            Whether you have a project in mind, want to collaborate, or just want to say hi — I'd love to hear from you!
+            Have a project in mind or want to collaborate? Let's build something amazing together!
           </p>
         </motion.div>
 
         <div className="grid gap-8 lg:grid-cols-[1.5fr,1fr]">
-          {/* Contact Form */}
+          {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.8 }}
             onMouseMove={handleMouseMove}
             className="group relative"
           >
-            {/* Spotlight effect on hover */}
+            {/* Spotlight */}
             <motion.div
-              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100"
               style={{
                 background: useTransform(
                   [mouseX, mouseY],
@@ -123,131 +108,84 @@ export function Contact() {
               }}
               className="relative space-y-6 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-8 backdrop-blur-xl"
             >
-              {/* Name Field */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-                className="space-y-2"
-              >
-                <label htmlFor="name" className="block text-sm font-semibold text-neutral-300">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  onFocus={() => setFocusedField('name')}
-                  onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
-                  placeholder="John Doe"
-                />
-              </motion.div>
-
-              {/* Email Field */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-                className="space-y-2"
-              >
-                <label htmlFor="email" className="block text-sm font-semibold text-neutral-300">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  onFocus={() => setFocusedField('email')}
-                  onBlur={() => setFocusedField(null)}
-                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
-                  placeholder="john@example.com"
-                />
-              </motion.div>
-
-              {/* Message Field */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-                className="space-y-2"
-              >
-                <label htmlFor="message" className="block text-sm font-semibold text-neutral-300">
-                  Your Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  rows={5}
-                  onFocus={() => setFocusedField('message')}
-                  onBlur={() => setFocusedField(null)}
-                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
-                  placeholder="Tell me about your project..."
-                />
-              </motion.div>
-
-              {/* Submit Button */}
-              <motion.button
-                type="submit"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-black shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70"
-              >
-                <span className="relative z-10 flex items-center justify-center gap-2">
-                  Send Message
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    <Send className="size-5" />
-                  </motion.div>
-                </span>
+              {['name', 'email', 'message'].map((field, i) => (
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500"
-                  initial={{ x: "100%" }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-              </motion.button>
+                  key={field}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * i }}
+                  className="space-y-2"
+                >
+                  <label htmlFor={field} className="block text-sm font-semibold text-neutral-300 capitalize">
+                    Your {field}
+                  </label>
+                  {field === 'message' ? (
+                    <textarea
+                      id={field}
+                      name={field}
+                      required
+                      rows={5}
+                      onFocus={() => setFocusedField(field)}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                      placeholder="Tell me about your project..."
+                    />
+                  ) : (
+                    <input
+                      type={field === 'email' ? 'email' : 'text'}
+                      id={field}
+                      name={field}
+                      required
+                      onFocus={() => setFocusedField(field)}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                      placeholder={field === 'email' ? 'john@example.com' : 'John Doe'}
+                    />
+                  )}
+                </motion.div>
+              ))}
 
-              {/* Active field indicator */}
-              {focusedField && (
-                <motion.div
-                  layoutId="activeField"
-                  className="absolute -left-2 top-0 h-full w-1 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                />
-              )}
+              <MagneticButton strength={0.3}>
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-black shadow-lg"
+                >
+                  <span className="relative z-10 flex items-center justify-center gap-2">
+                    Send Message
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <Send className="size-5" />
+                    </motion.div>
+                  </span>
+                </motion.button>
+              </MagneticButton>
             </form>
           </motion.div>
 
-          {/* Social Links & Info */}
+          {/* Right Side */}
           <div className="space-y-6">
             {/* Quick Info */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.8 }}
               className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
             >
               <h3 className="text-xl font-bold text-white">Quick Info</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex items-center gap-3 text-neutral-400">
                   <Clock className="size-5 text-cyan-400" />
-                  <span>Response time: <span className="font-semibold text-white">~2 business days</span></span>
+                  <span>Response: <span className="font-semibold text-white">~2 days</span></span>
                 </div>
                 <div className="flex items-center gap-3 text-neutral-400">
                   <MapPin className="size-5 text-cyan-400" />
-                  <span>Located in: <span className="font-semibold text-white">Boston, MA</span></span>
+                  <span>Based in: <span className="font-semibold text-white">Boston, MA</span></span>
                 </div>
               </div>
             </motion.div>
@@ -257,75 +195,56 @@ export function Contact() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
               className="space-y-3"
             >
-              <h3 className="text-xl font-bold text-white">Connect With Me</h3>
+              <h3 className="text-xl font-bold text-white">Connect</h3>
               {socials.map((social, index) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.ariaLabel}
-                  onMouseEnter={() => setHoveredSocial(index)}
-                  onMouseLeave={() => setHoveredSocial(null)}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: 0.1 * index }}
-                  whileHover={{ scale: 1.03, x: 5 }}
-                  whileTap={{ scale: 0.98 }}
-                  className={`group relative flex items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${social.bg} p-4 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-lg`}
-                >
-                  <div className="relative z-10 flex items-center gap-3">
-                    <div className={`flex size-10 items-center justify-center rounded-lg bg-gradient-to-br ${social.bg}`}>
-                      <social.icon className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
-                    </div>
-                    <div>
-                      <div className="font-semibold text-white">{social.label}</div>
-                      {social.label === 'hk17@bu.edu' && (
-                        <div className="text-xs text-neutral-400">Direct contact</div>
-                      )}
-                    </div>
-                  </div>
-                  <motion.div
-                    animate={{ rotate: hoveredSocial === index ? 45 : 0 }}
-                    transition={{ duration: 0.3 }}
+                <MagneticButton key={social.label} strength={0.2}>
+                  <motion.a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.1 * index }}
+                    whileHover={{ scale: 1.03, x: 5 }}
+                    className={`flex items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${social.bg} p-4 backdrop-blur-sm`}
                   >
+                    <div className="flex items-center gap-3">
+                      <div className={`flex size-10 items-center justify-center rounded-lg bg-gradient-to-br ${social.bg}`}>
+                        <social.icon className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+                      </div>
+                      <div>
+                        <div className="font-semibold text-white">{social.label}</div>
+                      </div>
+                    </div>
                     <ArrowUpRight className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
-                  </motion.div>
-
-                  {/* Hover gradient effect */}
-                  <motion.div
-                    className={`absolute inset-0 bg-gradient-to-r ${social.bg} opacity-0`}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.a>
+                  </motion.a>
+                </MagneticButton>
               ))}
             </motion.div>
 
-            {/* CTA Card */}
+            {/* CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="relative overflow-hidden rounded-2xl border border-violet-400/30 bg-gradient-to-br from-violet-500/10 to-purple-500/5 p-6 backdrop-blur-sm"
+              transition={{ delay: 0.4 }}
+              whileHover={{ scale: 1.02 }}
+              className="relative overflow-hidden rounded-2xl border border-violet-400/30 bg-gradient-to-br from-violet-500/10 to-purple-500/5 p-6"
             >
               <motion.div
-                className="pointer-events-none absolute -right-8 -top-8 size-32 rounded-full bg-gradient-to-br from-violet-500/30 to-transparent blur-2xl"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              />
-              <div className="relative space-y-3">
-                <Sparkles className="size-8 text-violet-400" />
-                <h3 className="text-lg font-bold text-white">Open to Opportunities</h3>
-                <p className="text-sm leading-relaxed text-neutral-300">
-                  Currently seeking full-time roles in Data Engineering, AI/ML Engineering, and Data Science. Let's build something amazing together!
-                </p>
-              </div>
+                animate={{ rotate: 360 }}
+                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              >
+                <Zap className="mb-3 size-8 text-violet-400" />
+              </motion.div>
+              <h3 className="mb-2 text-lg font-bold text-white">Open to Opportunities</h3>
+              <p className="text-sm text-neutral-300">
+                Seeking Data Engineering, AI/ML, and Data Science roles. Let's build something great!
+              </p>
             </motion.div>
           </div>
         </div>

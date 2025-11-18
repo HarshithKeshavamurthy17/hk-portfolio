@@ -1,130 +1,191 @@
-import { useMemo } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import experienceData from '../data/experience';
-import ExperienceItem from '../components/ExperienceItem';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Sparkles, MapPin, Calendar } from 'lucide-react';
+import { useRef } from 'react';
 
-const containerVariants = {
-  initial: { opacity: 0, y: 16 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.4,
-      ease: 'easeOut' as const,
-      staggerChildren: 0.18,
-      delayChildren: 0.05,
-    },
+const experiences = [
+  {
+    company: 'Tietoevry',
+    role: 'Applied AI Developer',
+    location: 'Remote',
+    period: 'Jun 2024 - Aug 2024',
+    description: 'Built VI-Graph-RAG: A production-grade retrieval system combining Neo4j knowledge graphs with LangChain and Azure OpenAI, achieving 23% better retrieval quality.',
+    achievements: [
+      'Designed graph-grounded RAG architecture',
+      'Implemented automated evaluation pipeline',
+      'Deployed to Azure with FastAPI',
+    ],
+    color: 'cyan',
   },
-};
+  {
+    company: 'Nineleaps (Uber)',
+    role: 'Data Analyst',
+    location: 'Bangalore, India',
+    period: 'Nov 2022 - Jul 2023',
+    description: 'Led analytics and automation for Uber Maps, streamlining ETL workflows and building self-service reporting tools.',
+    achievements: [
+      'Built automated ETL pipelines saving 15 hours/week',
+      'Created executive dashboards in Tableau',
+      'Designed data quality monitoring system',
+    ],
+    color: 'emerald',
+  },
+  {
+    company: 'Nineleaps',
+    role: 'Data Engineering Intern',
+    location: 'Bangalore, India',
+    period: 'May 2022 - Oct 2022',
+    description: 'Developed data pipelines and analytics solutions for multiple client projects.',
+    achievements: [
+      'Built streaming pipelines with Kafka',
+      'Created dbt transformation models',
+      'Implemented data validation frameworks',
+    ],
+    color: 'blue',
+  },
+];
 
 export default function Experience() {
-  const prefersReducedMotion = useReducedMotion();
-  const data = useMemo(() => experienceData, []);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <section id="experience" className="pt-0">
-      <div className="mx-auto w-full max-w-[1920px] px-6 md:px-8 lg:px-12 xl:px-16">
-        {/* Background decoration */}
-        <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[800px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/5 via-blue-500/5 to-purple-500/5 blur-3xl" aria-hidden="true" />
-        
+    <section id="experience" ref={ref} className="relative py-32 md:py-40 overflow-hidden">
+      {/* Background decoration */}
+      <motion.div
+        style={{ y }}
+        className="pointer-events-none absolute left-[10%] top-[30%] size-[600px] rounded-full bg-gradient-to-br from-emerald-500/15 to-transparent blur-3xl"
+      />
+
+      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative flex flex-col gap-3"
+          transition={{ duration: 0.8 }}
+          className="mb-20 text-center"
         >
           <motion.div
-            className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500"
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            style={{ transformOrigin: "top" }}
-            aria-hidden="true"
-          />
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">Experience Timeline</h2>
-          <p className="text-lg md:text-xl text-neutral-300">
-            Hands-on roles building ML platforms, streaming data systems, and interpretable ML.
-          </p>
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Sparkles className="size-4 text-emerald-400" />
+            <span className="text-sm font-medium text-emerald-300">Professional Journey</span>
+          </motion.div>
+          
+          <h2 className="text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-emerald-400 via-green-400 to-cyan-400 bg-clip-text text-transparent">
+            Experience
+          </h2>
         </motion.div>
 
-        <div className="relative mt-10 pl-0 md:border-l md:border-white/10 md:pl-16">
-          <span
-            className="pointer-events-none absolute left-0 top-0 hidden h-full w-px md:left-8 md:block"
-            aria-hidden="true"
-          >
-            <motion.span
-              className="absolute inset-0 before:absolute before:left-1/2 before:top-0 before:block before:h-full before:w-[2px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-to-b before:from-cyan-300/60 before:via-cyan-400/30 before:to-transparent before:shadow-[0_0_32px_rgba(34,211,238,0.35)]"
-              initial={{ scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 1.2, ease: "easeOut" }}
-              style={{ transformOrigin: "top" }}
-            />
-          </span>
-          <motion.div
-            className="flex flex-col gap-8"
-            variants={prefersReducedMotion ? undefined : containerVariants}
-            initial={prefersReducedMotion ? undefined : 'initial'}
-            whileInView={prefersReducedMotion ? undefined : 'animate'}
-            viewport={{ once: true, amount: 0.2 }}
-          >
-            <div className="sticky top-20 hidden h-12 items-center text-xs font-semibold uppercase tracking-[0.4em] text-neutral-500 md:flex md:pl-12">
-              Now
-            </div>
-            {data.map((exp) => (
-              <div key={exp.id} className="relative md:pl-12">
+        {/* Timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-0 top-0 hidden h-full w-px bg-gradient-to-b from-transparent via-emerald-500/50 to-transparent md:block" />
+
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: -50, rotateY: -10 }}
+                whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.2 }}
+                className="relative"
+              >
                 {/* Timeline dot */}
-                <div className="pointer-events-none absolute left-0 top-8 hidden md:flex md:translate-x-[-34px] md:flex-col md:items-center">
-                  <motion.span
-                    className="block size-4 rounded-full border-2 border-cyan-200 bg-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.6)]"
-                    aria-hidden="true"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.3 }}
-                  >
-                    <motion.span
-                      className="absolute inset-0 rounded-full"
-                      animate={{
-                        boxShadow: [
-                          "0 0 25px rgba(34,211,238,0.6)",
-                          "0 0 45px rgba(34,211,238,0.9)",
-                          "0 0 25px rgba(34,211,238,0.6)",
-                        ],
-                      }}
-                      transition={{
-                        duration: 2.5,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
+                <motion.div
+                  className="absolute -left-2 top-8 hidden size-4 md:block"
+                  initial={{ scale: 0 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <motion.div
+                    className={`size-full rounded-full bg-${exp.color}-400`}
+                    animate={{ 
+                      boxShadow: [
+                        `0 0 0 0 rgba(var(--${exp.color}-rgb), 0.4)`,
+                        `0 0 0 10px rgba(var(--${exp.color}-rgb), 0)`,
+                      ]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </motion.div>
+
+                {/* Card */}
+                <motion.div
+                  whileHover={{ scale: 1.02, x: 10 }}
+                  className="ml-0 md:ml-12 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl"
+                  style={{ transformStyle: 'preserve-3d' }}
+                >
+                  <div className="relative p-8">
+                    {/* Gradient overlay */}
+                    <motion.div
+                      className={`pointer-events-none absolute -right-20 -top-20 size-60 rounded-full bg-gradient-to-br from-${exp.color}-500/20 to-transparent blur-3xl`}
+                      animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                      transition={{ duration: 4, repeat: Infinity }}
                     />
-                  </motion.span>
-                </div>
-                {/* Year badge on timeline */}
-                <div className="pointer-events-none absolute left-0 top-2 hidden md:block md:translate-x-[calc(-100%-24px)]">
-                  <span className="whitespace-nowrap rounded-full bg-white/5 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-white/50 backdrop-blur">
-                    {exp.start.includes('2025') ? '2025' : 
-                     exp.start.includes('2024') ? '2024' : 
-                     exp.start.includes('2023') ? '2023' : 
-                     exp.start.includes('2022') ? '2022' : exp.start}
-                  </span>
-                </div>
-                {/* Mobile date */}
-                <div className="mb-2 flex items-center gap-2 md:hidden">
-                  <span className="size-2 rounded-full bg-cyan-400" />
-                  <span className="text-xs font-semibold uppercase tracking-wider text-neutral-500">
-                    {exp.start}
-                  </span>
-                </div>
-                <ExperienceItem exp={exp} />
-              </div>
+
+                    <div className="relative">
+                      {/* Header */}
+                      <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
+                        <div>
+                          <motion.h3 
+                            className="text-2xl font-bold text-white"
+                            whileHover={{ scale: 1.05, x: 5 }}
+                          >
+                            {exp.role}
+                          </motion.h3>
+                          <div className={`mt-1 text-lg font-semibold text-${exp.color}-400`}>
+                            {exp.company}
+                          </div>
+                        </div>
+                        
+                        <div className="text-right text-sm text-neutral-400">
+                          <div className="flex items-center gap-2">
+                            <MapPin className="size-4" />
+                            {exp.location}
+                          </div>
+                          <div className="mt-1 flex items-center gap-2">
+                            <Calendar className="size-4" />
+                            {exp.period}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <p className="mb-4 text-neutral-300">{exp.description}</p>
+
+                      {/* Achievements */}
+                      <div className="space-y-2">
+                        {exp.achievements.map((achievement, i) => (
+                          <motion.div
+                            key={i}
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 * i }}
+                            whileHover={{ x: 10 }}
+                            className={`flex items-center gap-3 rounded-lg border border-${exp.color}-400/10 bg-${exp.color}-500/5 px-4 py-2 text-sm text-neutral-300`}
+                          >
+                            <div className={`size-1.5 rounded-full bg-${exp.color}-400`} />
+                            {achievement}
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
-
