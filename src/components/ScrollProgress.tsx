@@ -1,4 +1,5 @@
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useState } from 'react';
 
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll();
@@ -6,6 +7,14 @@ export function ScrollProgress() {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001,
+  });
+  
+  // Transform scroll progress to percentage (0-100) and update state
+  const percentage = useTransform(scrollYProgress, (value) => Math.round(value * 100));
+  const [percentageText, setPercentageText] = useState(0);
+  
+  useMotionValueEvent(percentage, 'change', (latest) => {
+    setPercentageText(latest);
   });
 
   return (
@@ -51,14 +60,11 @@ export function ScrollProgress() {
           </svg>
           
           {/* Percentage text */}
-          <motion.span className="relative text-xs font-bold text-cyan-400">
-            <motion.span
-              style={{
-                opacity: useSpring(scrollYProgress, { stiffness: 100, damping: 30 }),
-              }}
-            >
-              {Math.round(scrollYProgress.get() * 100)}%
-            </motion.span>
+          <motion.span 
+            className="relative text-xs font-bold text-cyan-400"
+            style={{ opacity: useSpring(scrollYProgress, { stiffness: 100, damping: 30 }) }}
+          >
+            {percentageText}%
           </motion.span>
         </motion.div>
       </motion.div>
