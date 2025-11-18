@@ -57,36 +57,36 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="relative py-8 md:py-10 overflow-hidden">
+    <section id="projects" className="relative py-6 md:py-8 overflow-hidden">
       {/* Background decoration */}
-      <div className="pointer-events-none absolute right-[10%] top-[20%] size-[400px] rounded-full bg-gradient-to-br from-blue-500/15 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute right-[10%] top-[20%] size-[350px] rounded-full bg-gradient-to-br from-blue-500/15 to-transparent blur-3xl" />
       
-      <div className="mx-auto w-full max-w-[1600px] px-4 md:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-[1400px] px-3 md:px-5 lg:px-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-8 text-center"
+          className="mb-6 text-center"
         >
           <motion.div
-            className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-blue-400/20 bg-blue-500/5 px-3 py-1.5 backdrop-blur-sm"
+            className="mb-2 inline-flex items-center gap-1 rounded-full border border-blue-400/20 bg-blue-500/5 px-2.5 py-1 backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
           >
             <motion.div
               animate={{ rotate: [0, 15, -15, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              <Sparkles className="size-3 text-blue-400" />
+              <Sparkles className="size-2.5 text-blue-400" />
             </motion.div>
-            <span className="text-xs font-medium text-blue-300">Showcase</span>
+            <span className="text-[10px] font-medium text-blue-300">Showcase</span>
           </motion.div>
           
-          <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+          <h2 className="mb-2 text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-blue-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
             Recent Work
           </h2>
-          <p className="mx-auto max-w-2xl text-sm text-neutral-400">
+          <p className="mx-auto max-w-2xl text-xs text-neutral-400">
             Production systems and research projects that solve real-world problems
           </p>
         </motion.div>

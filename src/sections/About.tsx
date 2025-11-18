@@ -14,31 +14,31 @@ export function About() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="about" ref={ref} className="relative py-8 md:py-10 overflow-hidden">
+    <section id="about" ref={ref} className="relative py-6 md:py-8 overflow-hidden">
       {/* Floating gradient orbs */}
       <motion.div
         style={{ y }}
-        className="pointer-events-none absolute right-[10%] top-[20%] size-[350px] rounded-full bg-gradient-to-br from-violet-500/20 to-transparent blur-3xl"
+        className="pointer-events-none absolute right-[10%] top-[20%] size-[300px] rounded-full bg-gradient-to-br from-violet-500/20 to-transparent blur-3xl"
       />
       
-      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-3 md:px-5 lg:px-6">
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-8 text-center"
+          className="mb-6 text-center"
         >
           <motion.div
-            className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-violet-400/20 bg-violet-500/5 px-3 py-1.5 backdrop-blur-sm"
+            className="mb-2 inline-flex items-center gap-1 rounded-full border border-violet-400/20 bg-violet-500/5 px-2.5 py-1 backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
           >
-            <Sparkles className="size-3 text-violet-400" />
-            <span className="text-xs font-medium text-violet-300">Get to know me</span>
+            <Sparkles className="size-2.5 text-violet-400" />
+            <span className="text-[10px] font-medium text-violet-300">Get to know me</span>
           </motion.div>
           
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             About Me
           </h2>
         </motion.div>
