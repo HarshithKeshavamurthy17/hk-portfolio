@@ -151,132 +151,74 @@ export function Skills() {
           })}
         </motion.div>
 
-        {/* Organic Floating Cloud Layout */}
+        {/* Skills Grid */}
         <motion.div
           layout
-          className="relative min-h-[400px] md:min-h-[500px] py-8 flex flex-wrap justify-center items-start gap-2 md:block"
+          className="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4"
         >
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill, index) => {
-              // Create organic, varied sizing
-              const sizes = [
-                'text-xs px-3 py-1.5',
-                'text-xs px-4 py-2',
-                'text-sm px-4 py-2',
-                'text-sm px-5 py-2.5',
-                'text-base px-5 py-2.5',
-                'text-base px-6 py-3',
-              ];
-              const sizeClass = sizes[skill.level - 1] || sizes[3];
-              
-              // Create organic positioning offsets for desktop
-              const positions = [
-                'md:left-[5%] md:top-[10%]',
-                'md:left-[20%] md:top-[5%]',
-                'md:left-[40%] md:top-[15%]',
-                'md:left-[60%] md:top-[8%]',
-                'md:left-[75%] md:top-[12%]',
-                'md:left-[85%] md:top-[18%]',
-                'md:left-[10%] md:top-[35%]',
-                'md:left-[25%] md:top-[40%]',
-                'md:left-[45%] md:top-[38%]',
-                'md:left-[65%] md:top-[42%]',
-                'md:left-[80%] md:top-[45%]',
-                'md:left-[15%] md:top-[65%]',
-                'md:left-[35%] md:top-[70%]',
-                'md:left-[55%] md:top-[68%]',
-                'md:left-[75%] md:top-[72%]',
-                'md:left-[5%] md:top-[85%]',
-                'md:left-[25%] md:top-[90%]',
-                'md:left-[50%] md:top-[88%]',
-                'md:left-[70%] md:top-[85%]',
-              ];
-              
               return (
-                <MagneticButton key={skill.name} strength={0.15}>
+                <motion.div
+                  key={skill.name}
+                  layout
+                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.8, y: -20 }}
+                  transition={{ 
+                    layout: { type: "spring", stiffness: 200, damping: 40 },
+                    delay: index * 0.02
+                  }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  style={{ transformStyle: 'preserve-3d', willChange: 'transform' }}
+                  className="group relative overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] p-4 backdrop-blur-xl transition-all duration-200 hover:border-violet-400/40 hover:shadow-lg hover:shadow-violet-500/20"
+                >
+                  {/* Gradient overlay on hover */}
                   <motion.div
-                    layout
-                    initial={{ opacity: 0, scale: 0.3, y: 20 }}
-                    animate={{ 
-                      opacity: 1, 
-                      scale: 1, 
-                      y: 0,
+                    className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      background: `linear-gradient(135deg, ${
+                        skill.category === 'AI & LLM'
+                          ? 'rgba(139, 92, 246, 0.1)'
+                          : skill.category === 'ML & Data Science'
+                          ? 'rgba(34, 211, 238, 0.1)'
+                          : skill.category === 'Data Engineering'
+                          ? 'rgba(34, 197, 94, 0.1)'
+                          : skill.category === 'Cloud & DevOps'
+                          ? 'rgba(251, 146, 60, 0.1)'
+                          : 'rgba(236, 72, 153, 0.1)'
+                      }, transparent)`,
                     }}
-                    exit={{ opacity: 0, scale: 0.3, y: -20 }}
-                    transition={{ 
-                      layout: { type: "spring", stiffness: 200, damping: 40 },
-                      delay: index * 0.02,
-                      duration: 0.4
-                    }}
-                    onMouseEnter={() => setHoveredSkill(skill.name)}
-                    onMouseLeave={() => setHoveredSkill(null)}
-                    whileHover={{ 
-                      y: -8, 
-                      scale: 1.15,
-                      zIndex: 50,
-                      transition: { duration: 0.2 }
-                    }}
-                    className={`group relative overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm shadow-lg hover:shadow-2xl ${sizeClass} md:absolute ${positions[index % positions.length] || ''}`}
-                    style={{ 
-                      willChange: 'transform',
-                      transform: 'translate(-50%, -50%)'
-                    }}
-                  >
-                    {/* Glowing border effect */}
-                    <motion.div
-                      className="pointer-events-none absolute inset-0 rounded-full"
-                      animate={{
-                        boxShadow: hoveredSkill === skill.name 
-                          ? [
-                              '0 0 20px rgba(139, 92, 246, 0.3)',
-                              '0 0 40px rgba(139, 92, 246, 0.5)',
-                              '0 0 20px rgba(139, 92, 246, 0.3)',
-                            ]
-                          : '0 0 0px rgba(139, 92, 246, 0)',
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    />
-                    
-                    {/* Gradient glow background */}
-                    <motion.div
-                      className={`pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br ${getCategoryColor(skill.category)} opacity-0 transition-opacity duration-300`}
-                      animate={{ opacity: hoveredSkill === skill.name ? 0.3 : 0 }}
-                    />
-                    
+                  />
+
+                  {/* Content */}
+                  <div className="relative z-10">
+                    {/* Category badge */}
+                    <div className="mb-2 text-[10px] font-semibold uppercase tracking-wider text-neutral-500">
+                      {skill.category}
+                    </div>
+
                     {/* Skill name */}
-                    <span className="relative z-10 font-semibold text-white whitespace-nowrap">
+                    <div className="text-sm font-semibold text-white">
                       {skill.name}
-                    </span>
+                    </div>
+                  </div>
 
-                    {/* Sparkle on hover */}
-                    {hoveredSkill === skill.name && (
-                      <motion.div
-                        initial={{ scale: 0, rotate: 0 }}
-                        animate={{ scale: [0, 1, 0], rotate: 180 }}
-                        transition={{ duration: 0.6 }}
-                        className="pointer-events-none absolute -right-1 -top-1"
-                      >
-                        <Sparkles className="size-3 text-yellow-300" />
-                      </motion.div>
-                    )}
-
-                    {/* Shimmer effect */}
-                    <motion.div
-                      className="pointer-events-none absolute inset-0 rounded-full"
-                      style={{
-                        background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
-                      }}
-                      animate={{
-                        x: hoveredSkill === skill.name ? ['-100%', '200%'] : '-100%',
-                      }}
-                      transition={{
-                        duration: 0.8,
-                        repeat: hoveredSkill === skill.name ? Infinity : 0,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  </motion.div>
-                </MagneticButton>
+                  {/* Hover shine effect */}
+                  <motion.div
+                    className="pointer-events-none absolute inset-0"
+                    initial={{ x: '-100%', opacity: 0 }}
+                    whileHover={{
+                      x: '100%',
+                      opacity: [0, 0.5, 0],
+                      transition: { duration: 0.6 },
+                    }}
+                    style={{
+                      background:
+                        'linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent)',
+                    }}
+                  />
+                </motion.div>
               );
             })}
           </AnimatePresence>
