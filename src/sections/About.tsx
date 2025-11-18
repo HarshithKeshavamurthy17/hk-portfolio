@@ -150,7 +150,7 @@ export function About() {
                 <motion.img
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6 }}
-                  src="/assets/harshith-photo.jpg"
+                  src="/hk-portfolio/assets/harshith-photo.jpg"
                   alt="Harshith Keshavamurthy"
                   className="size-full object-cover"
                 />

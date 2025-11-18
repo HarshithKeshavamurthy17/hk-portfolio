@@ -119,7 +119,7 @@ export function Navbar() {
           {/* CTA Button */}
           <div className="flex items-center gap-3">
             <motion.a
-              href="/assets/Harshith_Keshavamurthy_Resume.pdf"
+              href="/hk-portfolio/assets/Harshith_Keshavamurthy_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05, y: -2 }}
@@ -191,7 +191,7 @@ export function Navbar() {
             transition={{ delay: navLinks.length * 0.05 }}
           >
             <a
-              href="/assets/Harshith_Keshavamurthy_Resume.pdf"
+              href="/hk-portfolio/assets/Harshith_Keshavamurthy_Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 text-sm font-semibold text-black"
