@@ -8,6 +8,7 @@ import { SEO } from './components/layout/SEO';
 import { stagger } from './components/layout/Motion';
 import { CustomCursor } from './components/CustomCursor';
 import { ScrollProgress } from './components/ScrollProgress';
+import { AnimatedBackground } from './components/AnimatedBackground';
 import Hero from './components/Hero';
 import TrustedBy from './components/TrustedBy';
 import StickyCTA from './components/StickyCTA';
@@ -258,6 +259,7 @@ function App() {
       </AnimatePresence>
 
       <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+        <AnimatedBackground />
         <CustomCursor />
         <ScrollProgress />
         <Glow />
