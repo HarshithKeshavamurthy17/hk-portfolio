@@ -1,21 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import projectsData from '../data/projects';
 import type { Project } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
 import CaseModal from '../components/CaseModal';
-
-const FILTERS = ['All', 'AI/ML', 'Data Eng', 'Analytics'] as const;
-type Filter = (typeof FILTERS)[number];
-
-const CATEGORY_MAP: Record<string, Filter> = {
-  'vi-graph-rag': 'AI/ML',
-  'uber-etl': 'Data Eng',
-  'f1-prediction': 'AI/ML',
-  'breast-cancer-ml': 'AI/ML',
-  'cs699-ensemble': 'Analytics',
-};
 
 export default function Projects() {
   const [quickView, setQuickView] = useState<{
