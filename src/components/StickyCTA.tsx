@@ -47,7 +47,7 @@ export default function StickyCTA() {
                 See Projects
               </a>
               <a
-                href="/hk-portfolio/assets/Harshith_Keshavamurthy_Resume.pdf"
+                href="/assets/Harshith_Keshavamurthy_Resume.pdf"
                 className="rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-white transition hover:border-cyan-300/40 hover:bg-cyan-200/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
               >
                 Download Resume
