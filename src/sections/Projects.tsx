@@ -173,7 +173,7 @@ export default function Projects() {
           {/* 3D Carousel Scroll Container */}
           <div
             ref={carouselRef}
-            className="carousel-container relative overflow-x-auto overflow-y-hidden py-8"
+            className="carousel-container relative overflow-x-auto overflow-y-visible py-8 px-8 md:px-16 lg:px-24"
             style={{
               scrollSnapType: 'x mandatory',
               scrollbarWidth: 'none',
@@ -192,8 +192,6 @@ export default function Projects() {
               className="flex gap-8 pb-4"
               style={{
                 transformStyle: 'preserve-3d',
-                paddingLeft: 'max(1rem, calc((100vw - 450px) / 2))',
-                paddingRight: 'max(1rem, calc((100vw - 450px) / 2))',
               }}
             >
               <AnimatePresence mode="popLayout">
@@ -215,7 +213,7 @@ export default function Projects() {
                       rotateY: { duration: 0.5 },
                       delay: index * 0.08
                     }}
-                    className="flex-shrink-0"
+                    className="flex-shrink-0 first:ml-0 last:mr-0"
                     style={{
                       width: 'min(450px, 85vw)',
                       scrollSnapAlign: 'center',

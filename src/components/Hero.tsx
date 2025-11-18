@@ -88,14 +88,14 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(2,6,23,0.8)_70%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-8 lg:px-12">
+      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-12 py-20">
         <motion.div style={{ y, opacity }} className="flex flex-col items-center justify-center text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-8"
+            className="mb-10"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -118,10 +118,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-8"
+            className="mb-10"
           >
             <h1 className="relative">
-              <span className="block text-6xl font-black tracking-tight md:text-7xl lg:text-8xl xl:text-9xl">
+              <span className="block text-7xl font-black tracking-tight md:text-8xl lg:text-9xl xl:text-[10rem]">
                 <span className="relative">
                   <span className="absolute -inset-4 animate-pulse rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
                   <span className="relative bg-gradient-to-br from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_0_60px_rgba(34,211,238,0.5)]">
@@ -144,12 +144,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-8 space-y-4"
+            className="mb-10 space-y-5"
           >
-            <p className="text-2xl font-semibold text-cyan-300 md:text-3xl lg:text-4xl">
+            <p className="text-3xl font-semibold text-cyan-300 md:text-4xl lg:text-5xl">
               Building intelligent systems where
             </p>
-            <p className="text-2xl font-bold md:text-3xl lg:text-4xl">
+            <p className="text-3xl font-bold md:text-4xl lg:text-5xl">
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Data Engineering
               </span>
@@ -162,7 +162,7 @@ export default function Hero() {
                 AI
               </span>
             </p>
-            <p className="text-2xl font-semibold text-white md:text-3xl lg:text-4xl">
+            <p className="text-3xl font-semibold text-white md:text-4xl lg:text-5xl">
               converge to create{' '}
               <span className="relative inline-block">
                 <span className="absolute -inset-2 rounded-lg bg-gradient-to-r from-yellow-500/30 to-orange-500/30 blur-lg" />
@@ -176,7 +176,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-10 max-w-3xl text-lg leading-relaxed text-neutral-300 md:text-xl"
+            className="mx-auto mb-12 max-w-4xl text-xl leading-relaxed text-neutral-300 md:text-2xl"
           >
             I design and build data-driven AI systems, scalable data platforms, and intelligent solutions that turn complex problems into actionable insights.
           </motion.p>
@@ -199,7 +199,7 @@ export default function Hero() {
                   >
                     <Rocket className="size-5" />
                   </motion.div>
-                  <span className="text-lg">View My Work</span>
+                  <span className="text-xl">View My Work</span>
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -214,7 +214,7 @@ export default function Hero() {
                   onClick={() => scrollToSection('#experience')}
                   className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:border-cyan-400/50 hover:bg-white/10"
                 >
-                  <span className="relative z-10 text-lg">Experience</span>
+                  <span className="relative z-10 text-xl">Experience</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 transition-opacity group-hover:opacity-100"
                     whileHover={{ scale: 1.1 }}
@@ -227,7 +227,7 @@ export default function Hero() {
                   onClick={() => scrollToSection('#contact')}
                   className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:border-emerald-400/50 hover:bg-white/10"
                 >
-                  <span className="relative z-10 text-lg">Contact Me</span>
+                  <span className="relative z-10 text-xl">Contact Me</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 opacity-0 transition-opacity group-hover:opacity-100"
                     whileHover={{ scale: 1.1 }}
@@ -241,9 +241,9 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-10"
+            className="mt-12"
           >
-            <p className="mb-4 text-sm font-bold uppercase tracking-wider text-cyan-400">Open to roles:</p>
+            <p className="mb-5 text-base font-bold uppercase tracking-wider text-cyan-400">Open to roles:</p>
             <div className="flex flex-wrap justify-center gap-3">
               {['Data Engineer', 'AI/ML Engineer', 'Data Scientist', 'ML Platform Roles'].map((role, i) => (
                 <motion.div
@@ -252,7 +252,7 @@ export default function Hero() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + i * 0.1 }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 px-5 py-2.5 text-sm font-semibold text-cyan-200 backdrop-blur-sm"
+                  className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 px-6 py-3 text-base font-semibold text-cyan-200 backdrop-blur-sm"
                 >
                   {role}
                 </motion.div>
