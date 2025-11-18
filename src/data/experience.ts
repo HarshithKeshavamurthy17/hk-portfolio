@@ -53,7 +53,7 @@ export const experiences: Experience[] = [
   {
     id: 'uber-nineleaps',
     company: 'Uber (via Nineleaps)',
-    role: 'Data Analytics & Expansion Strategy',
+    role: 'Data Analyst',
     start: 'Aug 2023',
     end: 'May 2024',
     summary: 'Partnered with Uber India Ops to scale the Uber Bus service across metro cities',
