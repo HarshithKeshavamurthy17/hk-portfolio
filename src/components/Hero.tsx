@@ -22,7 +22,7 @@ export default function Hero() {
       <div className="hero-grid-noise" aria-hidden="true" />
       
       {/* Multiple layered gradient orbs for depth */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <motion.div
           animate={{
             x: [0, 40, -20, 0],
@@ -82,7 +82,7 @@ export default function Hero() {
 
       {/* Animated grid pattern - MORE VISIBLE */}
       <motion.div 
-        className="pointer-events-none absolute inset-0 -z-10"
+        className="pointer-events-none absolute inset-0 z-0"
         animate={{ 
           backgroundPosition: ['0px 0px', '50px 50px'],
         }}
@@ -97,7 +97,7 @@ export default function Hero() {
       />
 
       {/* Floating geometric shapes */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 z-0">
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={`shape-${i}`}
@@ -130,7 +130,7 @@ export default function Hero() {
       </div>
 
       {/* Rotating rings */}
-      <div className="pointer-events-none absolute inset-0 -z-10 flex items-center justify-center">
+      <div className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center">
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={`ring-${i}`}
@@ -153,7 +153,7 @@ export default function Hero() {
       </div>
 
       {/* Diagonal animated lines */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 z-0">
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={`line-${i}`}
@@ -177,7 +177,7 @@ export default function Hero() {
       </div>
 
       {/* Floating particles with enhanced glow */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 z-0">
         {particles.map((particle) => (
           <motion.div
             key={particle.id}
@@ -202,7 +202,7 @@ export default function Hero() {
       </div>
 
       {/* Pulsing dots grid */}
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none absolute inset-0 z-0">
         {[...Array(40)].map((_, i) => (
           <motion.div
             key={`dot-${i}`}
@@ -225,7 +225,7 @@ export default function Hero() {
         ))}
       </div>
 
-      <div className="mx-auto w-full max-w-[1920px] px-6 md:px-8 lg:px-12 xl:px-16 text-center">
+      <div className="relative z-10 mx-auto w-full max-w-[1920px] px-6 md:px-8 lg:px-12 xl:px-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
