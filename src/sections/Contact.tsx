@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { Github, Linkedin, Mail, Send, Sparkles, ArrowUpRight, Clock, MapPin, Zap } from 'lucide-react';
+import { Github, Linkedin, Mail, Send, Sparkles, ArrowUpRight, Zap } from 'lucide-react';
 import { MagneticButton } from '../components/MagneticButton';
 
 const socials = [
@@ -169,27 +169,6 @@ export function Contact() {
 
           {/* Right Side */}
           <div className="space-y-6">
-            {/* Quick Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
-            >
-              <h3 className="text-xl font-bold text-white">Quick Info</h3>
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-3 text-neutral-400">
-                  <Clock className="size-5 text-cyan-400" />
-                  <span>Response: <span className="font-semibold text-white">~2 days</span></span>
-                </div>
-                <div className="flex items-center gap-3 text-neutral-400">
-                  <MapPin className="size-5 text-cyan-400" />
-                  <span>Based in: <span className="font-semibold text-white">Boston, MA</span></span>
-                </div>
-              </div>
-            </motion.div>
-
             {/* Social Links */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
