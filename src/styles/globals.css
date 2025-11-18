@@ -98,13 +98,37 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* GPU acceleration for animated elements */
+  /* Enhanced GPU acceleration and performance */
   [class*="motion-"],
   [class*="group"],
-  [class*="hover"] {
+  [class*="hover"],
+  button,
+  a,
+  [role="button"] {
     transform: translateZ(0);
     backface-visibility: hidden;
     perspective: 1000px;
+  }
+
+  /* Optimize hover interactions */
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    button:hover,
+    a:hover,
+    [role="button"]:hover {
+      will-change: transform;
+    }
+  }
+
+  /* Reduce motion for animations if preferred */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   body {
@@ -114,8 +138,15 @@
     transition:
       background-color var(--transition-slow),
       color var(--transition-fast);
-    /* Prevent layout shifts */
+    /* Prevent layout shifts and improve performance */
     overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Performance hint for scrollable containers */
+  [class*="overflow-"],
+  [class*="scroll-"] {
+    -webkit-overflow-scrolling: touch;
   }
 
   h1,
