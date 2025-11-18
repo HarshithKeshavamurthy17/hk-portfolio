@@ -14,7 +14,7 @@ export function About() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="about" ref={ref} className="relative py-32 md:py-40 overflow-hidden">
+    <section id="about" ref={ref} className="relative py-16 md:py-20 overflow-hidden">
       {/* Floating gradient orbs */}
       <motion.div
         style={{ y }}

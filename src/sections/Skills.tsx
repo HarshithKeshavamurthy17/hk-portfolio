@@ -74,7 +74,7 @@ export function Skills() {
   };
 
   return (
-    <section id="skills" className="relative py-32 md:py-40 overflow-hidden">
+    <section id="skills" className="relative py-16 md:py-20 overflow-hidden">
       {/* Background decoration */}
       <div className="pointer-events-none absolute left-[15%] top-[25%] size-[600px] rounded-full bg-gradient-to-br from-violet-500/15 to-transparent blur-3xl" />
 
