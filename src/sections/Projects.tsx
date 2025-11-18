@@ -189,7 +189,7 @@ export default function Projects() {
             `}</style>
             
             <motion.div
-              className="flex gap-8 pb-4 pl-[max(2rem,calc((100vw-450px)/2))] pr-[max(2rem,calc((100vw-450px)/2))]"
+              className="flex gap-8 pb-4 pl-4 pr-[max(2rem,calc((100vw-450px)/2))]"
               style={{
                 transformStyle: 'preserve-3d',
               }}
