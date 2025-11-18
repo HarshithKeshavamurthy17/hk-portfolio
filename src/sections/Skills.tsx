@@ -154,7 +154,7 @@ export function Skills() {
         {/* Organic Floating Cloud Layout */}
         <motion.div
           layout
-          className="relative min-h-[400px] py-8"
+          className="relative min-h-[400px] md:min-h-[500px] py-8 flex flex-wrap justify-center items-start gap-2 md:block"
         >
           <AnimatePresence mode="popLayout">
             {filteredSkills.map((skill, index) => {
@@ -169,31 +169,28 @@ export function Skills() {
               ];
               const sizeClass = sizes[skill.level - 1] || sizes[3];
               
-              // Create organic positioning offsets
+              // Create organic positioning offsets for desktop
               const positions = [
-                'left-[5%] top-[10%]',
-                'left-[20%] top-[5%]',
-                'left-[40%] top-[15%]',
-                'left-[60%] top-[8%]',
-                'left-[75%] top-[12%]',
-                'left-[85%] top-[18%]',
-                'left-[10%] top-[35%]',
-                'left-[25%] top-[40%]',
-                'left-[45%] top-[38%]',
-                'left-[65%] top-[42%]',
-                'left-[80%] top-[45%]',
-                'left-[15%] top-[65%]',
-                'left-[35%] top-[70%]',
-                'left-[55%] top-[68%]',
-                'left-[75%] top-[72%]',
-                'left-[5%] top-[85%]',
-                'left-[25%] top-[90%]',
-                'left-[50%] top-[88%]',
-                'left-[70%] top-[85%]',
+                'md:left-[5%] md:top-[10%]',
+                'md:left-[20%] md:top-[5%]',
+                'md:left-[40%] md:top-[15%]',
+                'md:left-[60%] md:top-[8%]',
+                'md:left-[75%] md:top-[12%]',
+                'md:left-[85%] md:top-[18%]',
+                'md:left-[10%] md:top-[35%]',
+                'md:left-[25%] md:top-[40%]',
+                'md:left-[45%] md:top-[38%]',
+                'md:left-[65%] md:top-[42%]',
+                'md:left-[80%] md:top-[45%]',
+                'md:left-[15%] md:top-[65%]',
+                'md:left-[35%] md:top-[70%]',
+                'md:left-[55%] md:top-[68%]',
+                'md:left-[75%] md:top-[72%]',
+                'md:left-[5%] md:top-[85%]',
+                'md:left-[25%] md:top-[90%]',
+                'md:left-[50%] md:top-[88%]',
+                'md:left-[70%] md:top-[85%]',
               ];
-              
-              // For mobile, use simpler flex wrap layout
-              const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
               
               return (
                 <MagneticButton key={skill.name} strength={0.15}>
@@ -219,12 +216,10 @@ export function Skills() {
                       zIndex: 50,
                       transition: { duration: 0.2 }
                     }}
-                    className={`group relative overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm shadow-lg hover:shadow-2xl ${sizeClass} ${
-                      isMobile ? 'inline-block' : 'absolute ' + (positions[index % positions.length] || 'left-[50%] top-[50%]')
-                    }`}
+                    className={`group relative overflow-hidden rounded-full border border-white/10 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm shadow-lg hover:shadow-2xl ${sizeClass} md:absolute ${positions[index % positions.length] || ''}`}
                     style={{ 
                       willChange: 'transform',
-                      transform: isMobile ? 'none' : 'translate(-50%, -50%)'
+                      transform: 'translate(-50%, -50%)'
                     }}
                   >
                     {/* Glowing border effect */}
@@ -285,20 +280,6 @@ export function Skills() {
               );
             })}
           </AnimatePresence>
-          
-          {/* Mobile fallback: flex wrap layout */}
-          <style jsx>{`
-            @media (max-width: 768px) {
-              .absolute {
-                position: relative !important;
-                left: auto !important;
-                top: auto !important;
-                transform: none !important;
-                display: inline-block;
-                margin: 0.375rem;
-              }
-            }
-          `}</style>
         </motion.div>
 
       </div>
