@@ -80,7 +80,7 @@ export default function Hero() {
         />
       </div>
 
-      {/* Animated grid pattern */}
+      {/* Animated grid pattern - MORE VISIBLE */}
       <motion.div 
         className="pointer-events-none absolute inset-0 -z-10"
         animate={{ 
@@ -89,8 +89,8 @@ export default function Hero() {
         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
         style={{
           backgroundImage: `
-            linear-gradient(rgba(34, 211, 238, 0.03) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 211, 238, 0.03) 1px, transparent 1px)
+            linear-gradient(rgba(34, 211, 238, 0.08) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(34, 211, 238, 0.08) 1px, transparent 1px)
           `,
           backgroundSize: '50px 50px',
         }}
@@ -119,11 +119,11 @@ export default function Hero() {
             }}
           >
             {i % 3 === 0 ? (
-              <div className="size-20 rounded-full border-2 border-cyan-400/20" />
+              <div className="size-24 rounded-full border-2 border-cyan-400/40" />
             ) : i % 3 === 1 ? (
-              <div className="size-16 rotate-45 border-2 border-blue-400/20" />
+              <div className="size-20 rotate-45 border-2 border-blue-400/40" />
             ) : (
-              <div className="size-0 border-l-[40px] border-r-[40px] border-t-[70px] border-l-transparent border-r-transparent border-t-violet-400/20" />
+              <div className="size-0 border-l-[50px] border-r-[50px] border-t-[85px] border-l-transparent border-r-transparent border-t-violet-400/40" />
             )}
           </motion.div>
         ))}
@@ -134,7 +134,7 @@ export default function Hero() {
         {[...Array(3)].map((_, i) => (
           <motion.div
             key={`ring-${i}`}
-            className="absolute rounded-full border border-cyan-400/10"
+            className="absolute rounded-full border-2 border-cyan-400/25"
             style={{
               width: `${400 + i * 200}px`,
               height: `${400 + i * 200}px`,
@@ -157,7 +157,7 @@ export default function Hero() {
         {[...Array(6)].map((_, i) => (
           <motion.div
             key={`line-${i}`}
-            className="absolute h-full w-px bg-gradient-to-b from-transparent via-cyan-400/10 to-transparent"
+            className="absolute h-full w-0.5 bg-gradient-to-b from-transparent via-cyan-400/25 to-transparent"
             style={{
               left: `${15 + i * 15}%`,
               transform: 'skewX(-12deg)',
@@ -206,7 +206,7 @@ export default function Hero() {
         {[...Array(40)].map((_, i) => (
           <motion.div
             key={`dot-${i}`}
-            className="absolute size-1 rounded-full bg-cyan-400/20"
+            className="absolute size-1.5 rounded-full bg-cyan-400/40 shadow-[0_0_8px_rgba(34,211,238,0.6)]"
             style={{
               left: `${(i % 8) * 12.5}%`,
               top: `${Math.floor(i / 8) * 20}%`,
