@@ -1,317 +1,335 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, Send, MessageSquare, Clock, Sparkles } from 'lucide-react';
-import { Section } from '../components/layout/Section';
-import { Button } from '../components/ui/button';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { Github, Linkedin, Mail, Send, Sparkles, ArrowUpRight, Clock, MapPin } from 'lucide-react';
 
 const socials = [
   {
-    ariaLabel: 'Open GitHub profile (HarshithKeshavamurthy17)',
+    ariaLabel: 'GitHub - View my code and projects',
     href: 'https://github.com/HarshithKeshavamurthy17',
     label: 'GitHub',
     icon: Github,
-    color: 'from-purple-500/20 to-pink-500/10',
+    gradient: 'from-purple-500 to-pink-500',
+    bg: 'from-purple-500/10 to-pink-500/5',
   },
   {
-    ariaLabel: 'Open LinkedIn profile (harshith-k-bu)',
+    ariaLabel: 'LinkedIn - Connect professionally',
     href: 'https://www.linkedin.com/in/harshith-k-bu/',
     label: 'LinkedIn',
     icon: Linkedin,
-    color: 'from-blue-500/20 to-cyan-500/10',
+    gradient: 'from-blue-500 to-cyan-500',
+    bg: 'from-blue-500/10 to-cyan-500/5',
   },
   {
-    ariaLabel: 'Email Harshith (hk17@bu.edu)',
+    ariaLabel: 'Email - Send me a message',
     href: 'mailto:hk17@bu.edu',
-    label: 'Email',
+    label: 'hk17@bu.edu',
     icon: Mail,
-    color: 'from-emerald-500/20 to-green-500/10',
+    gradient: 'from-emerald-500 to-green-500',
+    bg: 'from-emerald-500/10 to-green-500/5',
   },
 ];
 
 export function Contact() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [hoveredSocial, setHoveredSocial] = useState<number | null>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
 
   return (
-    <Section id="contact" className="relative">
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute left-1/2 top-0 -z-10 size-[900px] -translate-x-1/2 rounded-full bg-gradient-to-br from-cyan-500/8 via-blue-500/8 to-purple-500/8 blur-3xl" aria-hidden="true" />
-
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)]">
-        {/* Left column - Form */}
+    <section id="contact" className="relative overflow-hidden py-24 md:py-32">
+      {/* Crazy animated background */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          animate={{
+            backgroundPosition: ['0% 0%', '100% 100%'],
+          }}
+          transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+          className="absolute inset-0 opacity-30"
+          style={{
+            backgroundImage: `
+              radial-gradient(circle at 20% 50%, rgba(34, 211, 238, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 50%)
+            `,
+            backgroundSize: '100% 100%',
+          }}
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col gap-6"
+          className="mb-16 text-center"
         >
-          <div className="relative flex flex-col gap-2">
-            <motion.div
-              className="absolute -left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-cyan-500 via-blue-500 to-purple-500"
-              initial={{ scaleY: 0 }}
-              whileInView={{ scaleY: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              style={{ transformOrigin: "top" }}
-              aria-hidden="true"
-            />
-            <div className="flex items-center gap-3">
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent">Let&apos;s build together</h2>
-              <motion.div
-                animate={{ scale: [1, 1.1, 1], rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <MessageSquare className="size-7 md:size-8 text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]" aria-hidden="true" />
-              </motion.div>
-            </div>
-            <p className="text-lg md:text-xl text-neutral-200">
-              Drop a note about data platform needs, ML experimentation roadmaps, or collaboration ideas. I respond in under two business days.
-            </p>
-          </div>
-
-          {/* Enhanced Form */}
-          <motion.form
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const form = e.currentTarget;
-              const formData = new FormData(form);
-              const name = formData.get('name') as string;
-              const email = formData.get('email') as string;
-              const message = formData.get('message') as string;
-              
-              // Create mailto link with form data
-              const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
-              const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-              window.location.href = `mailto:hk17@bu.edu?subject=${subject}&body=${body}`;
-            }}
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-white/[0.01] p-8 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+          <motion.div
+            className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/5 px-4 py-2 text-sm font-medium text-cyan-300 backdrop-blur-sm"
+            whileHover={{ scale: 1.05 }}
           >
-            {/* Animated gradient orb */}
+            <Sparkles className="size-4" />
+            <span>Let's connect</span>
+          </motion.div>
+          <h2 className="mb-4 text-5xl md:text-7xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+            Get In Touch
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-neutral-400">
+            Whether you have a project in mind, want to collaborate, or just want to say hi — I'd love to hear from you!
+          </p>
+        </motion.div>
+
+        <div className="grid gap-8 lg:grid-cols-[1.5fr,1fr]">
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            onMouseMove={handleMouseMove}
+            className="group relative"
+          >
+            {/* Spotlight effect on hover */}
             <motion.div
-              className="pointer-events-none absolute -right-16 -top-16 size-48 rounded-full bg-gradient-to-br from-cyan-500/25 to-transparent blur-3xl"
-              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+              style={{
+                background: useTransform(
+                  [mouseX, mouseY],
+                  ([x, y]) =>
+                    `radial-gradient(600px circle at ${x}px ${y}px, rgba(34, 211, 238, 0.15), transparent 40%)`
+                ),
+              }}
             />
 
-            <div className="relative z-10 grid gap-5">
-              {/* Name field */}
-              <div className="grid gap-2">
-                <label htmlFor="name" className="text-sm font-semibold text-neutral-300">
-                  Name
-                </label>
-                <div className="relative">
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    placeholder="Your name"
-                    required
-                    onFocus={() => setFocusedField('name')}
-                    onBlur={() => setFocusedField(null)}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-sm transition-all duration-300 placeholder:text-neutral-500 focus:border-cyan-400/50 focus:bg-white/10 focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] focus:ring-2 focus:ring-cyan-400/20"
-                  />
-                  {focusedField === 'name' && (
-                    <motion.div
-                      layoutId="formFocus"
-                      className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/5"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Email field */}
-              <div className="grid gap-2">
-                <label htmlFor="email" className="text-sm font-semibold text-neutral-300">
-                  Email
-                </label>
-                <div className="relative">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    required
-                    onFocus={() => setFocusedField('email')}
-                    onBlur={() => setFocusedField(null)}
-                    className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-sm transition-all duration-300 placeholder:text-neutral-500 focus:border-cyan-400/50 focus:bg-white/10 focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] focus:ring-2 focus:ring-cyan-400/20"
-                  />
-                  {focusedField === 'email' && (
-                    <motion.div
-                      layoutId="formFocus"
-                      className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/5"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Message field */}
-              <div className="grid gap-2">
-                <label htmlFor="message" className="text-sm font-semibold text-neutral-300">
-                  Project details
-                </label>
-                <div className="relative">
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Tell me about the problem, dataset, or opportunity."
-                    rows={5}
-                    required
-                    onFocus={() => setFocusedField('message')}
-                    onBlur={() => setFocusedField(null)}
-                    className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none backdrop-blur-sm transition-all duration-300 placeholder:text-neutral-500 focus:border-cyan-400/50 focus:bg-white/10 focus:shadow-[0_0_20px_rgba(34,211,238,0.2)] focus:ring-2 focus:ring-cyan-400/20"
-                  />
-                  {focusedField === 'message' && (
-                    <motion.div
-                      layoutId="formFocus"
-                      className="pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500/10 to-blue-500/5"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                      aria-hidden="true"
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Honeypot */}
-              <div className="hidden">
-                <label htmlFor="company" className="text-sm">
-                  Company
-                </label>
-                <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-              </div>
-
-              {/* Submit button */}
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const formData = new FormData(form);
+                const name = formData.get('name') as string;
+                const email = formData.get('email') as string;
+                const message = formData.get('message') as string;
+                
+                const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
+                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+                window.location.href = `mailto:hk17@bu.edu?subject=${subject}&body=${body}`;
+              }}
+              className="relative space-y-6 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-8 backdrop-blur-xl"
+            >
+              {/* Name Field */}
               <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="space-y-2"
+              >
+                <label htmlFor="name" className="block text-sm font-semibold text-neutral-300">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  onFocus={() => setFocusedField('name')}
+                  onBlur={() => setFocusedField(null)}
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="John Doe"
+                />
+              </motion.div>
+
+              {/* Email Field */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="space-y-2"
+              >
+                <label htmlFor="email" className="block text-sm font-semibold text-neutral-300">
+                  Your Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  onFocus={() => setFocusedField('email')}
+                  onBlur={() => setFocusedField(null)}
+                  className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="john@example.com"
+                />
+              </motion.div>
+
+              {/* Message Field */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="space-y-2"
+              >
+                <label htmlFor="message" className="block text-sm font-semibold text-neutral-300">
+                  Your Message
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  rows={5}
+                  onFocus={() => setFocusedField('message')}
+                  onBlur={() => setFocusedField(null)}
+                  className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder-neutral-500 backdrop-blur-sm transition-all duration-300 focus:border-cyan-400/50 focus:bg-white/10 focus:outline-none focus:ring-2 focus:ring-cyan-400/20"
+                  placeholder="Tell me about your project..."
+                />
+              </motion.div>
+
+              {/* Submit Button */}
+              <motion.button
+                type="submit"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-black shadow-lg shadow-cyan-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-cyan-500/70"
               >
-                <Button
-                  type="submit"
-                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 font-semibold text-black shadow-[0_0_35px_rgba(34,211,238,0.5)] transition-all duration-300 hover:shadow-[0_0_50px_rgba(34,211,238,0.7)] hover:scale-[1.02]"
-                >
-                  <span className="relative z-10 flex items-center justify-center gap-2">
-                    <Send className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-                    Send message
-                  </span>
-                  <motion.span
-                    className="absolute inset-0 bg-gradient-to-r from-white/30 via-white/20 to-transparent"
-                    animate={{ x: [-250, 250] }}
-                    transition={{ duration: 2.5, repeat: Infinity, ease: "linear" }}
-                    aria-hidden="true"
-                  />
-                </Button>
-              </motion.div>
-
-              {/* Form note */}
-              <p className="flex items-center gap-2 text-xs text-neutral-500">
-                <Clock className="size-3" aria-hidden="true" />
-                <span>I reply within 48 hours.</span>
-              </p>
-            </div>
-          </motion.form>
-        </motion.div>
-
-        {/* Right column - Direct reach */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex flex-col gap-5"
-        >
-          <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-white/[0.01] p-8 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.2)]">
-            <motion.div
-              className="pointer-events-none absolute -left-12 -top-12 size-40 rounded-full bg-gradient-to-br from-purple-500/25 to-transparent blur-2xl"
-              animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              aria-hidden="true"
-            />
-            <div className="relative z-10">
-              <div className="mb-6 mt-4 flex items-center gap-3">
-                <motion.div
-                  animate={{ rotate: [0, 15, -15, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <Sparkles className="size-6 text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]" aria-hidden="true" />
-                </motion.div>
-                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-white to-cyan-200 bg-clip-text text-transparent">Direct reach</h3>
-              </div>
-              <p className="mb-6 text-base md:text-lg leading-relaxed text-neutral-200">
-                Prefer async? Email <a
-                  href="mailto:hk17@bu.edu"
-                  aria-label="Email Harshith (hk17@bu.edu)"
-                  className="font-semibold text-cyan-400 transition-colors hover:text-cyan-300 hover:underline"
-                >
-                  hk17@bu.edu
-                </a> or connect on any channel below.
-              </p>
-
-              <ul className="space-y-4">
-                {socials.map(({ label, href, icon: Icon, ariaLabel, color }, index) => (
-                  <motion.li
-                    key={label}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Send Message
+                  <motion.div
+                    animate={{ x: [0, 5, 0] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
                   >
-                    <motion.a
-                      href={href}
-                      aria-label={ariaLabel}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ x: 6, scale: 1.02, transition: { duration: 0.2 } }}
-                      className={`group relative flex items-center gap-4 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-r ${color} p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-400/60 hover:shadow-[0_0_25px_rgba(34,211,238,0.3)]`}
-                    >
-                      <motion.div 
-                        className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-white/5 text-cyan-400 ring-1 ring-white/10 transition-colors group-hover:bg-white/10"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Icon className="size-5" aria-hidden="true" />
-                      </motion.div>
-                      <span className="text-base md:text-lg font-semibold text-white">
-                        {label === 'Email' ? `${label} (hk17@bu.edu)` : label}
-                      </span>
-                      <motion.span
-                        className="absolute inset-0 bg-gradient-to-r from-cyan-500/15 to-transparent opacity-0"
-                        whileHover={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
-                        aria-hidden="true"
-                      />
-                    </motion.a>
-                  </motion.li>
-                ))}
-              </ul>
-            </div>
-          </div>
+                    <Send className="size-5" />
+                  </motion.div>
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-600 to-cyan-500"
+                  initial={{ x: "100%" }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
 
-          {/* Response time badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="flex items-center gap-3 rounded-2xl border border-emerald-400/30 bg-gradient-to-r from-emerald-500/10 to-green-500/5 p-4 backdrop-blur-sm"
-          >
-            <div className="flex size-10 items-center justify-center rounded-full bg-emerald-500/20">
-              <Clock className="size-5 text-emerald-300" aria-hidden="true" />
-            </div>
-            <div className="flex-1">
-              <p className="text-base md:text-lg font-semibold text-emerald-200">Quick response time</p>
-              <p className="text-sm md:text-base text-emerald-300/80">Usually within 48 hours</p>
-            </div>
+              {/* Active field indicator */}
+              {focusedField && (
+                <motion.div
+                  layoutId="activeField"
+                  className="absolute -left-2 top-0 h-full w-1 rounded-full bg-gradient-to-b from-cyan-500 to-blue-500"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                />
+              )}
+            </form>
           </motion.div>
-        </motion.div>
+
+          {/* Social Links & Info */}
+          <div className="space-y-6">
+            {/* Quick Info */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+            >
+              <h3 className="text-xl font-bold text-white">Quick Info</h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-center gap-3 text-neutral-400">
+                  <Clock className="size-5 text-cyan-400" />
+                  <span>Response time: <span className="font-semibold text-white">~2 business days</span></span>
+                </div>
+                <div className="flex items-center gap-3 text-neutral-400">
+                  <MapPin className="size-5 text-cyan-400" />
+                  <span>Located in: <span className="font-semibold text-white">Boston, MA</span></span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Social Links */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-3"
+            >
+              <h3 className="text-xl font-bold text-white">Connect With Me</h3>
+              {socials.map((social, index) => (
+                <motion.a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.ariaLabel}
+                  onMouseEnter={() => setHoveredSocial(index)}
+                  onMouseLeave={() => setHoveredSocial(null)}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * index }}
+                  whileHover={{ scale: 1.03, x: 5 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group relative flex items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${social.bg} p-4 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:shadow-lg`}
+                >
+                  <div className="relative z-10 flex items-center gap-3">
+                    <div className={`flex size-10 items-center justify-center rounded-lg bg-gradient-to-br ${social.bg}`}>
+                      <social.icon className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-white">{social.label}</div>
+                      {social.label === 'hk17@bu.edu' && (
+                        <div className="text-xs text-neutral-400">Direct contact</div>
+                      )}
+                    </div>
+                  </div>
+                  <motion.div
+                    animate={{ rotate: hoveredSocial === index ? 45 : 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <ArrowUpRight className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+                  </motion.div>
+
+                  {/* Hover gradient effect */}
+                  <motion.div
+                    className={`absolute inset-0 bg-gradient-to-r ${social.bg} opacity-0`}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                </motion.a>
+              ))}
+            </motion.div>
+
+            {/* CTA Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="relative overflow-hidden rounded-2xl border border-violet-400/30 bg-gradient-to-br from-violet-500/10 to-purple-500/5 p-6 backdrop-blur-sm"
+            >
+              <motion.div
+                className="pointer-events-none absolute -right-8 -top-8 size-32 rounded-full bg-gradient-to-br from-violet-500/30 to-transparent blur-2xl"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              />
+              <div className="relative space-y-3">
+                <Sparkles className="size-8 text-violet-400" />
+                <h3 className="text-lg font-bold text-white">Open to Opportunities</h3>
+                <p className="text-sm leading-relaxed text-neutral-300">
+                  Currently seeking full-time roles in Data Engineering, AI/ML Engineering, and Data Science. Let's build something amazing together!
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
-    </Section>
+    </section>
   );
 }
