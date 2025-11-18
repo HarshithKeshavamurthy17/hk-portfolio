@@ -173,7 +173,7 @@ export default function Projects() {
           {/* 3D Carousel Scroll Container */}
           <div
             ref={carouselRef}
-            className="relative overflow-x-auto overflow-y-hidden py-8 px-4 -mx-4"
+            className="carousel-container relative overflow-x-auto overflow-y-hidden py-8"
             style={{
               scrollSnapType: 'x mandatory',
               scrollbarWidth: 'none',
@@ -192,6 +192,8 @@ export default function Projects() {
               className="flex gap-8 pb-4"
               style={{
                 transformStyle: 'preserve-3d',
+                paddingLeft: 'max(1rem, calc((100vw - 450px) / 2))',
+                paddingRight: 'max(1rem, calc((100vw - 450px) / 2))',
               }}
             >
               <AnimatePresence mode="popLayout">
@@ -240,9 +242,13 @@ export default function Projects() {
             </motion.div>
           </div>
 
-          {/* Gradient fades on edges */}
-          <div className="pointer-events-none absolute left-0 top-0 h-full w-32 bg-gradient-to-r from-[#020617] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 h-full w-32 bg-gradient-to-l from-[#020617] to-transparent" />
+          {/* Gradient fades on edges - only show when scrollable */}
+          {canScrollLeft && (
+            <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[#020617] via-[#020617]/80 to-transparent z-10" />
+          )}
+          {canScrollRight && (
+            <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[#020617] via-[#020617]/80 to-transparent z-10" />
+          )}
         </div>
 
         {/* Drag hint */}
