@@ -7,6 +7,7 @@ import { cn } from '../lib/cn';
 
 type ProjectCardProps = {
   project: Project;
+  viewMode?: 'grid' | 'list';
   onQuickView?: (project: Project, trigger: HTMLButtonElement) => void;
 };
 
@@ -22,7 +23,7 @@ const linkIcons: Record<Project['links'][number]['kind'], ReactNode> = {
   case: <BookOpen className="size-4" aria-hidden="true" />,
 };
 
-export default function ProjectCard({ project, onQuickView }: ProjectCardProps) {
+export default function ProjectCard({ project, viewMode = 'grid', onQuickView }: ProjectCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const [thumbError, setThumbError] = useState(false);
   const [isHovering, setIsHovering] = useState(false);

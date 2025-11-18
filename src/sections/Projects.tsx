@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Grid3x3, List } from 'lucide-react';
 import projectsData from '../data/projects';
 import type { Project } from '../data/projects';
 import ProjectCard from '../components/ProjectCard';
@@ -8,6 +8,7 @@ import CaseModal from '../components/CaseModal';
 
 const FILTERS = ['All', 'AI/ML', 'Data Eng', 'Analytics'] as const;
 type Filter = (typeof FILTERS)[number];
+type ViewMode = 'grid' | 'list';
 
 const CATEGORY_MAP: Record<string, Filter> = {
   'vi-graph-rag': 'AI/ML',
@@ -33,6 +34,7 @@ const containerVariants = {
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<Filter>('All');
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
   const [quickView, setQuickView] = useState<{
     project: Project;
   } | null>(null);
@@ -97,7 +99,40 @@ export default function Projects() {
               Hands-on systems I&apos;ve shipped and studied · Click to explore
             </p>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-3">
+            {/* View Toggle */}
+            <div className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 p-1">
+              <motion.button
+                type="button"
+                onClick={() => setViewMode('grid')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`rounded-full p-2 transition-all duration-200 ${
+                  viewMode === 'grid'
+                    ? 'bg-cyan-500/20 text-cyan-300'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+                aria-label="Grid view"
+              >
+                <Grid3x3 className="size-4" />
+              </motion.button>
+              <motion.button
+                type="button"
+                onClick={() => setViewMode('list')}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className={`rounded-full p-2 transition-all duration-200 ${
+                  viewMode === 'list'
+                    ? 'bg-cyan-500/20 text-cyan-300'
+                    : 'text-neutral-400 hover:text-neutral-200'
+                }`}
+                aria-label="List view"
+              >
+                <List className="size-4" />
+              </motion.button>
+            </div>
+
+            {/* Filter Buttons */}
             {FILTERS.map((filter, index) => {
               const isActive = activeFilter === filter;
               return (
@@ -134,17 +169,23 @@ export default function Projects() {
         </motion.div>
 
         <motion.div
+          key={viewMode}
           variants={containerVariants}
           initial="initial"
           whileInView="animate"
           viewport={{ once: true, amount: 0.2 }}
-          className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3"
+          className={`mt-8 ${
+            viewMode === 'grid' 
+              ? 'grid gap-5 md:grid-cols-2 xl:grid-cols-3' 
+              : 'flex flex-col gap-6'
+          }`}
         >
           <AnimatePresence mode="sync">
             {filtered.map((project) => (
               <ProjectCard
                 key={project.id}
                 project={project}
+                viewMode={viewMode}
                 onQuickView={(selectedProject, trigger) => {
                   lastTriggerRef.current = trigger;
                   setQuickView({ project: selectedProject });
