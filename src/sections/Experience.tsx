@@ -23,7 +23,7 @@ export default function Experience() {
   const data = useMemo(() => experienceData, []);
 
   return (
-    <section id="experience" className="relative py-16 md:py-20 overflow-hidden">
+    <section id="experience" className="relative py-12 md:py-16 overflow-hidden">
       {/* Background decoration */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -40,7 +40,7 @@ export default function Experience() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          className="mb-12 text-center"
         >
           <motion.div
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-500/5 px-4 py-2 backdrop-blur-sm"

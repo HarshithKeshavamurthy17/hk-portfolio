@@ -14,7 +14,7 @@ export function About() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
-    <section id="about" ref={ref} className="relative py-16 md:py-20 overflow-hidden">
+    <section id="about" ref={ref} className="relative py-12 md:py-16 overflow-hidden">
       {/* Floating gradient orbs */}
       <motion.div
         style={{ y }}
@@ -28,7 +28,7 @@ export function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
+          className="mb-12 text-center"
         >
           <motion.div
             className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-400/20 bg-violet-500/5 px-4 py-2 backdrop-blur-sm"

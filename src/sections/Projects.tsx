@@ -43,7 +43,7 @@ export default function Projects() {
   }, [quickView]);
 
   return (
-    <section id="projects" className="relative py-16 md:py-20 overflow-hidden">
+    <section id="projects" className="relative py-12 md:py-16 overflow-hidden">
       {/* Background decoration */}
       <div className="pointer-events-none absolute right-[10%] top-[20%] size-[600px] rounded-full bg-gradient-to-br from-blue-500/15 to-transparent blur-3xl" />
       
