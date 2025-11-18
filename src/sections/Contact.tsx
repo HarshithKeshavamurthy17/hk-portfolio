@@ -42,31 +42,31 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="relative py-12 md:py-16 overflow-hidden">
+    <section id="contact" className="relative py-8 md:py-10 overflow-hidden">
       {/* Background */}
-      <div className="pointer-events-none absolute right-[10%] top-[20%] size-[600px] rounded-full bg-gradient-to-br from-cyan-500/15 to-transparent blur-3xl" />
+      <div className="pointer-events-none absolute right-[10%] top-[20%] size-[400px] rounded-full bg-gradient-to-br from-cyan-500/15 to-transparent blur-3xl" />
 
-      <div className="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
+      <div className="mx-auto max-w-6xl px-4 md:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-12 text-center"
+          className="mb-8 text-center"
         >
           <motion.div
-            className="mb-4 inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/5 px-4 py-2 backdrop-blur-sm"
+            className="mb-3 inline-flex items-center gap-1.5 rounded-full border border-cyan-400/20 bg-cyan-500/5 px-3 py-1.5 backdrop-blur-sm"
             whileHover={{ scale: 1.05 }}
           >
-            <Sparkles className="size-4 text-cyan-400" />
-            <span className="text-sm font-medium text-cyan-300">Let's connect</span>
+            <Sparkles className="size-3 text-cyan-400" />
+            <span className="text-xs font-medium text-cyan-300">Let's connect</span>
           </motion.div>
           
-          <h2 className="mb-4 text-6xl md:text-7xl lg:text-8xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <h2 className="mb-3 text-3xl md:text-4xl lg:text-5xl font-black bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
             Get In Touch
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-neutral-400">
+          <p className="mx-auto max-w-2xl text-sm text-neutral-400">
             Have a project in mind or want to collaborate? Let's build something amazing together!
           </p>
         </motion.div>

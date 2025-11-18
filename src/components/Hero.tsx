@@ -88,26 +88,26 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(2,6,23,0.8)_70%)]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-7xl px-6 md:px-8 lg:px-12 py-20">
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-4 md:px-6 lg:px-8 py-12">
         <motion.div style={{ y, opacity }} className="flex flex-col items-center justify-center text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-10"
+            className="mb-6"
           >
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 px-5 py-2.5 backdrop-blur-xl"
+              className="inline-flex items-center gap-1.5 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 px-3 py-1.5 backdrop-blur-xl"
             >
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
               >
-                <Sparkles className="size-4 text-cyan-400" />
+                <Sparkles className="size-3 text-cyan-400" />
               </motion.div>
-              <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-sm font-bold tracking-wide text-transparent">
+              <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-xs font-bold tracking-wide text-transparent">
                 Data, AI & Analytics Engineer
               </span>
             </motion.div>
@@ -118,13 +118,13 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-10"
+            className="mb-6"
           >
             <h1 className="relative">
-              <span className="block text-7xl font-black tracking-tight md:text-8xl lg:text-9xl xl:text-[10rem]">
+              <span className="block text-4xl font-black tracking-tight md:text-5xl lg:text-6xl xl:text-7xl">
                 <span className="relative">
-                  <span className="absolute -inset-4 animate-pulse rounded-3xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-3xl" />
-                  <span className="relative bg-gradient-to-br from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_0_60px_rgba(34,211,238,0.5)]">
+                  <span className="absolute -inset-3 animate-pulse rounded-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-2xl" />
+                  <span className="relative bg-gradient-to-br from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_0_40px_rgba(34,211,238,0.5)]">
                     Harshith Keshavamurthy
                   </span>
                 </span>
@@ -134,7 +134,7 @@ export default function Hero() {
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className="mx-auto mt-6 h-2 w-3/4 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 shadow-[0_0_30px_rgba(34,211,238,0.6)]"
+                className="mx-auto mt-3 h-1 w-3/4 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 shadow-[0_0_20px_rgba(34,211,238,0.6)]"
               />
             </h1>
           </motion.div>
@@ -144,12 +144,12 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-10 space-y-5"
+            className="mb-6 space-y-3"
           >
-            <p className="text-3xl font-semibold text-cyan-300 md:text-4xl lg:text-5xl">
+            <p className="text-lg font-semibold text-cyan-300 md:text-xl lg:text-2xl">
               Building intelligent systems where
             </p>
-            <p className="text-3xl font-bold md:text-4xl lg:text-5xl">
+            <p className="text-lg font-bold md:text-xl lg:text-2xl">
               <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
                 Data Engineering
               </span>
@@ -162,10 +162,10 @@ export default function Hero() {
                 AI
               </span>
             </p>
-            <p className="text-3xl font-semibold text-white md:text-4xl lg:text-5xl">
+            <p className="text-lg font-semibold text-white md:text-xl lg:text-2xl">
               converge to create{' '}
               <span className="relative inline-block">
-                <span className="absolute -inset-2 rounded-lg bg-gradient-to-r from-yellow-500/30 to-orange-500/30 blur-lg" />
+                <span className="absolute -inset-1 rounded-lg bg-gradient-to-r from-yellow-500/30 to-orange-500/30 blur-md" />
                 <span className="relative font-black text-yellow-300">real impact</span>
               </span>
             </p>
@@ -176,7 +176,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-12 max-w-4xl text-xl leading-relaxed text-neutral-300 md:text-2xl"
+            className="mx-auto mb-8 max-w-3xl text-sm leading-relaxed text-neutral-300 md:text-base"
           >
             I design and build data-driven AI systems, scalable data platforms, and intelligent solutions that turn complex problems into actionable insights.
           </motion.p>
@@ -186,20 +186,20 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-4"
+            className="flex flex-wrap items-center justify-center gap-3"
           >
-              <MagneticButton className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 p-[2px] shadow-[0_0_40px_rgba(34,211,238,0.4)]">
+              <MagneticButton className="group relative overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 p-[2px] shadow-[0_0_30px_rgba(34,211,238,0.4)]">
                 <button
                   onClick={() => scrollToSection('#projects')}
-                  className="relative flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 px-8 py-4 font-bold text-black transition-all"
+                  className="relative flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 px-5 py-2.5 font-bold text-black transition-all"
                 >
                   <motion.div
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
                   >
-                    <Rocket className="size-5" />
+                    <Rocket className="size-4" />
                   </motion.div>
-                  <span className="text-xl">View My Work</span>
+                  <span className="text-sm">View My Work</span>
                   <motion.div
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
@@ -212,9 +212,9 @@ export default function Hero() {
               <MagneticButton>
                 <button
                   onClick={() => scrollToSection('#experience')}
-                  className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:border-cyan-400/50 hover:bg-white/10"
+                  className="group relative overflow-hidden rounded-xl border-2 border-white/20 bg-white/5 px-5 py-2.5 font-semibold text-white backdrop-blur-xl transition-all hover:border-cyan-400/50 hover:bg-white/10"
                 >
-                  <span className="relative z-10 text-xl">Experience</span>
+                  <span className="relative z-10 text-sm">Experience</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 transition-opacity group-hover:opacity-100"
                     whileHover={{ scale: 1.1 }}
@@ -225,9 +225,9 @@ export default function Hero() {
               <MagneticButton>
                 <button
                   onClick={() => scrollToSection('#contact')}
-                  className="group relative overflow-hidden rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 font-semibold text-white backdrop-blur-xl transition-all hover:border-emerald-400/50 hover:bg-white/10"
+                  className="group relative overflow-hidden rounded-xl border-2 border-white/20 bg-white/5 px-5 py-2.5 font-semibold text-white backdrop-blur-xl transition-all hover:border-emerald-400/50 hover:bg-white/10"
                 >
-                  <span className="relative z-10 text-xl">Contact Me</span>
+                  <span className="relative z-10 text-sm">Contact Me</span>
                   <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 opacity-0 transition-opacity group-hover:opacity-100"
                     whileHover={{ scale: 1.1 }}
@@ -241,10 +241,10 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-12"
+            className="mt-8"
           >
-            <p className="mb-5 text-base font-bold uppercase tracking-wider text-cyan-400">Open to roles:</p>
-            <div className="flex flex-wrap justify-center gap-3">
+            <p className="mb-3 text-xs font-bold uppercase tracking-wider text-cyan-400">Open to roles:</p>
+            <div className="flex flex-wrap justify-center gap-2">
               {['Data Engineer', 'AI/ML Engineer', 'Data Scientist', 'ML Platform Roles'].map((role, i) => (
                 <motion.div
                   key={role}
@@ -252,7 +252,7 @@ export default function Hero() {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + i * 0.1 }}
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="rounded-xl border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 px-6 py-3 text-base font-semibold text-cyan-200 backdrop-blur-sm"
+                  className="rounded-lg border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 px-3 py-1.5 text-xs font-semibold text-cyan-200 backdrop-blur-sm"
                 >
                   {role}
                 </motion.div>

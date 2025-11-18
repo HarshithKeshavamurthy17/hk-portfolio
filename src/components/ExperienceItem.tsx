@@ -50,28 +50,28 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
         }
       }}
       className={cn(
-        'group/exp relative flex h-full flex-col gap-5 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-7 backdrop-blur-sm transition-all duration-300 hover:border-cyan-300/50 hover:bg-gradient-to-br hover:from-white/[0.08] hover:via-white/[0.05] hover:to-white/[0.02] hover:shadow-[0_12px_50px_rgba(34,211,238,0.25)] focus-within:border-cyan-300/50 focus-within:bg-gradient-to-br focus-within:from-white/[0.08] focus-within:via-white/[0.05] focus-within:to-white/[0.02]',
+        'group/exp relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-4 backdrop-blur-sm transition-all duration-300 hover:border-cyan-300/50 hover:bg-gradient-to-br hover:from-white/[0.08] hover:via-white/[0.05] hover:to-white/[0.02] hover:shadow-[0_8px_30px_rgba(34,211,238,0.25)] focus-within:border-cyan-300/50 focus-within:bg-gradient-to-br focus-within:from-white/[0.08] focus-within:via-white/[0.05] focus-within:to-white/[0.02]',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:ring-offset-4',
       )}
     >
       {/* Animated background orb */}
       <motion.div
-        className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 blur-2xl transition-opacity duration-500 group-hover/exp:opacity-100"
+        className="pointer-events-none absolute -right-10 -top-10 size-24 rounded-full bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 blur-xl transition-opacity duration-500 group-hover/exp:opacity-100"
         aria-hidden="true"
       />
 
 
       {/* Header */}
-      <header className="flex items-start gap-5">
+      <header className="flex items-start gap-3">
         {exp.logo && !logoError ? (
           <div className="relative shrink-0">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-purple-500/20 blur-xl opacity-0 group-hover/exp:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+            <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-cyan-500/20 via-blue-500/10 to-purple-500/20 blur-md opacity-0 group-hover/exp:opacity-100 transition-opacity duration-300" aria-hidden="true" />
             <img
               src={exp.logo}
               alt={`${exp.company} logo`}
-              width={64}
-              height={64}
-              className="relative size-16 md:size-20 object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover/exp:scale-110"
+              width={48}
+              height={48}
+              className="relative size-10 md:size-12 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover/exp:scale-110"
               loading="lazy"
               decoding="async"
               onError={() => setLogoError(true)}
