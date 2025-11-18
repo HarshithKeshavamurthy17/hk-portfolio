@@ -3,7 +3,6 @@ import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Glow } from './components/layout/Glow';
-import { Footer } from './components/layout/Footer';
 import { SEO } from './components/layout/SEO';
 import { stagger } from './components/layout/Motion';
 import { CustomCursor } from './components/CustomCursor';
@@ -305,7 +304,6 @@ function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>
-        <Footer />
       </div>
     </>
   );
