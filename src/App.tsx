@@ -1,11 +1,13 @@
 import { Suspense, lazy, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import { Navbar } from './components/layout/Navbar';
 import { Glow } from './components/layout/Glow';
 import { Footer } from './components/layout/Footer';
 import { SEO } from './components/layout/SEO';
 import { stagger } from './components/layout/Motion';
+import { CustomCursor } from './components/CustomCursor';
+import { ScrollProgress } from './components/ScrollProgress';
 import Hero from './components/Hero';
 import TrustedBy from './components/TrustedBy';
 import StickyCTA from './components/StickyCTA';
@@ -209,14 +211,61 @@ const homeJsonLd = [
 ];
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Page load animation
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="relative flex min-h-screen flex-col bg-background text-foreground">
-      <Glow />
-      <Navbar />
-      <div className="flex-1">
-        <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
+    <>
+      {/* Page Load Animation */}
+      <AnimatePresence>
+        {isLoading && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-[#020617]"
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 1.2, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="text-center"
+            >
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                className="mx-auto mb-4 size-16 rounded-full border-4 border-cyan-400/30 border-t-cyan-400"
+              />
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent"
+              >
+                Harshith K
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+        <CustomCursor />
+        <ScrollProgress />
+        <Glow />
+        <Navbar />
+        <div className="flex-1">
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<Navigate to="/#projects" replace />} />
           <Route
             path="/projects/vi-graph-rag"
@@ -251,11 +300,12 @@ function App() {
             path="/case/cs699-ensemble"
             element={<CaseFallbackSuspense component={<CS699Ensemble />} />}
           />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   );
 }
 
