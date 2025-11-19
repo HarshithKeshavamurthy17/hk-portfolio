@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 import { Github, Linkedin, Mail, Send, Sparkles, ArrowUpRight, Zap } from 'lucide-react';
 import { MagneticButton } from '../components/MagneticButton';
 
@@ -32,6 +33,8 @@ const socials = [
 
 export function Contact() {
   const [focusedField, setFocusedField] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -39,6 +42,62 @@ export function Contact() {
     const rect = e.currentTarget.getBoundingClientRect();
     mouseX.set(e.clientX - rect.left);
     mouseY.set(e.clientY - rect.top);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get('name') as string;
+    const email = formData.get('email') as string;
+    const message = formData.get('message') as string;
+
+    // EmailJS configuration
+    // For GitHub Pages: Hardcode your EmailJS keys here (public keys are safe to expose)
+    // For local dev: Use .env file with VITE_EMAILJS_* variables
+    // Get your keys from: https://www.emailjs.com/ Dashboard > Account > API Keys
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+    
+    // TODO: Replace the above with your actual EmailJS keys for GitHub Pages:
+    // const serviceId = 'your_service_id';
+    // const templateId = 'your_template_id';
+    // const publicKey = 'your_public_key';
+
+    // Initialize EmailJS
+    emailjs.init(publicKey);
+
+    try {
+      await emailjs.send(serviceId, templateId, {
+        from_name: name,
+        from_email: email,
+        message: message,
+        to_email: 'hk17@bu.edu',
+        reply_to: email,
+      });
+
+      setSubmitStatus('success');
+      form.reset();
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('idle');
+      }, 5000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setSubmitStatus('error');
+      
+      // Fallback to mailto: if EmailJS fails
+      const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+      window.location.href = `mailto:hk17@bu.edu?subject=${subject}&body=${body}`;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -94,18 +153,7 @@ export function Contact() {
             />
 
             <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const form = e.currentTarget;
-                const formData = new FormData(form);
-                const name = formData.get('name') as string;
-                const email = formData.get('email') as string;
-                const message = formData.get('message') as string;
-                
-                const subject = encodeURIComponent(`Portfolio Contact: ${name}`);
-                const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-                window.location.href = `mailto:hk17@bu.edu?subject=${subject}&body=${body}`;
-              }}
+              onSubmit={handleSubmit}
               className="relative space-y-6 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.02] p-8 backdrop-blur-xl"
             >
               {['name', 'email', 'message'].map((field, i) => (
@@ -146,18 +194,40 @@ export function Contact() {
                 </motion.div>
               ))}
 
+              {/* Status Messages */}
+              {submitStatus === 'success' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-3 text-sm text-emerald-300"
+                >
+                  ✓ Message sent successfully! I'll get back to you soon.
+                </motion.div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="rounded-xl border border-red-400/30 bg-red-500/10 p-3 text-sm text-red-300"
+                >
+                  ⚠ Email service unavailable. Opening your email client as fallback...
+                </motion.div>
+              )}
+
               <MagneticButton strength={0.3}>
                 <motion.button
                   type="submit"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-black shadow-lg"
+                  disabled={isSubmitting}
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+                  className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 font-semibold text-black shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <span className="relative z-10 flex items-center justify-center gap-2">
-                    Send Message
+                    {isSubmitting ? 'Sending...' : 'Send Message'}
                     <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
+                      animate={isSubmitting ? { rotate: 360 } : { x: [0, 5, 0] }}
+                      transition={isSubmitting ? { duration: 1, repeat: Infinity, ease: "linear" } : { duration: 1.5, repeat: Infinity }}
                     >
                       <Send className="size-5" />
                     </motion.div>
