@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import projectsData from '../data/projects';
 import type { Project } from '../data/projects';
@@ -7,6 +8,7 @@ import ProjectCard from '../components/ProjectCard';
 import CaseModal from '../components/CaseModal';
 
 export default function Projects() {
+  const navigate = useNavigate();
   const [quickView, setQuickView] = useState<{
     project: Project;
   } | null>(null);
@@ -14,6 +16,9 @@ export default function Projects() {
   const carouselRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  
+  // Projects that have case study pages
+  const projectsWithCaseStudies = ['vi-graph-rag', 'f1-prediction', 'oncovision', 'autokpi'];
 
   const filtered: Project[] = useMemo(() => {
     return projectsData;
@@ -183,10 +188,34 @@ export default function Projects() {
                       project={project}
                       viewMode="grid"
                       onQuickView={(selectedProject) => {
-                        setQuickView({ project: selectedProject });
+                        // For projects with case studies, navigate to the page
+                        if (projectsWithCaseStudies.includes(selectedProject.id)) {
+                          const routeMap: Record<string, string> = {
+                            'vi-graph-rag': '/projects/vi-graph-rag',
+                            'f1-prediction': '/projects/f1-prediction',
+                            'oncovision': '/projects/oncovision',
+                            'autokpi': '/projects/autokpi',
+                          };
+                          navigate(routeMap[selectedProject.id]);
+                        } else {
+                          // For other projects, show modal
+                          setQuickView({ project: selectedProject });
+                        }
                       }}
                       onClick={() => {
-                        setQuickView({ project });
+                        // Navigate to case study page for projects that have one
+                        if (projectsWithCaseStudies.includes(project.id)) {
+                          const routeMap: Record<string, string> = {
+                            'vi-graph-rag': '/projects/vi-graph-rag',
+                            'f1-prediction': '/projects/f1-prediction',
+                            'oncovision': '/projects/oncovision',
+                            'autokpi': '/projects/autokpi',
+                          };
+                          navigate(routeMap[project.id]);
+                        } else {
+                          // For other projects, show modal
+                          setQuickView({ project });
+                        }
                       }}
                     />
                   </motion.div>
