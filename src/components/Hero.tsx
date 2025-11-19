@@ -1,275 +1,67 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Sparkles, Zap, Rocket, Brain, Code2, Database } from 'lucide-react';
-import { useRef } from 'react';
-import { MagneticButton } from './MagneticButton';
+import { motion } from 'framer-motion';
+import { ArrowDown } from 'lucide-react';
 
-const scrollToSection = (id: string) => {
-  const element = document.querySelector(id);
-  if (element) {
-    element.scrollIntoView({ behavior: 'smooth' });
-  }
-};
-
-export default function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0]);
-
+export function Hero() {
   return (
-    <section
-      ref={ref}
-      id="hero"
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-[#020617] via-[#0a0e1f] to-[#020617]"
-    >
-      {/* Animated Gradient Mesh Background */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Large gradient orbs */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 100, 0],
-            y: [0, -50, 0],
-          }}
-          transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-40 top-0 size-[800px] rounded-full bg-gradient-to-br from-cyan-500/30 via-blue-500/20 to-transparent blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -80, 0],
-            y: [0, 100, 0],
-          }}
-          transition={{ duration: 25, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          className="absolute -right-40 top-20 size-[700px] rounded-full bg-gradient-to-br from-purple-500/25 via-pink-500/20 to-transparent blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1, 1.4, 1],
-            x: [0, 50, 0],
-            y: [0, -80, 0],
-          }}
-          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut", delay: 5 }}
-          className="absolute bottom-0 left-1/2 size-[600px] -translate-x-1/2 rounded-full bg-gradient-to-br from-emerald-500/20 via-teal-500/15 to-transparent blur-3xl"
-        />
-
-        {/* Animated grid pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(6,182,212,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(6,182,212,0.05)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,black,transparent)]" />
-
-        {/* Floating particles - reduced count for stability */}
-        {[...Array(10)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute size-1 rounded-full bg-cyan-400/40"
-            initial={{
-              x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
-            }}
-            animate={{
-              y: [null, Math.random() * window.innerHeight],
-              x: [null, Math.random() * window.innerWidth],
-              opacity: [0.2, 0.5, 0.2],
-            }}
-            transition={{
-              duration: Math.random() * 15 + 20,
-              repeat: Infinity,
-              ease: "linear",
-              delay: Math.random() * 3,
-            }}
-            style={{ willChange: 'transform, opacity' }}
-          />
-        ))}
-
-        {/* Radial gradient overlay */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,rgba(2,6,23,0.8)_70%)]" />
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background pt-16">
+      {/* Background Elements */}
+      <div className="absolute inset-0 w-full h-full bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-slate-900 via-background to-background opacity-50" />
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
+        <div className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-blue-500/10 blur-[120px]" />
+        <div className="absolute top-[20%] -right-[10%] w-[40%] h-[40%] rounded-full bg-cyan-500/10 blur-[120px]" />
       </div>
 
-      <div className="relative z-10 mx-auto w-full max-w-5xl px-3 md:px-5 lg:px-6 py-10">
-        <motion.div style={{ y, opacity }} className="flex flex-col items-center justify-center text-center">
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4"
-          >
-            <motion.div
+      <div className="container relative z-10 px-4 mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <h2 className="text-sm md:text-base font-medium tracking-wider text-cyan-400 uppercase mb-4">
+            Welcome to my portfolio
+          </h2>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
+            <span className="text-white">Harshith</span>{' '}
+            <span className="text-gradient-primary">Keshavamurthy</span>
+          </h1>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            Data, AI & Analytics Engineer crafting intelligent solutions and immersive digital experiences.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <motion.button
               whileHover={{ scale: 1.05 }}
-              className="inline-flex items-center gap-1 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 via-blue-500/10 to-purple-500/10 px-2.5 py-1 backdrop-blur-xl"
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors"
             >
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              >
-                <Sparkles className="size-2.5 text-cyan-400" />
-              </motion.div>
-              <span className="bg-gradient-to-r from-cyan-300 to-blue-300 bg-clip-text text-[10px] font-bold tracking-wide text-transparent">
-                Data, AI & Analytics Engineer
-              </span>
-            </motion.div>
-          </motion.div>
-
-          {/* Name with crazy effect */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="mb-4"
-          >
-            <h1 className="relative">
-              <span className="block text-3xl font-black tracking-tight md:text-4xl lg:text-5xl xl:text-6xl">
-                <span className="relative">
-                  <span className="absolute -inset-2 animate-pulse rounded-xl bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 blur-xl" />
-                  <span className="relative bg-gradient-to-br from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(34,211,238,0.5)]">
-                    Harshith Keshavamurthy
-                  </span>
-                </span>
-              </span>
-              {/* Glowing underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className="mx-auto mt-2 h-0.5 w-3/4 rounded-full bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 shadow-[0_0_15px_rgba(34,211,238,0.6)]"
-              />
-            </h1>
-          </motion.div>
-
-          {/* Tagline */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-4 space-y-2"
-          >
-            <p className="text-base font-semibold text-cyan-300 md:text-lg lg:text-xl">
-              Building intelligent systems where
-            </p>
-            <p className="text-base font-bold md:text-lg lg:text-xl">
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Data Engineering
-              </span>
-              <span className="text-white"> × </span>
-              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
-                Machine Learning
-              </span>
-              <span className="text-white"> × </span>
-              <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
-                AI
-              </span>
-            </p>
-            <p className="text-base font-semibold text-white md:text-lg lg:text-xl">
-              converge to create{' '}
-              <span className="relative inline-block">
-                <span className="absolute -inset-0.5 rounded-md bg-gradient-to-r from-yellow-500/30 to-orange-500/30 blur-sm" />
-                <span className="relative font-black text-yellow-300">real impact</span>
-              </span>
-            </p>
-          </motion.div>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mx-auto mb-6 max-w-2xl text-xs leading-relaxed text-neutral-300 md:text-sm"
-          >
-            I design and build data-driven AI systems, scalable data platforms, and intelligent solutions that turn complex problems into actionable insights.
-          </motion.p>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="flex flex-wrap items-center justify-center gap-2"
-          >
-              <MagneticButton className="group relative overflow-hidden rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 p-[1.5px] shadow-[0_0_20px_rgba(34,211,238,0.4)]">
-                <button
-                  onClick={() => scrollToSection('#projects')}
-                  className="relative flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 px-4 py-2 font-bold text-black transition-all"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                  >
-                    <Rocket className="size-3" />
-                  </motion.div>
-                  <span className="text-xs">View My Work</span>
-                  <motion.div
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity }}
-                  >
-                    →
-                  </motion.div>
-                </button>
-              </MagneticButton>
-
-              <MagneticButton>
-                <button
-                  onClick={() => scrollToSection('#experience')}
-                  className="group relative overflow-hidden rounded-lg border-2 border-white/20 bg-white/5 px-4 py-2 font-semibold text-white backdrop-blur-xl transition-all hover:border-cyan-400/50 hover:bg-white/10"
-                >
-                  <span className="relative z-10 text-xs">Experience</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-purple-500/20 opacity-0 transition-opacity group-hover:opacity-100"
-                    whileHover={{ scale: 1.1 }}
-                  />
-                </button>
-              </MagneticButton>
-
-              <MagneticButton>
-                <button
-                  onClick={() => scrollToSection('#contact')}
-                  className="group relative overflow-hidden rounded-lg border-2 border-white/20 bg-white/5 px-4 py-2 font-semibold text-white backdrop-blur-xl transition-all hover:border-emerald-400/50 hover:bg-white/10"
-                >
-                  <span className="relative z-10 text-xs">Contact Me</span>
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-emerald-500/20 to-cyan-500/20 opacity-0 transition-opacity group-hover:opacity-100"
-                    whileHover={{ scale: 1.1 }}
-                  />
-                </button>
-              </MagneticButton>
-            </motion.div>
-
-          {/* Role badges */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-6"
-          >
-            <p className="mb-2 text-[10px] font-bold uppercase tracking-wider text-cyan-400">Open to roles:</p>
-            <div className="flex flex-wrap justify-center gap-1.5">
-              {['Data Engineer', 'AI/ML Engineer', 'Data Scientist', 'ML Platform Roles'].map((role, i) => (
-                <motion.div
-                  key={role}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7 + i * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="rounded-md border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 px-2.5 py-1 text-[10px] font-semibold text-cyan-200 backdrop-blur-sm"
-                >
-                  {role}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+              View Projects
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 rounded-full glass text-white font-semibold hover:bg-white/10 transition-colors"
+            >
+              Contact Me
+            </motion.button>
+          </div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1, repeat: Infinity, repeatType: "reverse" }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
       >
-        <ChevronDown className="size-8 text-cyan-400" />
+        <div className="flex flex-col items-center gap-2 text-muted-foreground">
+          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <ArrowDown className="w-5 h-5" />
+          </motion.div>
+        </div>
       </motion.div>
     </section>
   );

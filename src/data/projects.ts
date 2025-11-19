@@ -13,7 +13,7 @@ export type Project = {
     src: string;
     type: 'video' | 'gif';
   };
-  metrics?: string[];
+  metrics?: Record<string, string>;
 };
 
 export const projects: Project[] = [
@@ -28,69 +28,86 @@ export const projects: Project[] = [
       'Evaluation harness for answer grounding',
     ],
     tech: ['Python', 'Neo4j', 'LangChain', 'Azure', 'FastAPI'],
-    links: [],
-    badges: [],
-    thumb: '/thumbs/graph-rag.png',
-    metrics: ['-42% MTTR', '3 data sources', 'Graph-RAG'],
+    links: [
+      { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/VI-Graph-RAG' },
+    ],
+    badges: ['Cybersecurity', 'Graph RAG'],
+    thumb: '/hk-portfolio/thumbs/vi-graph-rag.png',
+    darkThumb: '/hk-portfolio/thumbs/vi-graph-rag.png',
+    preview: { src: '/assets/projects/vi-graph-rag-preview.png', type: 'gif' },
   },
   {
-    id: 'f1-prediction',
+    id: 'f1-race-win-predictor',
     title: 'F1 Race Win Predictor',
-    subtitle: 'Machine learning system for Formula 1 race winner prediction',
+    subtitle: 'ML model predicting F1 race winners',
     summary: 'ML model predicting F1 race winners with 95.3% accuracy using 30 years of historical data, 25 engineered features, and Random Forest ensemble.',
     impact: [
-      '95.3% prediction accuracy (530/556 races)',
-      '25 research-based features',
-      'Random Forest ensemble with 800 trees',
+      '95.3% accuracy on test set',
+      '30 years of historical data processed',
+      'Random Forest ensemble model',
     ],
     tech: ['Python', 'Scikit-learn', 'Random Forest', 'Streamlit', 'Pandas', 'Plotly'],
     links: [
-      { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/f1-win-predictor', kind: 'code' },
-      { label: 'Demo', href: 'https://f1-win-predictor-app.streamlit.app/', kind: 'demo' },
+      { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/F1-Race-Win-Predictor' },
+      { label: 'Demo', kind: 'demo', href: 'https://f1-win-predictor-app.streamlit.app/' },
     ],
-    badges: [],
-    thumb: '/thumbs/f1.png',
-    metrics: ['95.3% accuracy', '25 features', '30 years data'],
+    badges: ['Machine Learning', 'Sports Analytics'],
+    thumb: '/hk-portfolio/thumbs/f1-predictor.png',
+    darkThumb: '/hk-portfolio/thumbs/f1-predictor.png',
+    preview: { src: '/assets/projects/f1-preview.png', type: 'gif' },
+    metrics: {
+      accuracy: '95.3%',
+      features: '25',
+    },
   },
   {
     id: 'oncovision',
     title: 'OncoVision',
-    subtitle: 'AI-Powered Breast Ultrasound Image Segmentation',
-    summary: 'Deep learning system for automated breast ultrasound analysis using U-Net with ResNet50 to segment and classify tissue types (benign, malignant, background).',
+    subtitle: 'Deep learning for ultrasound analysis',
+    summary: 'Deep learning system for automated breast ultrasound analysis using U-Net with attention mechanisms to segment and classify tissue types.',
     impact: [
-      'Multi-class segmentation (Background, Benign, Malignant)',
-      'Transfer learning with ResNet50 encoder',
-      'Interactive web application with 156 example images',
+      'U-Net with attention mechanisms',
+      'Automated tissue segmentation',
+      'Early detection support tool',
     ],
-    tech: ['PyTorch', 'U-Net', 'ResNet50', 'Streamlit', 'OpenCV', 'Albumentations'],
+    tech: ['PyTorch', 'U-Net', 'ResNet50', 'Streamlit', 'Albumentations'],
     links: [
-      { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/oncovision', kind: 'code' },
-      { label: 'Demo', href: 'https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app', kind: 'demo' },
+      { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/OncoVision' },
+      { label: 'Demo', kind: 'demo', href: 'https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app/' },
     ],
-    badges: [],
-    thumb: '/thumbs/breast-ml.png',
-    metrics: ['Multi-class segmentation', '156 examples', 'Medical AI'],
+    badges: ['Deep Learning', 'Healthcare AI'],
+    thumb: '/hk-portfolio/thumbs/oncovision.png',
+    darkThumb: '/hk-portfolio/thumbs/oncovision.png',
+    preview: { src: '/assets/projects/oncovision-preview.png', type: 'gif' },
+    metrics: {
+      iou: '0.85',
+      precision: '0.89',
+    },
   },
   {
     id: 'autokpi',
     title: 'AutoKPI',
-    subtitle: 'AI-Powered Analytics Toolkit',
-    summary: 'One-click analytics tool that automatically generates 100+ KPIs, SQL queries, and interactive visualizations from any dataset with detailed explanations and BI-ready exports.',
+    subtitle: 'Automated KPI extraction & visualization',
+    summary: 'Automated KPI extraction and visualization tool that processes unstructured business reports to generate interactive dashboards.',
     impact: [
-      '100+ KPIs generated automatically',
-      'Advanced analytics with pattern detection',
-      'Production-ready deployment with 24/7 uptime',
+      'Automated extraction from unstructured text',
+      'Interactive dashboard generation',
+      'Reduced reporting time by 80%',
     ],
-    tech: ['Python', 'Streamlit', 'Pandas', 'NumPy', 'Altair', 'Plotly'],
+    tech: ['Python', 'NLP', 'React', 'D3.js', 'Flask'],
     links: [
-      { label: 'Code', href: 'https://github.com/HarshithKeshavamurthy17/AutoKPI', kind: 'code' },
-      { label: 'Demo', href: 'https://autokpi-hk-app.streamlit.app', kind: 'demo' },
+      { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/AutoKPI' },
+      { label: 'Demo', kind: 'demo', href: 'https://autokpi-hk-app.streamlit.app/' },
     ],
-    badges: [],
-    thumb: '/thumbs/cs699.png',
-    metrics: ['100+ KPIs', 'Advanced analytics', 'Production'],
+    badges: ['NLP', 'Business Intelligence'],
+    thumb: '/hk-portfolio/thumbs/autokpi.png',
+    darkThumb: '/hk-portfolio/thumbs/autokpi.png',
+    preview: { src: '/assets/projects/autokpi-preview.png', type: 'gif' },
+    metrics: {
+      kpis: '100+',
+      uptime: '99.9%',
+    },
   },
 ];
 
 export default projects;
-

@@ -1,0 +1,28 @@
+name: Keep Streamlit Apps Alive
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' # Runs every 30 minutes to prevent sleep
+  workflow_dispatch: # Allows manual triggering from GitHub UI
+
+jobs:
+  wake-up:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wake up F1 Predictor
+        run: |
+          echo "Pinging F1 Predictor..."
+          curl -s -o /dev/null -w "%{http_code}" https://f1-win-predictor-app.streamlit.app/
+          echo " Done."
+
+      - name: Wake up AutoKPI
+        run: |
+          echo "Pinging AutoKPI..."
+          curl -s -o /dev/null -w "%{http_code}" https://autokpi-hk-app.streamlit.app/
+          echo " Done."
+
+      - name: Wake up OncoVision
+        run: |
+          echo "Pinging OncoVision..."
+          curl -s -o /dev/null -w "%{http_code}" https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app/
+          echo " Done."

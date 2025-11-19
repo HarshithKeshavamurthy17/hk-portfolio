@@ -1,14 +1,13 @@
 import { Suspense, lazy, type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, useReducedMotion, AnimatePresence } from 'framer-motion';
 import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
-import { Navbar } from './components/layout/Navbar';
+import { Navbar } from './components/Navbar';
 import { Glow } from './components/layout/Glow';
 import { SEO } from './components/layout/SEO';
-import { stagger } from './components/layout/Motion';
 import { CustomCursor } from './components/CustomCursor';
 import { ScrollProgress } from './components/ScrollProgress';
 import { AnimatedBackground } from './components/AnimatedBackground';
-import Hero from './components/Hero';
+import { Hero } from './components/Hero';
 import TrustedBy from './components/TrustedBy';
 import StickyCTA from './components/StickyCTA';
 import CommandPalette, { type CommandItem } from './components/CommandPalette';
@@ -161,13 +160,7 @@ const HomePage = () => {
         canonical="https://harinik.dev"
         jsonLd={homeJsonLd}
       />
-      <motion.div
-        id="main-content"
-        variants={stagger(0.18, 0.12)}
-        initial="hidden"
-        animate="show"
-        className="flex flex-col gap-10"
-      >
+      <div id="main-content" className="flex flex-col gap-10">
         <Hero />
         <div className="-mt-16">
           <TrustedBy />
@@ -177,7 +170,7 @@ const HomePage = () => {
         <Experience />
         <Skills />
         <Contact />
-      </motion.div>
+      </div>
       <StickyCTA />
       <CommandPalette
         open={commandOpen}
@@ -267,40 +260,40 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<HomePage />} />
-          <Route path="/projects" element={<Navigate to="/#projects" replace />} />
-          <Route
-            path="/projects/vi-graph-rag"
-            element={<CaseFallbackSuspense component={<ProjectViGraphRag />} />}
-          />
-          <Route
-            path="/projects/f1-prediction"
-            element={<CaseFallbackSuspense component={<ProjectF1Prediction />} />}
-          />
-          <Route
-            path="/projects/oncovision"
-            element={<CaseFallbackSuspense component={<ProjectOncoVision />} />}
-          />
-          <Route
-            path="/projects/autokpi"
-            element={<CaseFallbackSuspense component={<ProjectAutoKPI />} />}
-          />
-          <Route
-            path="/case/vi-graph-rag"
-            element={<CaseFallbackSuspense component={<VIGraphRAG />} />}
-          />
-          <Route path="/case/uber-etl" element={<CaseFallbackSuspense component={<UberETL />} />} />
-          <Route
-            path="/case/f1-prediction"
-            element={<CaseFallbackSuspense component={<F1Prediction />} />}
-          />
-          <Route
-            path="/case/breast-cancer-ml"
-            element={<CaseFallbackSuspense component={<BreastCancerML />} />}
-          />
-          <Route
-            path="/case/cs699-ensemble"
-            element={<CaseFallbackSuspense component={<CS699Ensemble />} />}
-          />
+            <Route path="/projects" element={<Navigate to="/#projects" replace />} />
+            <Route
+              path="/projects/vi-graph-rag"
+              element={<CaseFallbackSuspense component={<ProjectViGraphRag />} />}
+            />
+            <Route
+              path="/projects/f1-race-win-predictor"
+              element={<CaseFallbackSuspense component={<ProjectF1Prediction />} />}
+            />
+            <Route
+              path="/projects/oncovision"
+              element={<CaseFallbackSuspense component={<ProjectOncoVision />} />}
+            />
+            <Route
+              path="/projects/autokpi"
+              element={<CaseFallbackSuspense component={<ProjectAutoKPI />} />}
+            />
+            <Route
+              path="/case/vi-graph-rag"
+              element={<CaseFallbackSuspense component={<VIGraphRAG />} />}
+            />
+            <Route path="/case/uber-etl" element={<CaseFallbackSuspense component={<UberETL />} />} />
+            <Route
+              path="/case/f1-prediction"
+              element={<CaseFallbackSuspense component={<F1Prediction />} />}
+            />
+            <Route
+              path="/case/breast-cancer-ml"
+              element={<CaseFallbackSuspense component={<BreastCancerML />} />}
+            />
+            <Route
+              path="/case/cs699-ensemble"
+              element={<CaseFallbackSuspense component={<CS699Ensemble />} />}
+            />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </div>

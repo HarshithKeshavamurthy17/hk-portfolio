@@ -1,296 +1,108 @@
-import { useCallback, useMemo, useRef, useState, type MouseEvent, type ReactNode } from 'react';
-import { motion, useReducedMotion, useMotionValue, useSpring } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { BookOpen, Code2, FileText, Play, TrendingUp } from 'lucide-react';
-import type { Project } from '../data/projects';
-import { cn } from '../lib/cn';
+import { motion } from 'framer-motion';
+import { ExternalLink, Github, Trophy, Target } from 'lucide-react';
 
-type ProjectCardProps = {
-  project: Project;
-  viewMode?: 'grid' | 'list';
-  onQuickView?: (project: Project, trigger?: HTMLButtonElement) => void;
-  onClick?: () => void;
-};
+interface ProjectCardProps {
+  title: string;
+  subtitle?: string;
+  description: string;
+  tags: string[];
+  image: string;
+  githubUrl?: string;
+  liveUrl?: string;
+  impact?: string[];
+  metrics?: Record<string, string>;
+}
 
-const cardVariants = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-};
-
-const linkIcons: Record<Project['links'][number]['kind'], ReactNode> = {
-  code: <Code2 className="size-4" aria-hidden="true" />,
-  demo: <Play className="size-4" aria-hidden="true" />,
-  pdf: <FileText className="size-4" aria-hidden="true" />,
-  case: <BookOpen className="size-4" aria-hidden="true" />,
-};
-
-export default function ProjectCard({ project, viewMode = 'grid', onQuickView, onClick }: ProjectCardProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const [thumbError, setThumbError] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const cardRef = useRef<HTMLDivElement | null>(null);
-  
-  // Simplified - removed magnetic and spotlight for stability
-  
-  const showThumb = Boolean(project.thumb && !thumbError);
-  const sortedLinks = useMemo(() => {
-    const order = { code: 0, demo: 1 } as const;
-    return [...project.links]
-      .filter((link) => {
-        // Remove code button for vi-graph-rag
-        if (project.id === 'vi-graph-rag' && link.kind === 'code') return false;
-        return link.kind !== 'case' && link.kind !== 'pdf' && link.href !== '';
-      })
-      .sort((a, b) => (order[a.kind] ?? 99) - (order[b.kind] ?? 99));
-  }, [project.links, project.id]);
-  const hasLive = project.links.some((link) => link.kind === 'demo' && link.href !== '');
-  const statusBadge = hasLive ? 'LIVE' : undefined;
-
-  const handleMouseMove = useCallback(
-    (event: MouseEvent<HTMLDivElement>) => {
-      if (prefersReducedMotion || !cardRef.current) return;
-      const rect = cardRef.current.getBoundingClientRect();
-      const xRatio = (event.clientX - rect.left) / rect.width - 0.5;
-      const yRatio = (event.clientY - rect.top) / rect.height - 0.5;
-      
-      // Simplified 3D tilt - less aggressive
-      const maxTilt = 3;
-      setTilt({ x: -(yRatio * maxTilt), y: xRatio * maxTilt });
-    },
-    [prefersReducedMotion],
-  );
-
-  const resetTilt = useCallback(() => {
-    setTilt({ x: 0, y: 0 });
-  }, []);
-
-  const handleCardClick = useCallback((e: MouseEvent) => {
-    // Don't trigger if clicking on buttons or links
-    const target = e.target as HTMLElement;
-    if (target.closest('button') || target.closest('a')) {
-      return;
-    }
-    onClick?.();
-  }, [onClick]);
-
+export function ProjectCard({ title, subtitle, description, tags, image, githubUrl, liveUrl, impact, metrics }: ProjectCardProps) {
   return (
-    <motion.article
-      variants={cardVariants}
-      initial="initial"
-      whileInView="animate"
-      viewport={{ once: true, amount: 0.2 }}
-      tabIndex={0}
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => !prefersReducedMotion && setIsHovering(true)}
-      onMouseLeave={() => {
-        setIsHovering(false);
-        resetTilt();
-      }}
-      onClick={handleCardClick}
-      style={
-        prefersReducedMotion
-          ? undefined
-          : {
-              transform: `perspective(1200px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) translateZ(0)`,
-              transition: 'transform 0.15s ease-out',
-              willChange: 'transform',
-            }
-      }
-      className={cn(
-        'group/project relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.08] via-white/[0.05] to-white/[0.02] backdrop-blur-xl transition-all duration-500 ease-out hover:border-cyan-300/60 hover:shadow-[0_20px_80px_rgba(34,211,238,0.35),0_0_120px_rgba(34,211,238,0.15)_inset] focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-4 focus-visible:ring-offset-[#0f1720]',
-        onClick && 'cursor-pointer'
-      )}
+    <motion.div
+      whileHover={{ y: -10 }}
+      className="group relative rounded-xl overflow-hidden bg-card border border-white/10 flex flex-col h-full"
     >
-      {/* Simplified glow - no spotlight tracking */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover/project:opacity-100"
-        style={{
-          background: `radial-gradient(600px circle at 50% 50%, rgba(34, 211, 238, 0.1), transparent 40%)`,
-        }}
-        aria-hidden="true"
-      />
-      
-      {/* Animated grid overlay */}
-      <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover/project:opacity-30" aria-hidden="true">
-        <div className="size-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(34, 211, 238, 0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(34, 211, 238, 0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '20px 20px',
-        }} />
-      </div>
-      {showThumb ? (
-        <div className="relative aspect-[21/9] w-full overflow-hidden">
-          <img
-            src={project.thumb}
-            alt={`${project.title} thumbnail`}
-            loading="lazy"
-            decoding="async"
-            className="size-full object-cover transition duration-500 ease-out group-hover/project:scale-110"
-            onError={() => setThumbError(true)}
-          />
-          <span className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/20 to-transparent" aria-hidden="true" />
-          {project.preview?.type === 'video' ? (
-            <video
-              className={cn(
-                'absolute inset-0 size-full object-cover opacity-0 transition duration-500 ease-out',
-                isHovering && 'opacity-100',
-              )}
-              src={project.preview.src}
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            />
-          ) : null}
-          <span className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover/project:opacity-100" aria-hidden="true">
-            <span className="absolute inset-y-0 -left-16 w-1/3 skew-x-[22deg] bg-gradient-to-r from-transparent via-white/30 to-transparent blur-2xl" />
-          </span>
-        </div>
-      ) : (
-        <div className="relative aspect-[21/9] w-full overflow-hidden bg-gradient-to-br from-[#0f172a] via-[#164e63] to-[#0f172a]">
-          <span className="absolute inset-0 bg-black/30" aria-hidden="true" />
-          <span
-            aria-hidden="true"
-            className="absolute inset-0 flex items-center justify-center text-xs uppercase tracking-[0.3em] text-cyan-200/70"
-          >
-            {project.title}
-          </span>
-          {project.preview?.type === 'video' ? (
-            <video
-              className={cn(
-                'absolute inset-0 size-full object-cover opacity-0 transition duration-500 ease-out',
-                isHovering && 'opacity-100',
-              )}
-              src={project.preview.src}
-              autoPlay
-              muted
-              loop
-              playsInline
-              aria-hidden="true"
-            />
-          ) : null}
-          <span className="pointer-events-none absolute inset-0 opacity-0 transition duration-500 group-hover/project:opacity-100" aria-hidden="true">
-            <span className="absolute inset-y-0 -left-16 w-1/3 skew-x-[22deg] bg-gradient-to-r from-transparent via-white/25 to-transparent blur-2xl" />
-          </span>
-        </div>
-      )}
-      {statusBadge ? (
-        <span className="absolute right-4 top-4 inline-flex items-center rounded-full border border-cyan-300/60 bg-cyan-500/10 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-cyan-200 shadow-[0_0_15px_rgba(34,211,238,0.4)]">
-          {statusBadge}
-        </span>
-      ) : null}
-
-      <div className="flex flex-1 flex-col gap-4 p-5">
-        <div className="flex flex-col gap-1.5 text-left">
-          <div className="flex flex-wrap items-start justify-between gap-2">
-            <div className="flex-1">
-              {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' || project.id === 'autokpi' ? (
-                <Link
-                  to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : project.id === 'oncovision' ? '/projects/oncovision' : '/projects/autokpi'}
-                  className="text-lg font-bold text-white transition-colors hover:text-cyan-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720] rounded"
-                >
-                  {project.title}
-                </Link>
-              ) : (
-                <h3 className="text-lg font-bold text-white">{project.title}</h3>
-              )}
-              <p className="line-clamp-2 text-xs leading-relaxed text-neutral-200 mt-2">{project.summary}</p>
-            </div>
-          </div>
-          <span className="text-[10px] uppercase tracking-[0.3em] text-cyan-300/60 font-semibold">{project.subtitle}</span>
-        </div>
-
-        <div className="flex flex-wrap gap-1.5">
-          {project.tech.map((tech) => (
-            <span
-              key={tech}
-              className="rounded-full border border-white/10 bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-neutral-200"
+      <div className="aspect-video overflow-hidden relative">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60" />
+        <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 backdrop-blur-sm">
+          {githubUrl && (
+            <a
+              href={githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              onClick={(e) => e.stopPropagation()}
             >
-              {tech}
-            </span>
-          ))}
+              <Github className="w-6 h-6" />
+            </a>
+          )}
+          {liveUrl && (
+            <a
+              href={liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink className="w-6 h-6" />
+            </a>
+          )}
+        </div>
+      </div>
+
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="mb-4">
+          <h3 className="text-xl font-bold mb-1 group-hover:text-cyan-400 transition-colors">{title}</h3>
+          {subtitle && <p className="text-sm text-cyan-400/80 font-medium">{subtitle}</p>}
         </div>
 
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="relative flex flex-wrap gap-1.5">
-            <div className="absolute -inset-2 rounded-xl bg-gradient-to-r from-cyan-500/5 via-blue-500/5 to-purple-500/5 opacity-0 blur-xl transition-opacity duration-500 group-hover/project:opacity-100" aria-hidden="true" />
-            {project.metrics.map((metric, index) => (
-              <motion.div
-                key={`${project.id}-${metric}`}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="relative flex items-center gap-1.5 rounded-full border border-cyan-400/20 bg-gradient-to-r from-cyan-500/10 to-blue-500/5 px-2.5 py-1 backdrop-blur-sm"
-              >
-                <TrendingUp className="size-2.5 text-cyan-400" aria-hidden="true" />
-                <span className="text-[10px] font-bold text-cyan-200">
-                  {metric}
-                </span>
-                <motion.span
-                  className="absolute inset-0 rounded-full bg-cyan-400/10"
-                  animate={{ opacity: [0, 0.3, 0] }}
-                  transition={{ duration: 2, repeat: Infinity, delay: index * 0.3 }}
-                  aria-hidden="true"
-                />
-              </motion.div>
-            ))}
+        <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{description}</p>
+
+        {impact && impact.length > 0 && (
+          <div className="mb-6 space-y-2">
+            <div className="flex items-center gap-2 text-xs font-semibold text-white uppercase tracking-wider">
+              <Target className="w-3 h-3 text-cyan-400" />
+              <span>Key Impact</span>
+            </div>
+            <ul className="space-y-1">
+              {impact.map((item, i) => (
+                <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                  <span className="mt-1.5 w-1 h-1 rounded-full bg-cyan-400/50 shrink-0" />
+                  {item}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 
-        <div className="mt-auto flex flex-wrap gap-1.5">
-          {project.id === 'vi-graph-rag' || project.id === 'f1-prediction' || project.id === 'oncovision' || project.id === 'autokpi' ? (
-            <Link
-              to={project.id === 'vi-graph-rag' ? '/projects/vi-graph-rag' : project.id === 'f1-prediction' ? '/projects/f1-prediction' : project.id === 'oncovision' ? '/projects/oncovision' : '/projects/autokpi'}
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
-            >
-              Quick View
-            </Link>
-          ) : (
-            <button
-              type="button"
-              onClick={(event) => {
-                event.stopPropagation();
-                onQuickView?.(project, event.currentTarget);
-              }}
-              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-semibold text-white transition hover:border-cyan-300/60 hover:bg-cyan-200/10 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]"
-            >
-              Quick View
-            </button>
-          )}
-          {sortedLinks.map((link) => (
+        <div className="mt-auto pt-4 border-t border-white/5 flex items-center justify-between gap-4">
+          <div className="flex flex-wrap gap-2">
+            {tags.slice(0, 3).map((tag) => (
+              <span
+                key={tag}
+                className="px-2.5 py-1 text-[10px] font-medium rounded-full bg-white/5 border border-white/10 text-cyan-200/60"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          {liveUrl && (
             <a
-              key={`${project.id}-${link.kind}-${link.href}`}
-              href={link.href}
+              href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Open ${link.label} for ${project.title}`}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold hover:bg-cyan-500/20 transition-colors shrink-0"
               onClick={(e) => e.stopPropagation()}
-              className={cn(
-                'inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[11px] font-semibold transition hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f1720]',
-                buttonStyles[link.kind] ?? buttonStyles.demo,
-              )}
             >
-              {linkIcons[link.kind]}
-              <span>{link.label}</span>
+              <ExternalLink className="w-3 h-3" />
+              Live Demo
             </a>
-          ))}
+          )}
         </div>
       </div>
-    </motion.article>
+    </motion.div>
   );
 }
-
-const buttonStyles: Record<Project['links'][number]['kind'] | 'demo', string> = {
-  code: 'bg-cyan-500 text-slate-950 hover:bg-cyan-400',
-  case: 'border border-cyan-400/60 text-cyan-200 hover:border-cyan-300 hover:bg-cyan-300/10',
-  pdf: 'text-neutral-200 hover:bg-white/5',
-  demo: 'border border-white/10 text-neutral-200 hover:bg-white/5',
-};
-
