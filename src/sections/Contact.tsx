@@ -244,31 +244,57 @@ export function Contact() {
               className="space-y-3"
             >
               <h3 className="text-xl font-bold text-white">Connect</h3>
-              {socials.map((social, index) => (
-                <MagneticButton key={social.label} strength={0.2}>
-                  <motion.a
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.1 * index }}
-                    whileHover={{ scale: 1.03, x: 5 }}
-                    className={`flex items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${social.bg} p-4 backdrop-blur-sm`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className={`flex size-10 items-center justify-center rounded-lg bg-gradient-to-br ${social.bg}`}>
-                        <social.icon className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+              {socials.map((social, index) => {
+                // Email is display-only, not clickable
+                if (social.label === 'hk17@bu.edu') {
+                  return (
+                    <motion.div
+                      key={social.label}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * index }}
+                      className={`flex items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${social.bg} p-4 backdrop-blur-sm cursor-default`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`flex size-10 items-center justify-center rounded-lg bg-gradient-to-br ${social.bg}`}>
+                          <social.icon className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-white">{social.label}</div>
+                        </div>
                       </div>
-                      <div>
-                        <div className="font-semibold text-white">{social.label}</div>
+                    </motion.div>
+                  );
+                }
+                
+                // Other social links are clickable
+                return (
+                  <MagneticButton key={social.label} strength={0.2}>
+                    <motion.a
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.1 * index }}
+                      whileHover={{ scale: 1.03, x: 5 }}
+                      className={`flex items-center justify-between overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br ${social.bg} p-4 backdrop-blur-sm`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`flex size-10 items-center justify-center rounded-lg bg-gradient-to-br ${social.bg}`}>
+                          <social.icon className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+                        </div>
+                        <div>
+                          <div className="font-semibold text-white">{social.label}</div>
+                        </div>
                       </div>
-                    </div>
-                    <ArrowUpRight className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
-                  </motion.a>
-                </MagneticButton>
-              ))}
+                      <ArrowUpRight className={`size-5 bg-gradient-to-br ${social.gradient} bg-clip-text text-transparent`} />
+                    </motion.a>
+                  </MagneticButton>
+                );
+              })}
             </motion.div>
 
             {/* CTA */}
