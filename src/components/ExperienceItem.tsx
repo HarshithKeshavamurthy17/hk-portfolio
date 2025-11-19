@@ -50,7 +50,7 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
         }
       }}
       className={cn(
-        'group/exp relative flex h-full flex-col gap-3 overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-4 backdrop-blur-sm transition-all duration-200 hover:border-cyan-300/50 hover:bg-gradient-to-br hover:from-white/[0.08] hover:via-white/[0.05] hover:to-white/[0.02] hover:shadow-[0_8px_30px_rgba(34,211,238,0.25)] focus-within:border-cyan-300/50 focus-within:bg-gradient-to-br focus-within:from-white/[0.08] focus-within:via-white/[0.05] focus-within:to-white/[0.02]',
+        'group/exp relative flex h-full flex-col gap-2.5 overflow-hidden rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.03] to-white/[0.01] p-3.5 backdrop-blur-sm transition-all duration-200 hover:border-cyan-300/50 hover:bg-gradient-to-br hover:from-white/[0.08] hover:via-white/[0.05] hover:to-white/[0.02] hover:shadow-[0_8px_30px_rgba(34,211,238,0.25)] focus-within:border-cyan-300/50 focus-within:bg-gradient-to-br focus-within:from-white/[0.08] focus-within:via-white/[0.05] focus-within:to-white/[0.02]',
         'focus-visible:outline focus-visible:outline-2 focus-visible:outline-cyan-400 focus-visible:ring-offset-4',
       )}
       style={{ willChange: 'transform' }}
@@ -70,25 +70,25 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
             <img
               src={exp.logo}
               alt={`${exp.company} logo`}
-              width={48}
-              height={48}
-              className="relative size-10 md:size-12 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover/exp:scale-110"
+              width={40}
+              height={40}
+              className="relative size-9 md:size-10 object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)] transition-transform duration-300 group-hover/exp:scale-110"
               loading="lazy"
               decoding="async"
               onError={() => setLogoError(true)}
             />
           </div>
         ) : (
-          <div className="flex size-16 md:size-20 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-white/10 to-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover/exp:ring-2 group-hover/exp:ring-cyan-400/30">
-            <span className="text-lg md:text-xl font-bold text-neutral-200">{initials}</span>
+          <div className="flex size-12 md:size-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-white/5 ring-1 ring-white/10 transition-all duration-300 group-hover/exp:ring-2 group-hover/exp:ring-cyan-400/30">
+            <span className="text-base md:text-lg font-bold text-neutral-200">{initials}</span>
           </div>
         )}
-        <div className="flex flex-1 flex-col gap-2">
-          <h3 className="text-xl md:text-2xl font-bold text-white">{exp.company}</h3>
-          <p className="text-base md:text-lg text-neutral-400">{exp.role}</p>
+        <div className="flex flex-1 flex-col gap-1.5">
+          <h3 className="text-lg md:text-xl font-bold text-white">{exp.company}</h3>
+          <p className="text-sm md:text-base text-neutral-400">{exp.role}</p>
         </div>
         <span
-          className="shrink-0 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs md:text-sm font-semibold uppercase tracking-wider text-neutral-300"
+          className="shrink-0 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] md:text-xs font-semibold uppercase tracking-wider text-neutral-300"
           aria-label={`Tenure: ${exp.start} to ${exp.end}`}
         >
           {exp.start} — {exp.end}
@@ -96,22 +96,22 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
       </header>
 
       {/* Project summary */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-1.5">
         <div className="flex items-center gap-2">
           <div className="h-px flex-1 bg-gradient-to-r from-cyan-400/50 to-transparent" />
-          <span className="text-sm md:text-base font-semibold uppercase tracking-widest text-cyan-400">{exp.summary}</span>
+          <span className="text-xs md:text-sm font-semibold uppercase tracking-widest text-cyan-400">{exp.summary}</span>
           <div className="h-px flex-1 bg-gradient-to-l from-cyan-400/50 to-transparent" />
         </div>
         {exp.description && (
-          <p className="text-base md:text-lg leading-relaxed text-neutral-300">{exp.description}</p>
+          <p className="text-sm md:text-base leading-relaxed text-neutral-300">{exp.description}</p>
         )}
       </div>
 
       {/* Impact summary */}
       {exp.impactSummary && (
-        <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/5 p-5 md:p-6">
-          <p className="text-base md:text-lg font-semibold text-emerald-300 mb-2">Impact:</p>
-          <p className="text-base md:text-lg leading-relaxed text-neutral-200">{exp.impactSummary}</p>
+        <div className="rounded-lg border border-emerald-400/20 bg-emerald-500/5 p-3.5 md:p-4">
+          <p className="text-sm md:text-base font-semibold text-emerald-300 mb-1.5">Impact:</p>
+          <p className="text-sm md:text-base leading-relaxed text-neutral-200">{exp.impactSummary}</p>
         </div>
       )}
 
@@ -123,7 +123,7 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
         />
         <ul
           className={cn(
-            'relative space-y-4 text-base md:text-lg text-neutral-200 transition-all duration-300',
+            'relative space-y-2.5 text-sm md:text-base text-neutral-200 transition-all duration-300',
           )}
         >
           {visibleImpact.map((item, index) => (
@@ -178,7 +178,7 @@ export default function ExperienceItem({ exp }: ExperienceItemProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.2, delay: index * 0.04 }}
               whileHover={{ scale: 1.1, y: -2 }}
-              className="group/tech relative cursor-default overflow-hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-neutral-200 transition-all hover:border-cyan-400/30 hover:bg-cyan-500/10 hover:text-cyan-200 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
+              className="group/tech relative cursor-default overflow-hidden rounded-full border border-white/10 bg-white/5 px-2.5 py-1 text-[10px] md:text-xs font-medium text-neutral-200 transition-all hover:border-cyan-400/30 hover:bg-cyan-500/10 hover:text-cyan-200 hover:shadow-[0_0_15px_rgba(34,211,238,0.3)]"
             >
               <span className="relative z-10 flex items-center gap-1">
                 <Zap className="size-3 opacity-0 transition-opacity group-hover/tech:opacity-100" aria-hidden="true" />
