@@ -5,11 +5,11 @@ import { Download, Menu, X, Sparkles } from 'lucide-react';
 import { cn } from '../../lib/cn';
 
 const navLinks = [
-  { href: '/#projects', label: 'Projects' },
-  { href: '/#experience', label: 'Experience' },
-  { href: '/#skills', label: 'Skills' },
-  { href: '/#about', label: 'About' },
-  { href: '/#contact', label: 'Contact' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'about', label: 'About' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 export function Navbar() {
@@ -30,13 +30,34 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isActive = (href: string) => {
-    if (!href.startsWith('/#')) return false;
-    const targetHash = href.split('#')[1] ?? '';
-    if (targetHash === 'hero') {
-      return pathname === '/' && (hash === '#hero' || hash === '' || hash === '#');
+  // Handle hash navigation on page load
+  useEffect(() => {
+    if (hash) {
+      const id = hash.replace('#', '');
+      setTimeout(() => {
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
     }
-    return pathname === '/' && hash === `#${targetHash}`;
+  }, [hash]);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Update URL hash without triggering navigation
+      window.history.pushState(null, '', `#${id}`);
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const isActive = (id: string) => {
+    // Check if we're on the home page (with or without base path)
+    const isHomePage = pathname === '/' || pathname === '/hk-portfolio/' || pathname.startsWith('/hk-portfolio');
+    if (!isHomePage) return false;
+    return hash === `#${id}`;
   };
 
   return (
@@ -60,11 +81,15 @@ export function Navbar() {
         
         <nav className="mx-auto flex w-full max-w-7xl items-center justify-between gap-6 px-6 py-4 md:px-8 lg:px-12">
           {/* Logo */}
-          <motion.a
-            href="/#hero"
+          <motion.button
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              const basePath = import.meta.env.BASE_URL || '/hk-portfolio/';
+              window.history.pushState(null, '', basePath);
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative rounded-lg"
+            className="group relative rounded-lg cursor-pointer"
           >
             <div className="relative flex items-center gap-2">
               <motion.div
@@ -78,40 +103,40 @@ export function Navbar() {
                 Harshith K
               </span>
             </div>
-          </motion.a>
+          </motion.button>
 
           {/* Desktop Navigation */}
           <ul className="hidden items-center gap-1 md:flex">
             {navLinks.map((link, index) => (
               <motion.li
-                key={link.href}
+                key={link.id}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: index * 0.05 }}
               >
-                <a
-                  href={link.href}
+                <button
+                  onClick={() => scrollToSection(link.id)}
                   className={cn(
-                    'group relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300',
-                    isActive(link.href)
+                    'group relative rounded-lg px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer',
+                    isActive(link.id)
                       ? 'text-cyan-400'
                       : 'text-neutral-400 hover:text-white'
                   )}
                 >
                   <span className="relative z-10">{link.label}</span>
-                  {isActive(link.href) && (
+                  {isActive(link.id) && (
                     <motion.div
                       layoutId="navbar-pill"
                       className="absolute inset-0 rounded-lg bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30"
                       transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
-                  {!isActive(link.href) && (
+                  {!isActive(link.id) && (
                     <motion.div
                       className="absolute inset-0 rounded-lg bg-white/5 opacity-0 transition-opacity group-hover:opacity-100"
                     />
                   )}
-                </a>
+                </button>
               </motion.li>
             ))}
           </ul>
@@ -160,7 +185,7 @@ export function Navbar() {
         <ul className="space-y-2">
           {navLinks.map((link, index) => (
             <motion.li
-              key={link.href}
+              key={link.id}
               initial={{ opacity: 0, x: -20 }}
               animate={{
                 opacity: mobileMenuOpen ? 1 : 0,
@@ -168,18 +193,20 @@ export function Navbar() {
               }}
               transition={{ delay: index * 0.05 }}
             >
-              <a
-                href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
+              <button
+                onClick={() => {
+                  scrollToSection(link.id);
+                  setMobileMenuOpen(false);
+                }}
                 className={cn(
-                  'block rounded-lg px-4 py-3 text-base font-medium transition-all',
-                  isActive(link.href)
+                  'block w-full text-left rounded-lg px-4 py-3 text-base font-medium transition-all cursor-pointer',
+                  isActive(link.id)
                     ? 'bg-gradient-to-r from-cyan-500/10 to-blue-500/10 text-cyan-400 border border-cyan-400/30'
                     : 'text-neutral-400 hover:bg-white/5 hover:text-white'
                 )}
               >
                 {link.label}
-              </a>
+              </button>
             </motion.li>
           ))}
           <motion.li
