@@ -56,17 +56,12 @@ export function Contact() {
     const message = formData.get('message') as string;
 
     // EmailJS configuration
-    // For GitHub Pages: Hardcode your EmailJS keys here (public keys are safe to expose)
-    // For local dev: Use .env file with VITE_EMAILJS_* variables
-    // Get your keys from: https://www.emailjs.com/ Dashboard > Account > API Keys
-    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
-    
-    // TODO: Replace the above with your actual EmailJS keys for GitHub Pages:
-    // const serviceId = 'your_service_id';
-    // const templateId = 'your_template_id';
-    // const publicKey = 'your_public_key';
+    // Service ID: portfolio
+    // Template ID: template_qzzopjr
+    // Public Key: mvQtUQ4jn5hXPHPY4
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'portfolio';
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'template_qzzopjr';
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'mvQtUQ4jn5hXPHPY4';
 
     // Initialize EmailJS
     emailjs.init(publicKey);
@@ -75,6 +70,7 @@ export function Contact() {
       await emailjs.send(serviceId, templateId, {
         from_name: name,
         from_email: email,
+        name: name, // For template compatibility
         message: message,
         to_email: 'hk17@bu.edu',
         reply_to: email,
