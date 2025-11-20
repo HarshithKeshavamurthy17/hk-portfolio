@@ -24,7 +24,7 @@ export function ProjectCard({ title, subtitle, description, tags, image, githubU
         <img
           src={image}
           alt={title}
-          className={`w-full h-full transition-transform duration-500 group-hover:scale-110 ${imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'
+          className={`w-full h-full transition-transform duration-500 group-hover:scale-110 ${imageFit === 'contain' ? 'object-contain p-8' : 'object-cover'
             }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60" />
