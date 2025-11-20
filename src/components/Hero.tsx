@@ -22,7 +22,7 @@ export function Hero() {
           </h2>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             <span className="text-white">Harshith</span>{' '}
-            <span className="text-gradient-primary">K</span>
+            <span className="text-gradient-primary">Keshavamurthy</span>
           </h1>
           <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
             Turning <span className="text-white font-medium">noisy telemetry</span> into <span className="text-white font-medium">reliable decisions</span>.
