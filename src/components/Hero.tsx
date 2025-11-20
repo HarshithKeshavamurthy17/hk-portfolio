@@ -55,10 +55,10 @@ export function Hero() {
           >
             <span className="text-sm font-medium text-cyan-400">Now open to:</span>
             <div className="flex flex-wrap justify-center gap-2">
-              <span className="px-3 py-1 text-xs font-medium rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-200">Data/AI</span>
-              <span className="px-3 py-1 text-xs font-medium rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-200">ML Platform</span>
-              <span className="px-3 py-1 text-xs font-medium rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200">Graph-RAG</span>
-              <span className="px-3 py-1 text-xs font-medium rounded-full border border-teal-400/30 bg-teal-500/10 text-teal-200">Streaming ETL</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-200">AI/ML Engineer</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-200">Data Scientist (ML & Analytics)</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200">Data Engineer (Cloud + ETL + Streaming)</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-purple-400/30 bg-purple-500/10 text-purple-200">ML Platform / MLOps Engineer</span>
             </div>
           </motion.div>
         </motion.div>
