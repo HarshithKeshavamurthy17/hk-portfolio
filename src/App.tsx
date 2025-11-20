@@ -26,6 +26,7 @@ const ProjectViGraphRag = lazy(() => import('./pages/ProjectViGraphRag'));
 const ProjectF1Prediction = lazy(() => import('./pages/ProjectF1Prediction'));
 const ProjectOncoVision = lazy(() => import('./pages/ProjectOncoVision'));
 const ProjectAutoKPI = lazy(() => import('./pages/ProjectAutoKPI'));
+const ProjectLexGuard = lazy(() => import('./pages/ProjectLexGuard'));
 
 const HomePage = () => {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -147,12 +148,6 @@ const HomePage = () => {
 
   return (
     <main className="flex flex-col gap-10 pb-20">
-      <a
-        href="#main-content"
-        className="skip-link"
-      >
-        Skip to content
-      </a>
       <div ref={liveRegionRef} aria-live="polite" className="sr-only" />
       <SEO
         title="Harshith K — Data, AI & Analytics Engineer"
@@ -276,6 +271,10 @@ function App() {
             <Route
               path="/projects/autokpi"
               element={<CaseFallbackSuspense component={<ProjectAutoKPI />} />}
+            />
+            <Route
+              path="/projects/lexguard"
+              element={<CaseFallbackSuspense component={<ProjectLexGuard />} />}
             />
             <Route
               path="/case/vi-graph-rag"
