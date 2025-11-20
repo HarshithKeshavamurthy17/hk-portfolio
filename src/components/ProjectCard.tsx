@@ -11,19 +11,21 @@ interface ProjectCardProps {
   liveUrl?: string;
   impact?: string[];
   metrics?: Record<string, string>;
+  imageFit?: 'cover' | 'contain';
 }
 
-export function ProjectCard({ title, subtitle, description, tags, image, githubUrl, liveUrl, impact, metrics }: ProjectCardProps) {
+export function ProjectCard({ title, subtitle, description, tags, image, githubUrl, liveUrl, impact, metrics, imageFit = 'cover' }: ProjectCardProps) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
       className="group relative rounded-xl overflow-hidden bg-card border border-white/10 flex flex-col h-full"
     >
-      <div className="aspect-video overflow-hidden relative">
+      <div className="aspect-video overflow-hidden relative bg-black/20">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          className={`w-full h-full transition-transform duration-500 group-hover:scale-110 ${imageFit === 'contain' ? 'object-contain p-4' : 'object-cover'
+            }`}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent opacity-60" />
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 backdrop-blur-sm">

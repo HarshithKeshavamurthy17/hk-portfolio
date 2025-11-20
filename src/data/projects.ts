@@ -14,6 +14,7 @@ export type Project = {
     type: 'video' | 'gif';
   };
   metrics?: Record<string, string>;
+  imageFit?: 'cover' | 'contain';
 };
 
 export const projects: Project[] = [
@@ -104,9 +105,33 @@ export const projects: Project[] = [
     darkThumb: '/hk-portfolio/thumbs/autokpi.png',
     preview: { src: '/assets/projects/autokpi-preview.png', type: 'gif' },
     metrics: {
-      kpis: '100+',
-      uptime: '99.9%',
+      efficiency: '+80%',
+      accuracy: '92%',
     },
+  },
+  {
+    id: 'lexguard',
+    title: 'LexGuard',
+    subtitle: 'AI Legal Assistant',
+    summary: 'Democratizing legal accessibility with Agentic AI and RAG-powered contract analysis. An advanced platform for deep semantic analysis and risk scoring.',
+    impact: [
+      'Automated risk scoring & classification',
+      'Deep semantic analysis of contracts',
+      'Interactive AI legal assistant',
+    ],
+    tech: ['FastAPI', 'Streamlit', 'LangChain', 'ChromaDB', 'OpenAI'],
+    links: [
+      { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/LexGuard' },
+    ],
+    badges: ['LegalTech', 'Agentic AI'],
+    thumb: '/hk-portfolio/thumbs/lexguard.png',
+    darkThumb: '/hk-portfolio/thumbs/lexguard.png',
+    preview: { src: '/assets/projects/lexguard-preview.png', type: 'gif' },
+    metrics: {
+      speed: '10x',
+      clarity: 'High',
+    },
+    imageFit: 'contain',
   },
 ];
 
