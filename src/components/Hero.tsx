@@ -22,17 +22,18 @@ export function Hero() {
           </h2>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             <span className="text-white">Harshith</span>{' '}
-            <span className="text-gradient-primary">Keshavamurthy</span>
+            <span className="text-gradient-primary">K</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-            Data, AI & Analytics Engineer crafting intelligent solutions and immersive digital experiences.
+          <p className="text-lg md:text-2xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
+            Turning <span className="text-white font-medium">noisy telemetry</span> into <span className="text-white font-medium">reliable decisions</span>.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors"
+              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
             >
               View Projects
             </motion.button>
@@ -40,10 +41,26 @@ export function Hero() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-3 rounded-full glass text-white font-semibold hover:bg-white/10 transition-colors"
+              onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
             >
               Contact Me
             </motion.button>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-col items-center gap-3"
+          >
+            <span className="text-sm font-medium text-cyan-400">Now open to:</span>
+            <div className="flex flex-wrap justify-center gap-2">
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-cyan-400/30 bg-cyan-500/10 text-cyan-200">Data/AI</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-sky-400/30 bg-sky-500/10 text-sky-200">ML Platform</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-blue-400/30 bg-blue-500/10 text-blue-200">Graph-RAG</span>
+              <span className="px-3 py-1 text-xs font-medium rounded-full border border-teal-400/30 bg-teal-500/10 text-teal-200">Streaming ETL</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
 
