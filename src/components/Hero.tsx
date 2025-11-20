@@ -17,9 +17,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-sm md:text-base font-medium tracking-wider text-cyan-400 uppercase mb-4">
-            Welcome to my portfolio
-          </h2>
+
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             <span className="text-white">Harshith</span>{' '}
             <span className="text-gradient-primary">Keshavamurthy</span>
