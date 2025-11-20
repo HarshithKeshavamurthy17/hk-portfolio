@@ -52,7 +52,7 @@ export function Navbar() {
                         <a href="https://github.com/HarshithKeshavamurthy17" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
                             <Github className="w-5 h-5" />
                         </a>
-                        <a href="https://linkedin.com/in/harshith-keshavamurthy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
+                        <a href="https://www.linkedin.com/in/harshith-k-bu/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white transition-colors">
                             <Linkedin className="w-5 h-5" />
                         </a>
                         <a href="mailto:harshithk17@gmail.com" className="text-muted-foreground hover:text-white transition-colors">
@@ -95,7 +95,7 @@ export function Navbar() {
                                 <a href="https://github.com/HarshithKeshavamurthy17" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white">
                                     <Github className="w-6 h-6" />
                                 </a>
-                                <a href="https://linkedin.com/in/harshith-keshavamurthy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white">
+                                <a href="https://www.linkedin.com/in/harshith-k-bu/" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-white">
                                     <Linkedin className="w-6 h-6" />
                                 </a>
                                 <a href="mailto:harshithk17@gmail.com" className="text-muted-foreground hover:text-white">
