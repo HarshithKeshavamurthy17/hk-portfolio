@@ -16,8 +16,8 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="flex flex-col items-center"
         >
-
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6">
             <span className="text-white">Harshith</span>{' '}
             <span className="text-gradient-primary">Keshavamurthy</span>
