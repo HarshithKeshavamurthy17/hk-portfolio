@@ -20,7 +20,7 @@ export function About() {
         style={{ y }}
         className="pointer-events-none absolute right-[10%] top-[20%] size-[300px] rounded-full bg-gradient-to-br from-violet-500/20 to-transparent blur-3xl"
       />
-      
+
       <div className="mx-auto max-w-5xl px-3 md:px-5 lg:px-6">
         {/* Section Header */}
         <motion.div
@@ -37,7 +37,7 @@ export function About() {
             <Sparkles className="size-2.5 text-violet-400" />
             <span className="text-[10px] font-medium text-violet-300">Get to know me</span>
           </motion.div>
-          
+
           <h2 className="text-2xl md:text-3xl lg:text-4xl font-black bg-gradient-to-r from-violet-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
             About Me
           </h2>
@@ -62,7 +62,7 @@ export function About() {
                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
-              
+
               <div className="relative">
                 <div className="mb-3 flex items-center gap-2">
                   <motion.div
@@ -74,11 +74,11 @@ export function About() {
                   </motion.div>
                   <h3 className="text-lg font-bold text-white">Who I Am</h3>
                 </div>
-                
+
                 <p className="mb-3 text-sm leading-relaxed text-neutral-300">
                   I'm a <span className="font-semibold text-violet-300">data practitioner</span> passionate about building intelligent, data-driven systems that connect analytical depth with scalable engineering.
                 </p>
-                
+
                 <p className="text-sm leading-relaxed text-neutral-400">
                   My experience spans <span className="font-semibold text-cyan-300">applied AI (Tietoevry)</span>, <span className="font-semibold text-emerald-300">data analytics (Uber via Nineleaps)</span>, and <span className="font-semibold text-blue-300">data engineering pipelines</span>—enabling me to bring a holistic understanding of how data flows from raw ingestion to intelligent insight.
                 </p>
@@ -104,11 +104,11 @@ export function About() {
                   </motion.div>
                   <h3 className="text-lg font-bold text-white">Current Focus</h3>
                 </div>
-                
+
                 <p className="mb-3 text-sm leading-relaxed text-neutral-300">
                   Bridging the gap between data engineering and modern AI — designing systems that move data smoothly, train models reliably, and deliver insights that make sense.
                 </p>
-                
+
                 <div className="space-y-2">
                   <p className="text-xs font-semibold text-cyan-300">Diving into:</p>
                   {[
@@ -236,19 +236,19 @@ export function About() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mt-10"
         >
-          <div className="mb-4 flex items-center gap-2">
+          <div className="mb-6 flex items-center gap-2">
             <Rocket className="size-5 text-emerald-400" />
             <h3 className="text-xl font-bold text-white">Core Strengths</h3>
           </div>
-          
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { icon: '🎯', title: 'End-to-end AI/ML', color: 'cyan' },
-              { icon: '🧠', title: 'RAG & Knowledge Graphs', color: 'violet' },
-              { icon: '☁️', title: 'Cloud data pipelines', color: 'blue' },
-              { icon: '📊', title: 'Statistical modeling', color: 'emerald' },
-              { icon: '🚀', title: 'Production ML deployment', color: 'pink' },
-              { icon: '📈', title: 'Interactive dashboards', color: 'orange' },
+              { icon: '🎯', title: 'End-to-end AI/ML Systems', color: 'from-cyan-500/20 to-blue-500/10', border: 'border-cyan-400/30', text: 'text-cyan-300' },
+              { icon: '🧠', title: 'Retrieval-Augmented Generation & Knowledge Graphs', color: 'from-violet-500/20 to-purple-500/10', border: 'border-violet-400/30', text: 'text-violet-300' },
+              { icon: '☁️', title: 'Scalable Cloud Data Pipelines', color: 'from-blue-500/20 to-sky-500/10', border: 'border-blue-400/30', text: 'text-blue-300' },
+              { icon: '📊', title: 'Applied Statistical Modeling & Experimentation', color: 'from-emerald-500/20 to-teal-500/10', border: 'border-emerald-400/30', text: 'text-emerald-300' },
+              { icon: '🚀', title: 'Production ML Deployment & MLOps', color: 'from-pink-500/20 to-rose-500/10', border: 'border-pink-400/30', text: 'text-pink-300' },
+              { icon: '📈', title: 'Interactive Dashboards & Insights', color: 'from-orange-500/20 to-amber-500/10', border: 'border-orange-400/30', text: 'text-orange-300' },
             ].map((item, i) => (
               <MagneticButton key={i} strength={0.15}>
                 <motion.div
@@ -256,17 +256,26 @@ export function About() {
                   whileInView={{ opacity: 1, scale: 1, rotateX: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.05 * i }}
-                  whileHover={{ y: -5, scale: 1.05 }}
-                  className={`rounded-lg border border-${item.color}-400/20 bg-${item.color}-500/5 p-4 backdrop-blur-sm`}
+                  whileHover={{ y: -8, scale: 1.03 }}
+                  className={`group relative overflow-hidden rounded-xl border ${item.border} bg-gradient-to-br ${item.color} p-5 backdrop-blur-sm transition-all duration-300`}
                 >
+                  {/* Animated gradient overlay on hover */}
                   <motion.div
-                    className="mb-2 text-xl"
-                    whileHover={{ scale: 1.3, rotate: 360 }}
-                    transition={{ duration: 0.6 }}
-                  >
-                    {item.icon}
-                  </motion.div>
-                  <div className={`text-sm font-semibold text-${item.color}-300`}>{item.title}</div>
+                    className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+
+                  <div className="relative">
+                    <motion.div
+                      className="mb-3 text-3xl"
+                      whileHover={{ scale: 1.2, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {item.icon}
+                    </motion.div>
+                    <div className={`text-sm font-semibold leading-snug ${item.text}`}>
+                      {item.title}
+                    </div>
+                  </div>
                 </motion.div>
               </MagneticButton>
             ))}
