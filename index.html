@@ -1,6 +1,39 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Website Tracker -->
+    <script>
+      (function() {
+        function trackPageView() {
+          const data = {
+            url: window.location.href,
+            referrer: document.referrer || null,
+            userAgent: navigator.userAgent
+          };
+          fetch('http://localhost:3000/api/track', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+            keepalive: true
+          }).catch(function(err) {});
+        }
+        if (document.readyState === 'complete') {
+          trackPageView();
+        } else {
+          window.addEventListener('load', trackPageView);
+        }
+        if (window.history && window.history.pushState) {
+          const originalPushState = window.history.pushState;
+          window.history.pushState = function() {
+            originalPushState.apply(window.history, arguments);
+            setTimeout(trackPageView, 0);
+          };
+          window.addEventListener('popstate', function() {
+            setTimeout(trackPageView, 0);
+          });
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
