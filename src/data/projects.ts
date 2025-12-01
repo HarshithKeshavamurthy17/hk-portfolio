@@ -19,6 +19,31 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    id: 'antigravity',
+    title: 'Antigravity',
+    subtitle: 'Real-time gravity manipulation & particle dynamics',
+    summary: 'An advanced platform that leverages computational physics and WebGL to create immersive, interactive environments where users can experiment with gravitational forces.',
+    impact: [
+      'Real-time gravity simulation',
+      'Immersive 3D particle systems',
+      'Interactive physics playground',
+    ],
+    tech: ['React', 'Three.js', 'WebGL', 'Physics Engine', 'Shaders'],
+    links: [
+      { label: 'Demo', kind: 'demo', href: '#' },
+      { label: 'Code', kind: 'code', href: '#' },
+    ],
+    badges: ['Physics Simulation', 'WebGL'],
+    thumb: '/thumbs/antigravity.png',
+    darkThumb: '/thumbs/antigravity.png',
+    preview: { src: '/thumbs/antigravity.png', type: 'gif' },
+    metrics: {
+      'FPS': '60',
+      'Particles': '10k+',
+    },
+    imageFit: 'cover',
+  },
+  {
     id: 'posture-analytics',
     title: 'AI 3D Posture & Motion Analytics',
     subtitle: 'Real-time biomechanical analysis using computer vision',
