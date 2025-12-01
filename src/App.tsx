@@ -27,8 +27,7 @@ const ProjectF1Prediction = lazy(() => import('./pages/ProjectF1Prediction'));
 const ProjectOncoVision = lazy(() => import('./pages/ProjectOncoVision'));
 const ProjectAutoKPI = lazy(() => import('./pages/ProjectAutoKPI'));
 const ProjectLexGuard = lazy(() => import('./pages/ProjectLexGuard'));
-const ProjectAntigravity = lazy(() => import('./pages/ProjectAntigravity'));
-const ProjectPostureAnalytics = lazy(() => import('./pages/ProjectPostureAnalytics').then(module => ({ default: module.ProjectPostureAnalytics })));
+const ProjectPostureAnalytics = lazy(() => import('./pages/ProjectPostureAnalytics'));
 
 const HomePage = () => {
   const [commandOpen, setCommandOpen] = useState(false);
@@ -277,10 +276,6 @@ function App() {
             <Route
               path="/projects/lexguard"
               element={<CaseFallbackSuspense component={<ProjectLexGuard />} />}
-            />
-            <Route
-              path="/projects/antigravity"
-              element={<CaseFallbackSuspense component={<ProjectAntigravity />} />}
             />
             <Route
               path="/case/vi-graph-rag"
