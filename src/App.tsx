@@ -16,6 +16,7 @@ import Experience from './sections/Experience';
 import { Skills } from './sections/Skills';
 import { About } from './sections/About';
 import { Contact } from './sections/Contact';
+import { Analytics } from './components/Analytics';
 
 const VIGraphRAG = lazy(() => import('./routes/case/VIGraphRAG'));
 const UberETL = lazy(() => import('./routes/case/UberETL'));
@@ -252,6 +253,7 @@ function App() {
         <ScrollProgress />
         <Glow />
         <Navbar />
+        <Analytics />
         <div className="flex-1">
           <ScrollToTop />
           <Routes>
