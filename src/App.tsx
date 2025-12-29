@@ -260,6 +260,10 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/projects" element={<Navigate to="/#projects" replace />} />
             <Route
+              path="/projects/posture-analytics"
+              element={<CaseFallbackSuspense component={<ProjectPostureAnalytics />} />}
+            />
+            <Route
               path="/projects/vi-graph-rag"
               element={<CaseFallbackSuspense component={<ProjectViGraphRag />} />}
             />
