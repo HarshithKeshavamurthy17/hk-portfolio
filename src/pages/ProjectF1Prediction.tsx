@@ -48,7 +48,7 @@ export default function ProjectF1Prediction() {
               </div>
               <div className="pt-4">
                 <a
-                  href="https://f1-win-predictor-app.streamlit.app/"
+                  href="https://f1-win-predictor-production.up.railway.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-red-700 transition-all hover:scale-105 shadow-lg shadow-red-600/25"
@@ -56,6 +56,9 @@ export default function ProjectF1Prediction() {
                   <Zap className="size-4" />
                   Try Live Demo
                 </a>
+                <p className="text-xs text-neutral-400 mt-2 text-center">
+                  Note: Due to free tier hosting, the app may take 15-30 seconds to wake up. Please wait.
+                </p>
               </div>
             </div>
           </div>
@@ -726,25 +729,30 @@ Charts, Tables, Metrics`}
           <p className="text-xs text-neutral-500 leading-relaxed">
             This project showcases end-to-end ML engineering: from raw data collection through feature engineering, model training, validation, and production deployment. It demonstrates how domain expertise, rigorous validation, and clean architecture combine to create accurate, explainable, and maintainable machine learning systems.
           </p>
-          <div className="mt-6 flex justify-center gap-4">
-            <a
-              href="https://f1-win-predictor-app.streamlit.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2 text-sm font-bold text-white hover:bg-red-700 transition-colors shadow-lg shadow-red-600/25"
-            >
-              <Zap className="size-4" />
-              Live Demo
-            </a>
-            <a
-              href="https://github.com/HarshithKeshavamurthy17/F1-Race-Win-Predictor"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
-            >
-              <Code className="size-4" />
-              View Source
-            </a>
+          <div className="mt-6 flex flex-col items-center gap-4">
+            <div className="flex justify-center gap-4">
+              <a
+                href="https://f1-win-predictor-production.up.railway.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-red-600 px-6 py-2 text-sm font-bold text-white hover:bg-red-700 transition-colors shadow-lg shadow-red-600/25"
+              >
+                <Zap className="size-4" />
+                Live Demo
+              </a>
+              <a
+                href="https://github.com/HarshithKeshavamurthy17/F1-Race-Win-Predictor"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
+              >
+                <Code className="size-4" />
+                View Source
+              </a>
+            </div>
+            <p className="text-xs text-neutral-400 text-center">
+              Note: Due to free tier hosting, the app may take 15-30 seconds to wake up. Please wait.
+            </p>
           </div>
         </motion.div>
       </div>

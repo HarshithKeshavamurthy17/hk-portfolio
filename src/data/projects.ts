@@ -76,7 +76,7 @@ export const projects: Project[] = [
     tech: ['Python', 'Scikit-learn', 'Random Forest', 'Streamlit', 'Pandas', 'Plotly'],
     links: [
       { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/F1-Race-Win-Predictor' },
-      { label: 'Demo', kind: 'demo', href: 'https://f1-win-predictor-app.streamlit.app/' },
+      { label: 'Demo', kind: 'demo', href: 'https://f1-win-predictor-production.up.railway.app/' },
     ],
     badges: ['Machine Learning', 'Sports Analytics'],
     thumb: '/hk-portfolio/thumbs/f1-predictor.png',
@@ -100,7 +100,7 @@ export const projects: Project[] = [
     tech: ['PyTorch', 'U-Net', 'ResNet50', 'Streamlit', 'Albumentations'],
     links: [
       { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/OncoVision' },
-      { label: 'Demo', kind: 'demo', href: 'https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app/' },
+      { label: 'Demo', kind: 'demo', href: 'https://oncovision-production.up.railway.app/' },
     ],
     badges: ['Deep Learning', 'Healthcare AI'],
     thumb: '/hk-portfolio/thumbs/oncovision.png',
@@ -124,7 +124,7 @@ export const projects: Project[] = [
     tech: ['Python', 'NLP', 'React', 'D3.js', 'Flask'],
     links: [
       { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/AutoKPI' },
-      { label: 'Demo', kind: 'demo', href: 'https://autokpi-hk-app.streamlit.app/' },
+      { label: 'Demo', kind: 'demo', href: 'https://autokpi-production.up.railway.app/' },
     ],
     badges: ['NLP', 'Business Intelligence'],
     thumb: '/hk-portfolio/thumbs/autokpi.png',
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     tech: ['FastAPI', 'Streamlit', 'LangChain', 'ChromaDB', 'OpenAI'],
     links: [
       { label: 'Code', kind: 'code', href: 'https://github.com/HarshithKeshavamurthy17/lexguard' },
-      { label: 'Demo', kind: 'demo', href: 'https://lexguard-app.streamlit.app/' },
+      { label: 'Demo', kind: 'demo', href: 'https://lexguard-production-33fd.up.railway.app/' },
     ],
     badges: ['LegalTech', 'Agentic AI'],
     thumb: '/hk-portfolio/thumbs/lexguard.png',

@@ -65,7 +65,7 @@ export default function ProjectOncoVision() {
               </div>
               <div className="pt-4">
                 <a
-                  href="https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app/"
+                  href="https://oncovision-production.up.railway.app/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-2.5 text-sm font-bold text-white hover:bg-purple-700 transition-all hover:scale-105 shadow-lg shadow-purple-600/25"
@@ -73,6 +73,9 @@ export default function ProjectOncoVision() {
                   <Zap className="size-4" />
                   Try Live Demo
                 </a>
+                <p className="text-xs text-neutral-400 mt-2 text-center">
+                  Note: Due to free tier hosting, the app may take 15-30 seconds to wake up. Please wait.
+                </p>
               </div>
             </div>
           </div>
@@ -729,12 +732,12 @@ Streamlit Web App
             <div>
               <p className="font-semibold text-white mb-2">URL:</p>
               <a
-                href="https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app"
+                href="https://oncovision-production.up.railway.app/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-purple-300 hover:text-purple-200 underline"
               >
-                https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app
+                https://oncovision-production.up.railway.app/
               </a>
             </div>
             <div>
@@ -770,25 +773,30 @@ Streamlit Web App
           <p className="text-xs text-neutral-600 mt-4 italic">
             Note: This project is for educational purposes and is not intended for clinical use. Medical diagnosis should always be performed by qualified healthcare professionals.
           </p>
-          <div className="mt-6 flex justify-center gap-4">
-            <a
-              href="https://oncovision-akj8dwacntroekz8qxa7gs.streamlit.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-2 text-sm font-bold text-white hover:bg-purple-700 transition-colors shadow-lg shadow-purple-600/25"
-            >
-              <Zap className="size-4" />
-              Live Demo
-            </a>
-            <a
-              href="https://github.com/HarshithKeshavamurthy17/OncoVision"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
-            >
-              <Code className="size-4" />
-              View Source
-            </a>
+          <div className="mt-6 flex flex-col items-center gap-4">
+            <div className="flex justify-center gap-4">
+              <a
+                href="https://oncovision-production.up.railway.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-purple-600 px-6 py-2 text-sm font-bold text-white hover:bg-purple-700 transition-colors shadow-lg shadow-purple-600/25"
+              >
+                <Zap className="size-4" />
+                Live Demo
+              </a>
+              <a
+                href="https://github.com/HarshithKeshavamurthy17/OncoVision"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
+              >
+                <Code className="size-4" />
+                View Source
+              </a>
+            </div>
+            <p className="text-xs text-neutral-400 text-center">
+              Note: Due to free tier hosting, the app may take 15-30 seconds to wake up. Please wait.
+            </p>
           </div>
         </motion.div>
       </div>

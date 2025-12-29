@@ -48,7 +48,7 @@ export default function ProjectLexGuard() {
                             </div>
                             <div className="pt-4">
                                 <a
-                                    href="https://lexguard-app.streamlit.app/"
+                                    href="https://lexguard-production-33fd.up.railway.app/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-6 py-2.5 text-sm font-bold text-white hover:bg-blue-600 transition-all hover:scale-105 shadow-lg shadow-blue-500/25"
@@ -56,6 +56,9 @@ export default function ProjectLexGuard() {
                                     <Zap className="size-4" />
                                     Try Live Demo
                                 </a>
+                                <p className="text-xs text-neutral-400 mt-2 text-center">
+                                    Note: Due to free tier hosting, the app may take 15-30 seconds to wake up. Please wait.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -299,25 +302,30 @@ export default function ProjectLexGuard() {
                     <p className="text-sm text-neutral-300">
                         LexGuard represents a significant step forward in <span className="font-semibold text-white">LegalTech</span>, combining advanced NLP with user-centric design to solve real-world problems.
                     </p>
-                    <div className="mt-4 flex justify-center gap-4">
-                        <a
-                            href="https://lexguard-app.streamlit.app/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-sm font-bold text-white hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/25"
-                        >
-                            <Zap className="size-4" />
-                            Live Demo
-                        </a>
-                        <a
-                            href="https://github.com/HarshithKeshavamurthy17/lexguard"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
-                        >
-                            <Code className="size-4" />
-                            View Source
-                        </a>
+                    <div className="mt-4 flex flex-col items-center gap-4">
+                        <div className="flex justify-center gap-4">
+                            <a
+                                href="https://lexguard-production-33fd.up.railway.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full bg-blue-500 px-6 py-2 text-sm font-bold text-white hover:bg-blue-600 transition-colors shadow-lg shadow-blue-500/25"
+                            >
+                                <Zap className="size-4" />
+                                Live Demo
+                            </a>
+                            <a
+                                href="https://github.com/HarshithKeshavamurthy17/lexguard"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-2 text-sm font-semibold text-black hover:bg-gray-200 transition-colors"
+                            >
+                                <Code className="size-4" />
+                                View Source
+                            </a>
+                        </div>
+                        <p className="text-xs text-neutral-400 text-center">
+                            Note: Due to free tier hosting, the app may take 15-30 seconds to wake up. Please wait.
+                        </p>
                     </div>
                 </motion.div>
             </div>
