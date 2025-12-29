@@ -178,6 +178,7 @@ export function About() {
                   <div className="text-[10px] font-semibold uppercase tracking-wider text-neutral-500">Education</div>
                   <div className="mt-1 text-sm font-semibold text-white">Boston University</div>
                   <div className="text-xs text-neutral-400">MS Applied Data Analytics</div>
+                  <div className="mt-1 text-xs text-neutral-400">CGPA: 3.8/4.0 • Graduated</div>
                 </motion.div>
               </MagneticButton>
 
